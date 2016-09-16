@@ -10,6 +10,6 @@ def add_language_code(endpoint, values):
 def pull_lang_code(endpoint, values):
     g.lang_code = values.pop('lang_code')
 
-import user_views
-import group_views
-import firma_views
+from .user_views import *
+from .group_views import *
+from .firma_views import *

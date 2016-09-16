@@ -17,7 +17,10 @@ class base_config(object):
     #REDIS_PORT = os.environ['REDIS_PORT_6379_TCP_PORT']
     REDIS_PORT="6379"
     REDIS_HOST="localhost"
-    BROKER_URL = 'redis://{}:{}'.format(REDIS_HOST, REDIS_PORT)
+    #BROKER_URL = 'redis://{}:{}'.format(REDIS_HOST, REDIS_PORT)
+    BROKER_URL='redis://localhost:6379/0'
+    #BROKER_PORT='6379'
+    #BROKER_TRANSPORT='sqlalchemy'
     BROKER_BACKEND = BROKER_URL
 
     #CACHE_HOST = os.environ['MEMCACHED_PORT_11211_TCP_ADDR']

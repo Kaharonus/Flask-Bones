@@ -14,7 +14,7 @@ class User(CRUDMixin, UserMixin, db.Model):
     email = db.Column(db.String(128), nullable=False, unique=True)
     jmeno = db.Column(db.String(64), nullable=False )
     prijmeni = db.Column(db.String(64), nullable=False)
-    pw_hash = db.Column(db.String(60), nullable=False)
+    pw_hash = db.Column(db.String(500), nullable=False)
     created_ts = db.Column(db.DateTime(), nullable=False)
     remote_addr = db.Column(db.String(20))
     active = db.Column(db.Boolean())

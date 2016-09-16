@@ -22,7 +22,12 @@ def create_app(config=config.base_config):
 
     @babel.localeselector
     def get_locale():
+        lang_code = getattr(g, 'lang_code', None)
+        if lang_code is None:
+            g.lang_code='en'
         return g.lang_code
+
+
 
 
 
