@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from flask import Flask, g, render_template, request, redirect
 from app.data import db
 from app.extensions import lm, api, travis, mail, heroku, bcrypt, celery, babel

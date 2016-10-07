@@ -1,4 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from . import db
+try:
+    basestring
+except NameError:
+    from six import string_types as basestring
 
 class CRUDMixin(object):
     __table_args__ = {'extend_existing': True}

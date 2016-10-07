@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from .. import db
 from ..mixins import CRUDMixin
 import datetime

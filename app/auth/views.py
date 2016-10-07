@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from flask import (
     current_app, request, redirect, url_for, render_template, flash, abort
 )

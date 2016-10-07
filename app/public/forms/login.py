@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from flask.ext.babel import gettext,lazy_gettext
 from flask_wtf import Form
 from wtforms import TextField, PasswordField
@@ -21,7 +23,6 @@ class LoginForm(Form):
             return False
 
         self.user = User.query.filter_by(username=self.username.data).first()
-
         if not self.user:
             self.username.errors.append(gettext('Unknown username'))
             return False

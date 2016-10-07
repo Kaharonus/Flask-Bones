@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from .group import Group
 from .user import User
 from .firma import Firma

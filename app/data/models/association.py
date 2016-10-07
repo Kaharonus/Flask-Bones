@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from ..mixins import CRUDMixin
 from .. import db
 

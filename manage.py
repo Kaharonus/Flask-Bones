@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from app import create_app, config
 from app.data import db, populate_db
 from flask.ext.migrate import Migrate, MigrateCommand
