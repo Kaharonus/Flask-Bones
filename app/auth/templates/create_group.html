@@ -17,17 +17,6 @@
             <div class="panel-body">
                 {{ form.csrf_token }}
                 {{ render_field(form.nazev) }}
-                <div class="checkbox{{ ' has-error' if form.accept_tos.errors }}">
-                    <label>
-                        {{ form.accept_tos() }}
-                        {{ form.accept_tos.label.text }}
-                    </label>
-                    {% if form.accept_tos.errors %}
-                        {% for error in form.accept_tos.errors %}
-                            <span class="help-block">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}
-                </div>
             </div>
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default">
