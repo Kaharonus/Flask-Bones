@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import flash, request, url_for, current_app
-from flask.ext.login import current_user
-from flask.ext.babel import gettext
+from flask_login import current_user
+from flask_babel import gettext
 from functools import wraps
 
 

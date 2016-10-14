@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask.ext.assets import Bundle, Environment
+from flask_assets import Bundle, Environment
 
 js = Bundle(
     'bower_components/jquery/dist/jquery.js',

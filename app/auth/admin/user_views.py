@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import request, redirect, url_for, render_template, flash, g
-from flask.ext.babel import lazy_gettext,gettext
-from flask.ext.login import login_required
+from flask_babel import lazy_gettext,gettext
+from flask_login import login_required
 
 from app.utils import admin_required
 from app.data.models.user import User

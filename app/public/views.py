@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import current_app, request, redirect, url_for, render_template, flash, abort,g
-from flask.ext.babel import lazy_gettext,gettext
-from flask.ext.login import login_user, current_user
+from flask_babel import lazy_gettext,gettext
+from flask_login import login_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from app.extensions import lm
 from app.tasks import send_registration_email

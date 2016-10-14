@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import re
 from flask_wtf import Form
-from flask.ext.babel import gettext, lazy_gettext
+from flask_babel import gettext, lazy_gettext
 from wtforms import StringField, BooleanField
 from wtforms.validators import Length, InputRequired
 from app.data.models import Group, User

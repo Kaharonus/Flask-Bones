@@ -3,8 +3,8 @@
 from flask import (
     current_app, request, redirect, url_for, render_template, flash, abort
 )
-from flask.ext.babel import gettext, lazy_gettext
-from flask.ext.login import login_user, login_required, logout_user
+from flask_babel import gettext, lazy_gettext
+from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from app.public.forms import RegisterGroupForm, RegisterFirmaForm
 from app.extensions import lm
