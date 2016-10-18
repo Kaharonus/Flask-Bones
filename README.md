@@ -271,7 +271,7 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     # Merge changes into resource files
     $ pybabel update -i i18n/messages.pot -d i18n
     ```
-Script for developers ubuntu
+Script for developers ubuntu  
 ```
 mkdir Project
 sudo apt-get install python-virtualenv
@@ -292,8 +292,8 @@ GRANT ALL PRIVILEGES ON DATABASE test to student;
 ```
 
 
----- BABEL ----
-extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po
+---- BABEL ----  
+extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po  
 `pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;pybabel update -i messages.pot -d app/translations`
-compile to messages.mo for use
+compile to messages.mo for use  
 `pybabel compile -d app/translations`
