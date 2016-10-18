@@ -292,7 +292,7 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     ```
 
 
-15. Flaks Babel  
+15. Flask Babel  
     Extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po  
     ```bash
     pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;pybabel update -i messages.pot -d app/translations
