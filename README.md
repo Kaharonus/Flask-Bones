@@ -271,29 +271,33 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     # Merge changes into resource files
     $ pybabel update -i i18n/messages.pot -d i18n
     ```
-Script for developers ubuntu  
-```
-mkdir Project
-sudo apt-get install python-virtualenv
-sudo apt-get install libpq-dev python-dev
-sudo apt-get install postgresql-9.3
-cd Project
-sudo apt-get install git
-git clone https://github.com/Atheloses/Flask-Bones.git
-cd Flask-Bones
-virtualenv ~/.venv
-. ~/.venv/bin/activate
-pip install -r requirements.txt
-sudo su - postgres
-psql
-CREATE USER student WITH PASSWORD 'student';
-CREATE DATABASE test;
-GRANT ALL PRIVILEGES ON DATABASE test to student;
-```
+14. Script for developers ubuntu  
+    ```bash
+    mkdir Project
+    sudo apt-get install python-virtualenv
+    sudo apt-get install libpq-dev python-dev
+    sudo apt-get install postgresql-9.3
+    cd Project
+    sudo apt-get install git
+    git clone https://github.com/Atheloses/Flask-Bones.git
+    cd Flask-Bones
+    virtualenv ~/.venv
+    . ~/.venv/bin/activate
+    pip install -r requirements.txt
+    sudo su - postgres
+    psql
+    CREATE USER student WITH PASSWORD 'student';
+    CREATE DATABASE test;
+    GRANT ALL PRIVILEGES ON DATABASE test to student;
+    ```
 
 
----- BABEL ----  
-extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po  
-`pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;pybabel update -i messages.pot -d app/translations`
-compile to messages.mo for use  
-`pybabel compile -d app/translations`
+15. Flaks Babel
+    extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po  
+    ```bash
+    pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;pybabel update -i messages.pot -d app/translations
+    ```
+    compile to messages.mo for use  
+    ```bash
+    pybabel compile -d app/translations
+    ```
