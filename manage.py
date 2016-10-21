@@ -37,6 +37,12 @@ def create_db(num_users=5):
 
 
 @manager.command
+@manager.option('-n', '--num_assoc', help='Number of associations')
+def create_assoc(num_assoc=5):
+    pass
+
+
+@manager.command
 def drop_db():
     """Drops data tables."""
     if prompt_bool('Are you sure?'):

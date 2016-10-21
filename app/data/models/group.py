@@ -13,7 +13,7 @@ class Group(CRUDMixin, db.Model):
     nazev = db.Column(db.String(128), nullable=False, unique=True)
     created_ts = db.Column(db.DateTime(), nullable=False)
     users = db.relationship("U_G_Association", back_populates="groups")
-    firmy = db.relationship("G_F_Association", back_populates="groups")
+    firmy = db.relationship("G_F_Association", back_populates="groups", cascade="all,delete")
     # TODO: Establish which users are admins
 
     def __init__(self, nazev):

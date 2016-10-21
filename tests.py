@@ -9,7 +9,7 @@ from faker import Factory
 from app import create_app
 from app.config import test_config
 from app.data import db
-from app.data.models.user import User
+from app.data.models import User, Firma, Group
 
 admin_username = 'cburmeister'
 admin_email = 'cburmeister@discogs.com'

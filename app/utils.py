@@ -4,6 +4,7 @@ from flask import flash, request, url_for, current_app
 from flask_login import current_user
 from flask_babel import gettext
 from functools import wraps
+from random import randint
 
 
 def flash_errors(form, category='danger'):

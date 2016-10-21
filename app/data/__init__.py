@@ -2,32 +2,37 @@
 # -*- coding: utf-8 -*-
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
-from .models import Group, User
+from .models import Group, Firma, User
+from random import randint
 
-def populate_db(num_users=5):
+
+def populate_db(num_users=5, num_groups=15, num_firms=5):
     """
     Fills the data will fake data.
     """
     from faker import Factory
+    #from faker.providers import internet as faker_internet
 
     fake = Factory.create()
 
     admin_username = 'cburmeister'
     admin_email = 'cburmeister@discogs.com'
     admin_password = 'test123'
-
     users = []
     for _ in range(int(num_users)):
         users.append(
             User(
-                fake.userName(),
+                fake.name().split(' ')[0],
                 fake.email(),
                 fake.word() + fake.word(),
-                fake.ipv4()
+                fake.word(),
+                password=fake.word(),
+                remote_addr=fake.ipv4(network=False),
+                active=True
             )
         )
 
-    users.append(
+    """users.append(
         User(
             admin_username,
             admin_email,
@@ -36,10 +41,21 @@ def populate_db(num_users=5):
             active=True,
             is_admin=True
         )
-    )
+    )"""
 
     for user in users:
         db.session.add(user)
+
+    firms = []
+    for _ in range(int(num_firms)):
+        firms.append(
+            Firma(
+                fake.word(),
+                fake.word(),
+                fake.address(),
+                str(randint(100000000, 999999999))
+            )
+        )
 
     db.session.commit()
 
