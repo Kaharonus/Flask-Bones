@@ -94,7 +94,7 @@ def admin_required(func):
     def decorated_view(*args, **kwargs):
         if current_app.login_manager._login_disabled:
             return func(*args, **kwargs)
-        elif not current_user.is_admin:
+        elif (not current_user.is_active) or (not current_user.is_admin):
             return current_app.login_manager.unauthorized()
         return func(*args, **kwargs)
     return decorated_view
@@ -112,3 +112,7 @@ def crypt(s, decrypt=False):
         return crypt_suite.decrypt(string).strip()
     else:
         return base64.urlsafe_b64encode(crypt_suite.encrypt(string.rjust(32)))
+
+
+def get_lang():
+    return request.accept_languages.best_match(config.SUPPORTED_LOCALES)

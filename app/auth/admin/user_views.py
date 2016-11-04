@@ -47,7 +47,7 @@ def user_edit(str_hash):
     form = EditUserForm(obj=user)
     if form.validate_on_submit():
         form.populate_obj(user)
-        user.update()
+        user.commit()
         flash(gettext('User {username} edited').format(username=user.username),'success')
     return render_template('user-edit.html', form=form, user=user)
 

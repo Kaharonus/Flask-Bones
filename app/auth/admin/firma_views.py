@@ -41,18 +41,11 @@ def firma_list():
 @admin_required
 def firma_edit(str_hash):
     id = int(float(crypt(str_hash, decrypt=True)))
-    firma = Firma.find_by_id(id)#Firma.query.filter_by(id=id).first_or_404()
-    #firma = Firma
+    firma = Firma.query.filter_by(id=id).first_or_404()
     form = EditFirmaForm(obj=firma)
     if form.validate_on_submit():
-        #form.populate_obj(firma)
-        #firma.nazev = form.nazev.data
-        #firma.update()
-        Firma.query.filter_by(id=id).update({"nazev": form.nazev.data})
-
-
-        #Firma.commit()
-
+        form.populate_obj(firma)
+        firma.commit()
         flash(gettext('Organization {nazev} edited').format(nazev=firma.nazev),'success')
     return render_template('firma-edit.html', form=form, firma=firma)
 

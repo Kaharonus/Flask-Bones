@@ -39,7 +39,7 @@ def create_app(config=config.base_config):
 
     @app.route('/', methods=['GET','POST'])
     def root():
-        lang=request.accept_languages.best_match(config.SUPPORTED_LOCALES)
+        lang = utils.get_lang()
         return redirect(lang+'/index')
 
     return app
