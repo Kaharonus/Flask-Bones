@@ -29,7 +29,7 @@
                 <a class="btn btn-default" href="{{ url_for('.group_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
                 {% if current_user.is_admin %}
                     {% set dialogue = 'Are you sure you want to delete %s?' % group.nazev %}
-                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.group_delete', id=group.id) }}">
+                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.group_delete', str_hash=crypt(group.id)) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
                 {% endif %}

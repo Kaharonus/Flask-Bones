@@ -42,7 +42,7 @@
                 <a class="btn btn-default" href="{{ url_for('.user_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
                 {% if current_user.is_admin and not user == current_user %}
                     {% set dialogue = 'Are you sure you want to delete %s?' % user.username %}
-                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.user_delete', id=user.id) }}">
+                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.user_delete', str_hash=crypt(user.id)) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
                 {% endif %}

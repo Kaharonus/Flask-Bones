@@ -13,13 +13,13 @@
                 <th>{{ gettext('Time Created') }}</th>
             </tr>
             <tbody>
-                {% for g in datatable.query.items %}
+                {% for f in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.firma_edit', id=g.id) }}">{{ g.nazev }}</a></td>
-                        <td>{{ timeago(g.created_ts) }}</td>
+                        <td><a href="{{ url_for('.firma_edit', str_hash=crypt(f.id)) }}">{{ f.nazev }}</a></td>
+                        <td>{{ timeago(f.created_ts) }}</td>
                         <td>
-                            {% set dialogue = gettext('Are you sure you want to delete {nazev}?').format(nazev=g.nazev) %}
-                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.group_delete', id=g.id) }}">
+                            {% set dialogue = gettext('Are you sure you want to delete {nazev}?').format(nazev=f.nazev) %}
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.firma_delete', str_hash=crypt(f.id)) }}">
                                 <i class="icon-trash"></i>
                             </a>
                         </td>

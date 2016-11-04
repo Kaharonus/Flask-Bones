@@ -57,6 +57,9 @@ def populate_db(num_users=5, num_groups=15, num_firms=5):
             )
         )
 
+    for firm in firms:
+        db.session.add(firm)
+
     db.session.commit()
 
 

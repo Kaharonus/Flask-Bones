@@ -11,6 +11,8 @@ class base_config(object):
     SERVER_NAME="localhost:5000"
     SECRET_KEY="sdfsdfsdgwerter346354"
 
+    CYPHER_KEY = bytes(os.urandom(32))
+
     #MAIL_SERVER = os.environ['MAILCATCHER_PORT_1025_TCP_ADDR']
     #MAIL_PORT = os.environ['MAILCATCHER_PORT_1025_TCP_PORT']
     MAIL_PORT="1025"

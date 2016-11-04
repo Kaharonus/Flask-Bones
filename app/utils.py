@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import flash, request, url_for, current_app
+from flask import flash, request, url_for, current_app, abort
 from flask_login import current_user
 from flask_babel import gettext
 from functools import wraps
-from random import randint
+from math import floor
+from app import config
+from Crypto.Cipher import AES
+import base64
 
 
 def flash_errors(form, category='danger'):
@@ -56,11 +59,11 @@ def timeago(time=False):
         if second_diff < 120:
             return gettext("A minute ago")
         if second_diff < 3600:
-            return gettext('{s} minutes ago').format(s=str(second_diff/60))
+            return gettext('{s} minutes ago').format(s=str(floor(second_diff/60)))
         if second_diff < 7200:
             return gettext("An hour ago")
         if second_diff < 86400:
-            return gettext('{s} hours ago').format(s=str(second_diff/3600))
+            return gettext('{s} hours ago').format(s=str(floor(second_diff/3600)))
     if day_diff == 1:
         return gettext("Yesterday")
     if day_diff < 7:
@@ -68,14 +71,14 @@ def timeago(time=False):
     if day_diff < 14:
         return gettext('A week ago')
     if day_diff < 31:
-        return gettext('{s} weeks ago').format(s=str(day_diff/7))
+        return gettext('{s} weeks ago').format(s=str(floor(day_diff/7)))
     if day_diff < 62:
         return gettext('A month ago')
     if day_diff < 365:
-        return gettext('{s} months ago').format(s=str(day_diff/30))
+        return gettext('{s} months ago').format(s=str(floor(day_diff/30)))
     if day_diff < 730:
         return gettext('A year ago')
-    return gettext('{s} years ago').format(s=str(day_diff/365))
+    return gettext('{s} years ago').format(s=str(floor(day_diff/365)))
 
 def admin_required(func):
     '''
@@ -95,3 +98,17 @@ def admin_required(func):
             return current_app.login_manager.unauthorized()
         return func(*args, **kwargs)
     return decorated_view
+
+
+def crypt(s, decrypt=False):
+    key = config.base_config.CYPHER_KEY
+    string = str(s)
+    crypt_suite = AES.new(key, AES.MODE_ECB)
+    if decrypt:
+        try:
+            string = base64.urlsafe_b64decode(string)
+        except:
+            abort(404)
+        return crypt_suite.decrypt(string).strip()
+    else:
+        return base64.urlsafe_b64encode(crypt_suite.encrypt(string.rjust(32)))

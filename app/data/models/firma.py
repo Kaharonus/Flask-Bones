@@ -30,3 +30,7 @@ class Firma(CRUDMixin, db.Model):
 
     def __repr__(self):
         return '<Firma %s>' % self.nazev
+
+    @staticmethod
+    def find_by_id(id):
+        return db.session.query(Firma.id, Firma.nazev).filter_by(id=id).first()

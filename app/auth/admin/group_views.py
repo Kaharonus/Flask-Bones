@@ -4,7 +4,7 @@ from flask import request, redirect, url_for, render_template, flash, g
 from flask_babel import lazy_gettext,gettext
 from flask_login import login_required
 
-from app.utils import admin_required
+from app.utils import admin_required, crypt
 from app.data.models.group import Group
 from app.public.forms import EditGroupForm
 from . import admin
@@ -37,9 +37,10 @@ def group_list():
     )
 
 
-@admin.route('/group/edit/<int:id>', methods=['GET', 'POST'])
+@admin.route('/group/edit/<str_hash>', methods=['GET', 'POST'])
 @admin_required
-def group_edit(id):
+def group_edit(str_hash):
+    id = int(float(crypt(str_hash, decrypt=True)))
     group = Group.query.filter_by(id=id).first_or_404()
     form = EditGroupForm(obj=group)
     if form.validate_on_submit():
@@ -49,9 +50,10 @@ def group_edit(id):
     return render_template('group-edit.html', form=form, group=group)
 
 
-@admin.route('/group/delete/<int:id>', methods=['GET'])
+@admin.route('/group/delete/<str_hash>', methods=['GET'])
 @admin_required
-def group_delete(id):
+def group_delete(str_hash):
+    id = int(float(crypt(str_hash, decrypt=True)))
     group = Group.query.filter_by(id=id).first_or_404()
     group.delete()
     flash(gettext('Group {nazev} deleted').format(nazev=group.nazev),'success')

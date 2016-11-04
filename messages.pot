@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-26 10:17+0200\n"
+"POT-Creation-Date: 2016-11-04 09:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,99 +17,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/fields.py:16
+#: app/fields.py:18
 msgid "Invalid value"
 msgstr ""
 
-#: app/utils.py:50
+#: app/utils.py:56
 msgid "Just now"
 msgstr ""
 
-#: app/utils.py:52
+#: app/utils.py:58
 msgid "{s} seconds ago"
 msgstr ""
 
-#: app/utils.py:54
+#: app/utils.py:60
 msgid "A minute ago"
 msgstr ""
 
-#: app/utils.py:56
+#: app/utils.py:62
 msgid "{s} minutes ago"
 msgstr ""
 
-#: app/utils.py:58
+#: app/utils.py:64
 msgid "An hour ago"
 msgstr ""
 
-#: app/utils.py:60
+#: app/utils.py:66
 msgid "{s} hours ago"
 msgstr ""
 
-#: app/utils.py:62
+#: app/utils.py:68
 msgid "Yesterday"
 msgstr ""
 
-#: app/utils.py:64
+#: app/utils.py:70
 msgid "{s} days ago"
 msgstr ""
 
-#: app/utils.py:66
+#: app/utils.py:72
 msgid "A week ago"
 msgstr ""
 
-#: app/utils.py:68
+#: app/utils.py:74
 msgid "{s} weeks ago"
 msgstr ""
 
-#: app/utils.py:70
+#: app/utils.py:76
 msgid "A month ago"
 msgstr ""
 
-#: app/utils.py:72
+#: app/utils.py:78
 msgid "{s} months ago"
 msgstr ""
 
-#: app/utils.py:74
+#: app/utils.py:80
 msgid "A year ago"
 msgstr ""
 
-#: app/utils.py:75
+#: app/utils.py:81
 msgid "{s} years ago"
 msgstr ""
 
-#: app/auth/views.py:36
+#: app/auth/views.py:38
 msgid "You were logged out"
 msgstr ""
 
-#: app/auth/views.py:48
+#: app/auth/views.py:50
 msgid "Group {name} created"
 msgstr ""
 
-#: app/auth/views.py:65
+#: app/auth/views.py:67
 msgid "Organization {name} created"
 msgstr ""
 
-#: app/auth/admin/firma_views.py:46
+#: app/auth/admin/firma_views.py:51
 msgid "Organization {nazev} edited"
 msgstr ""
 
-#: app/auth/admin/firma_views.py:55
+#: app/auth/admin/firma_views.py:61
 msgid "Organization {nazev} deleted"
 msgstr ""
 
-#: app/auth/admin/group_views.py:46
+#: app/auth/admin/group_views.py:48
 msgid "Group {nazev} edited"
 msgstr ""
 
-#: app/auth/admin/group_views.py:55
+#: app/auth/admin/group_views.py:57
 msgid "Group {nazev} deleted"
 msgstr ""
 
-#: app/auth/admin/user_views.py:48
+#: app/auth/admin/user_views.py:50
 msgid "User {username} edited"
 msgstr ""
 
-#: app/auth/admin/user_views.py:57
+#: app/auth/admin/user_views.py:59
 msgid "User {username} deleted"
 msgstr ""
 
@@ -124,7 +124,7 @@ msgstr ""
 #: app/auth/admin/templates/group-edit.html:11
 #: app/auth/admin/templates/group-list.html:9
 #: app/auth/admin/templates/user-edit.html:11
-#: app/auth/admin/templates/user-list.html:9 app/public/forms/user.py:65
+#: app/auth/admin/templates/user-list.html:9 app/public/forms/user.py:67
 msgid "Admin"
 msgstr ""
 
@@ -221,16 +221,16 @@ msgstr ""
 msgid "Search for a Username or Email"
 msgstr ""
 
-#: app/auth/admin/templates/users.html:12 app/public/forms/login.py:10
-#: app/public/forms/user.py:21 app/public/forms/user.py:64
+#: app/auth/admin/templates/users.html:12 app/public/forms/login.py:12
+#: app/public/forms/user.py:23 app/public/forms/user.py:66
 msgid "Username"
 msgstr ""
 
-#: app/auth/admin/templates/users.html:13 app/public/forms/user.py:27
+#: app/auth/admin/templates/users.html:13 app/public/forms/user.py:29
 msgid "Email"
 msgstr ""
 
-#: app/auth/admin/templates/users.html:15 app/public/forms/firma.py:17
+#: app/auth/admin/templates/users.html:15 app/public/forms/firma.py:19
 msgid "Address"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgid "New organization"
 msgstr ""
 
 #: app/auth/templates/create_firma.html:39
-#: app/auth/templates/create_group.html:34 app/auth/templates/register.html:40
+#: app/auth/templates/create_group.html:23 app/auth/templates/register.html:40
 msgid "Submit"
 msgstr ""
 
@@ -272,129 +272,128 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: app/public/views.py:28
+#: app/public/views.py:30
 msgid "You were logged in as {username}"
 msgstr ""
 
-#: app/public/views.py:51
+#: app/public/views.py:53
 msgid "Sent verification email to {email}"
 msgstr ""
 
-#: app/public/views.py:71
+#: app/public/views.py:73
 msgid "Registered user {username}. Please login to continue."
 msgstr ""
 
-#: app/public/forms/firma.py:10
+#: app/public/forms/firma.py:12
 msgid "Organization Name"
 msgstr ""
 
-#: app/public/forms/firma.py:10 app/public/forms/firma.py:22
-#: app/public/forms/login.py:10 app/public/forms/login.py:11
+#: app/public/forms/firma.py:12 app/public/forms/firma.py:24
+#: app/public/forms/login.py:12 app/public/forms/login.py:13
 msgid "This field is required."
 msgstr ""
 
-#: app/public/forms/firma.py:17 app/public/forms/firma.py:18
-#: app/public/forms/firma.py:20
+#: app/public/forms/firma.py:19 app/public/forms/firma.py:20
+#: app/public/forms/firma.py:22
 msgid "This field is required"
 msgstr ""
 
-#: app/public/forms/firma.py:18
+#: app/public/forms/firma.py:20
 msgid "State"
 msgstr ""
 
-#: app/public/forms/firma.py:19
+#: app/public/forms/firma.py:21
 msgid "Contact Person"
 msgstr ""
 
-#: app/public/forms/firma.py:20
+#: app/public/forms/firma.py:22
 msgid "Phone number"
 msgstr ""
 
-#: app/public/forms/firma.py:21
+#: app/public/forms/firma.py:23
 msgid "Organization website"
 msgstr ""
 
-#: app/public/forms/firma.py:22 app/public/forms/group.py:30
-#: app/public/forms/user.py:53
+#: app/public/forms/firma.py:24 app/public/forms/user.py:55
 msgid "I accept the TOS"
 msgstr ""
 
-#: app/public/forms/firma.py:30
+#: app/public/forms/firma.py:32
 msgid "Organization name already registered"
 msgstr ""
 
-#: app/public/forms/group.py:23 app/public/forms/group.py:33
+#: app/public/forms/group.py:25 app/public/forms/group.py:32
 msgid "Group Name"
 msgstr ""
 
-#: app/public/forms/group.py:24 app/public/forms/group.py:34
-#: app/public/forms/user.py:22 app/public/forms/user.py:33
-#: app/public/forms/user.py:37 app/public/forms/user.py:47
+#: app/public/forms/group.py:26 app/public/forms/group.py:33
+#: app/public/forms/user.py:24 app/public/forms/user.py:35
+#: app/public/forms/user.py:39 app/public/forms/user.py:49
 msgid "Please use only letters (a-z) and numbers"
 msgstr ""
 
-#: app/public/forms/group.py:25 app/public/forms/group.py:35
+#: app/public/forms/group.py:27 app/public/forms/group.py:34
 msgid "A group has already been created with that name. Try another?"
 msgstr ""
 
-#: app/public/forms/group.py:26 app/public/forms/group.py:36
-#: app/public/forms/user.py:24 app/public/forms/user.py:48
+#: app/public/forms/group.py:28 app/public/forms/group.py:35
+#: app/public/forms/user.py:26 app/public/forms/user.py:50
 msgid "Please use between 2 and 30 characters"
 msgstr ""
 
-#: app/public/forms/group.py:27 app/public/forms/group.py:31
-#: app/public/forms/group.py:37 app/public/forms/user.py:25
-#: app/public/forms/user.py:29 app/public/forms/user.py:34
-#: app/public/forms/user.py:38 app/public/forms/user.py:45
-#: app/public/forms/user.py:51 app/public/forms/user.py:54
+#: app/public/forms/group.py:29 app/public/forms/group.py:36
+#: app/public/forms/user.py:27 app/public/forms/user.py:31
+#: app/public/forms/user.py:36 app/public/forms/user.py:40
+#: app/public/forms/user.py:47 app/public/forms/user.py:53
+#: app/public/forms/user.py:56
 msgid "You can't leave this empty"
 msgstr ""
 
-#: app/public/forms/login.py:11 app/public/forms/user.py:44
+#: app/public/forms/login.py:13 app/public/forms/user.py:46
 msgid "Password"
 msgstr ""
 
-#: app/public/forms/login.py:26
+#: app/public/forms/login.py:27
 msgid "Unknown username"
 msgstr ""
 
-#: app/public/forms/login.py:30
+#: app/public/forms/login.py:31
 msgid "Invalid password"
 msgstr ""
 
-#: app/public/forms/login.py:34
+#: app/public/forms/login.py:35
 msgid "User not activated"
 msgstr ""
 
-#: app/public/forms/user.py:23
+#: app/public/forms/user.py:25
 msgid "An account has already been registered with that username. Try another?"
 msgstr ""
 
-#: app/public/forms/user.py:28
+#: app/public/forms/user.py:30
 msgid "Please enter a valid email address"
 msgstr ""
 
-#: app/public/forms/user.py:31
+#: app/public/forms/user.py:33
 msgid "First Name"
 msgstr ""
 
-#: app/public/forms/user.py:32 app/public/forms/user.py:36
+#: app/public/forms/user.py:34 app/public/forms/user.py:38
 msgid "Please use between 2 and 64 characters"
 msgstr ""
 
-#: app/public/forms/user.py:35
+#: app/public/forms/user.py:37
 msgid "Surname"
 msgstr ""
 
-#: app/public/forms/user.py:46
+#: app/public/forms/user.py:48
 msgid "Passwords must match."
 msgstr ""
 
-#: app/public/forms/user.py:50
+#: app/public/forms/user.py:52
 msgid "Confirm Password"
 msgstr ""
 
-#: app/public/forms/user.py:66
+#: app/public/forms/user.py:68
 msgid "Activated"
 msgstr ""
 
@@ -402,15 +401,15 @@ msgstr ""
 msgid "foo"
 msgstr ""
 
-#: app/templates/layout.html:26
+#: app/templates/layout.html:43
 msgid "Terms"
 msgstr ""
 
-#: app/templates/layout.html:27
+#: app/templates/layout.html:44
 msgid "Privacy"
 msgstr ""
 
-#: app/templates/layout.html:28
+#: app/templates/layout.html:45
 msgid "Security"
 msgstr ""
 

@@ -3,7 +3,7 @@
 import re
 from flask_wtf import Form
 from flask_babel import gettext,lazy_gettext
-from wtforms import TextField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 from app.data.models import User
 from app.fields import Predicate
@@ -20,21 +20,21 @@ def safe_characters(s):
     return re.match(r'^[\w]+$', s) is not None
 
 class UserForm(Form):
-    username = TextField(lazy_gettext('Username'), validators=[
+    username = StringField(lazy_gettext('Username'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
         Predicate(username_is_available,message=lazy_gettext("An account has already been registered with that username. Try another?")),
         Length(min=2, max=30, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-    #username = TextField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext('This field is required.')), Length(min=2, max=20)])
-    email = TextField(lazy_gettext('Email'), validators=[
+    #username = StringField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext('This field is required.')), Length(min=2, max=20)])
+    email = StringField(lazy_gettext('Email'), validators=[
         Email(message=lazy_gettext('Please enter a valid email address')),
         InputRequired(message=lazy_gettext('You can\'t leave this empty'))])
-    #email = TextField(lazy_gettext('Email'), validators=[Email(lazy_gettext('Invalid email address.')), DataRequired(lazy_gettext('This field is required.')), Length(max=128)])
-    jmeno = TextField(lazy_gettext('First Name'), validators=[
+    #email = StringField(lazy_gettext('Email'), validators=[Email(lazy_gettext('Invalid email address.')), DataRequired(lazy_gettext('This field is required.')), Length(max=128)])
+    jmeno = StringField(lazy_gettext('First Name'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-    prijmeni = TextField(lazy_gettext('Surname'), validators=[
+    prijmeni = StringField(lazy_gettext('Surname'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
@@ -63,6 +63,6 @@ class RegisterUserForm(UserForm):
 
 
 class EditUserForm(UserForm):
-    username = TextField(lazy_gettext('Username'))
+    username = StringField(lazy_gettext('Username'))
     is_admin = BooleanField(lazy_gettext('Admin'))
     active = BooleanField(lazy_gettext('Activated'))

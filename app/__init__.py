@@ -29,9 +29,7 @@ def create_app(config=config.base_config):
             g.lang_code='en'
         return g.lang_code
 
-
-
-
+    app.jinja_env.globals.update(crypt=utils.crypt)
 
     @app.before_request
     def before_request():
