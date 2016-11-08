@@ -276,10 +276,10 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     mkdir Project
     sudo apt-get install python-virtualenv
     sudo apt-get install libpq-dev python-dev
-    sudo apt-get install postgresql-9.3
+    sudo apt-get install postgresql-9.5
     cd Project
     sudo apt-get install git
-    git clone https://github.com/Atheloses/Flask-Bones.git
+    git clone https://github.com/Urumasi/Flask-Bones.git -b stuff3
     cd Flask-Bones
     virtualenv ~/.venv
     . ~/.venv/bin/activate
