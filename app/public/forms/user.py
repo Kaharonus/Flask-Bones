@@ -13,6 +13,11 @@ def username_is_available(username):
         return True
     return False
 
+def email_is_available(email):
+    if not User.if_exists_email(email):
+        return True
+    return False
+
 def safe_characters(s):
     " Only letters (a-z) and  numbers are allowed for usernames and passwords. Based off Google username validator "
     if not s:
@@ -33,6 +38,8 @@ class UserForm(Form):
     jmeno = StringField(lazy_gettext('First Name'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
+        Predicate(email_is_available,
+                  message=lazy_gettext("An account has already been registered with that email. Try another?")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
     prijmeni = StringField(lazy_gettext('Surname'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
