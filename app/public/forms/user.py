@@ -62,8 +62,6 @@ class RegisterUserForm(UserForm):
     accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
 
-    #accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[DataRequired(lazy_gettext('This field is required.'))])
-
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.user = None
