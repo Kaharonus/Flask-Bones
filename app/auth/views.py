@@ -4,9 +4,9 @@ from flask import (
     current_app, request, redirect, url_for, render_template, flash, abort
 )
 from flask_babel import gettext, lazy_gettext
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from app.public.forms import RegisterGroupForm, RegisterFirmaForm
+from app.public.forms import RegisterGroupForm, RegisterFirmaForm, EditProfileForm
 from app.extensions import lm
 from app.data.models import User, Group, Firma
 from . import auth
@@ -74,3 +74,13 @@ def group_add_user(id):
     users = User.query.all()
     pole = json.dumps(users, cls=CustomEncoder)
     return render_template('group_add_users.html', pole=pole)
+
+@auth.route('/profile/edit', methods=['GET', 'POST'])
+@login_required
+def profile_edit():
+    form = EditProfileForm(obj=current_user)
+    if form.validate_on_submit():
+        form.populate_obj(current_user)
+        current_user.commit()
+        flash(gettext('User {username} edited').format(username=current_user.username),'success')
+    return render_template('profile-edit.html', form=form, user=current_user)

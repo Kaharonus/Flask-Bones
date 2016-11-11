@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import request, redirect, url_for, render_template, flash, g
+from flask import request, redirect, url_for, render_template, flash, g, current_app
 from flask_babel import lazy_gettext,gettext
-from flask_login import login_required
+from flask_login import login_required, current_user
 
+from app.tasks import send_registration_email
+from itsdangerous import URLSafeSerializer
 from app.utils import admin_required, crypt
 from app.data.models.user import User
 from app.public.forms import EditUserForm
 from . import admin
+from app.public.forms import RegisterUserForm
 
 
 @admin.route('/user/list', methods=['GET', 'POST'])
@@ -60,3 +63,26 @@ def user_delete(str_hash):
     user.delete()
     flash(gettext('User {username} deleted').format(username=user.username),'success')
     return redirect(url_for('.user_list'))
+
+@admin.route('/user/create/', methods=['GET', 'POST'])
+@admin_required
+def create_user():
+    form = RegisterUserForm()
+    if form.validate_on_submit():
+        user = User.create(
+            username=form.data['username'],
+            email=form.data['email'],
+            password=form.data['password'],
+            remote_addr=request.remote_addr,
+            jmeno=form.data['jmeno'],
+            prijmeni=form.data['prijmeni']
+        )
+
+        s = URLSafeSerializer(current_app.secret_key)
+        token = s.dumps(user.id)
+
+        #send_registration_email.delay(user, token)
+
+        #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
+        return redirect(url_for('.user_list'))
+    return render_template('register.html', form=form)

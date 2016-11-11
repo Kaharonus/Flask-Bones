@@ -18,7 +18,7 @@
             <tbody>
                 {% for u in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.user_edit', str_hash=crypt(u.id)) }}">{{ u.username }}</a></td>
+                        <td><a href="{% if u.id==current_user.id and not current_user.is_sadmin %}{{ url_for('auth.profile_edit') }}{% else %}{{ url_for('.user_edit', str_hash=crypt(u.id)) }}{% endif %}">{{ u.username }}</a></td>
                         <td>{{ u.email }}</td>
                         <td>{{ timeago(u.created_ts) }}</td>
                         {%- if current_user.is_sadmin -%}<td>{{ u.remote_addr }}</td>{%- endif -%}
