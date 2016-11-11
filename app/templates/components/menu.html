@@ -1,7 +1,8 @@
 {% set nav = [
-    (gettext('Users'), 'admin.user_list'),
+
 ] %}
 {% set admin_nav = [
+    (gettext('Users'), 'admin.user_list'),
     (gettext('Groups'), 'admin.group_list'),
     (gettext('Organizations'), 'admin.firma_list'),
 ] %}
@@ -41,7 +42,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {%- if current_user.is_authenticated -%}
-                    <li><a href={{url_for('auth.profile')}}>{% trans %}Current user:{% endtrans %} {{ current_user.username }}</a></li>
+                    <li><a href={{url_for('auth.profile_edit')}}>{% trans %}Current user:{% endtrans %} {{ current_user.username }}</a></li>
                 {%- endif %}
                 {%- if request.path=="/cs/"+request.path[4:] %}<li ><a href="/en/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/us.png') }}"></img></a></li>{% endif %}
                 {%- if request.path=="/en/"+request.path[4:] %}<li ><a href="/cs/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/cz.png') }}"></img></a></li>{% endif %}

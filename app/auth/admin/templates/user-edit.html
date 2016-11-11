@@ -8,9 +8,9 @@
 
 {% block header %}
     <ol class="breadcrumb">
-        <li><a href="{{ url_for('.user_list') }}">{% trans %}Admin{% endtrans %}</a></li>
+        <li class="active">{% trans %}Admin{% endtrans %}</li>
         <li><a href="{{ url_for('.user_list') }}">{% trans %}Users{% endtrans %}</a></li>
-        <li class="active">{% trans %}Edit User{% endtrans %}</li>
+        <li class="active">{{ form.username.data }}</li>
     </ol>
 {% endblock %}
 

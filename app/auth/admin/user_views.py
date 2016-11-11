@@ -14,7 +14,7 @@ from app.public.forms import RegisterUserForm
 
 
 @admin.route('/user/list', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def user_list():
 
     from app.data import DataTable

@@ -24,13 +24,6 @@ def load_user(id):
     return User.get_by_id(int(id))
 
 
-@auth.route('/profile')
-@login_required
-def profile():
-
-    return render_template('profile.html')
-
-
 @auth.route('/logout', methods=['GET'])
 @login_required
 def logout():
@@ -75,12 +68,14 @@ def group_add_user(id):
     pole = json.dumps(users, cls=CustomEncoder)
     return render_template('group_add_users.html', pole=pole)
 
-@auth.route('/profile/edit', methods=['GET', 'POST'])
+@auth.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile_edit():
     form = EditProfileForm(obj=current_user)
     if form.validate_on_submit():
+        ojebani=current_user.username
         form.populate_obj(current_user)
+        current_user.username = ojebani
         current_user.commit()
         flash(gettext('User {username} edited').format(username=current_user.username),'success')
     return render_template('profile-edit.html', form=form, user=current_user)
