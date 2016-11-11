@@ -21,7 +21,6 @@ class RegisterFirmaForm(FirmaForm):
     contact_person = StringField(lazy_gettext('Contact Person'), validators=[Length(max=64)])
     phone_number = StringField(lazy_gettext('Phone number'), validators=[DataRequired(lazy_gettext('This field is required')), Length(max=16)])
     website = StringField(lazy_gettext('Organization website'), validators=[Length(max=64)])
-    accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[DataRequired(lazy_gettext('This field is required.'))])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

@@ -71,5 +71,5 @@ class RegisterUserForm(UserForm):
 
 class EditUserForm(UserForm):
     username = StringField(lazy_gettext('Username'))
-    is_admin = BooleanField(lazy_gettext('Admin'))
+    is_sadmin = BooleanField(lazy_gettext('Admin'))
     active = BooleanField(lazy_gettext('Activated'))

@@ -29,7 +29,6 @@ def create_app(config=config.base_config):
             g.lang_code='en'
         return g.lang_code
 
-    app.jinja_env.globals.update(crypt=utils.crypt)
 
     @app.before_request
     def before_request():
@@ -75,3 +74,4 @@ def register_errorhandlers(app):
 def register_jinja_env(app):
     app.jinja_env.globals['url_for_other_page'] = utils.url_for_other_page
     app.jinja_env.globals['timeago'] = utils.timeago
+    app.jinja_env.globals['crypt'] = utils.crypt

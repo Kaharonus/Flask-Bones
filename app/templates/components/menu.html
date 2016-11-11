@@ -28,7 +28,7 @@
                         {% endif %}
                     {% endfor %}
                 {%- endif %}
-                {% if current_user.is_admin -%}
+                {% if current_user.is_sadmin -%}
                     {% for title, endpoint in admin_nav %}
                         {% if endpoint == request.endpoint %}
                             <li class="active"><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
@@ -40,16 +40,16 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated -%}
+                {%- if current_user.is_authenticated -%}
                     <li><a href={{request.path[:3]~"/user/edit/"~crypt(current_user.id).decode('utf-8') }}>{% trans %}Current user:{% endtrans %} {{ current_user.username }}</a></li>
                 {%- endif %}
                 {%- if request.path=="/cs/"+request.path[4:] %}<li ><a href="/en/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/us.png') }}"></img></a></li>{% endif %}
                 {%- if request.path=="/en/"+request.path[4:] %}<li ><a href="/cs/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/cz.png') }}"></img></a></li>{% endif %}
-                {% if current_user.is_authenticated -%}
+                {%- if current_user.is_authenticated -%}
                     <li><a href="{{ url_for('auth.logout') }}">{% trans %}Log Out{% endtrans %}</a></li>
                 {% else %}
                     <li><a href="{{ url_for('public.login') }}">{% trans %}Log In{% endtrans %}</a></li>
-                {%- endif %}
+                {%- endif -%}
             </ul>
         </div>
     </div>

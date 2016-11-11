@@ -39,7 +39,7 @@ def populate_db(num_users=5, num_groups=15, num_firms=5):
             admin_password,
             fake.ipv4(),
             active=True,
-            is_admin=True
+            is_sadmin=True
         )
     )"""
 

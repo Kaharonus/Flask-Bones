@@ -48,7 +48,7 @@ def create_group():
         group = Group.create(nazev=form.data['nazev'],)
 
         flash(gettext('Group {name} created').format(name=group.nazev),'success')
-        return redirect(url_for('public.index'))
+        return redirect(url_for('admin.group_list'))
     return render_template('create_group.html', form=form)
 
 @auth.route('/create_organization', methods=['GET', 'POST'])
@@ -65,7 +65,7 @@ def create_organization():
                              website=form.data['website'])
 
         flash(gettext('Organization {name} created').format(name=firma.nazev),'success')
-        return redirect(url_for('public.index'))
+        return redirect(url_for('admin.firma_list'))
     return render_template('create_firma.html', form=form)
 
 @auth.route('/group/add/<int:id>', methods=['GET', 'POST'])

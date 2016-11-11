@@ -45,7 +45,7 @@ def upgrade():
     sa.Column('created_ts', sa.DateTime(), nullable=False),
     sa.Column('remote_addr', sa.String(length=20), nullable=True),
     sa.Column('active', sa.Boolean(), nullable=True),
-    sa.Column('is_admin', sa.Boolean(), nullable=True),
+    sa.Column('is_sadmin', sa.Boolean(), nullable=True),
     sa.Column('default_idfirm', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
