@@ -73,9 +73,13 @@ def group_add_user(id):
 def profile_edit():
     form = EditProfileForm(obj=current_user)
     if form.validate_on_submit():
-        ojebani=current_user.username
+        if User.if_exists_email(form.email._value()) and current_user.email!=form.email._value():
+            flash(gettext("An account has already been registered with that email. Try another?"), 'warning')
+            return render_template('profile-edit.html', form=form, user=current_user)
+        if not current_user.username == form.username._value():
+            flash(gettext("You little rebel! I like you!"), 'warning')
+            return render_template('profile-edit.html', form=form, user=current_user)
         form.populate_obj(current_user)
-        current_user.username = ojebani
         current_user.commit()
         flash(gettext('User {username} edited').format(username=current_user.username),'success')
     return render_template('profile-edit.html', form=form, user=current_user)

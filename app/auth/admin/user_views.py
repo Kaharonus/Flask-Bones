@@ -49,6 +49,12 @@ def user_edit(str_hash):
     user = User.query.filter_by(id=id).first_or_404()
     form = EditUserForm(obj=user)
     if form.validate_on_submit():
+        if User.if_exists_email(form.email._value()) and user.email!=form.email._value():
+            flash(gettext("An account has already been registered with that email. Try another?"), 'warning')
+            return render_template('user-edit.html', form=form, user=user)
+        if not user.username == form.username._value():
+            flash(gettext("You little rebel! I like you!"), 'warning')
+            return render_template('user-edit.html', form=form, user=user)
         form.populate_obj(user)
         user.commit()
         flash(gettext('User {username} edited').format(username=user.username),'success')

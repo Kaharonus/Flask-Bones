@@ -23,6 +23,8 @@
             <div class="panel-body">
                 {{ form.csrf_token }}
                 {{ render_field(form.username, readonly="readonly") }}
+                {{ render_field(form.jmeno) }}
+                {{ render_field(form.prijmeni) }}
                 {{ render_field(form.email) }}
                 <div class="checkbox">
                     <label>

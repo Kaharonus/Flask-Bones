@@ -22,9 +22,9 @@ def populate_db(num_users=5, num_groups=15, num_firms=5):
     for _ in range(int(num_users)):
         users.append(
             User(
-                fake.name().split(' ')[0],
-                fake.email(),
                 fake.word() + fake.word(),
+                fake.email(),
+                fake.name().split(' ')[0],
                 fake.word(),
                 password=fake.word(),
                 remote_addr=fake.ipv4(network=False),

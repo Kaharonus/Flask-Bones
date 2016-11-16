@@ -27,19 +27,18 @@ def safe_characters(s):
 class UserForm(Form):
     username = StringField(lazy_gettext('Username'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-        Predicate(username_is_available,message=lazy_gettext("An account has already been registered with that username. Try another?")),
+        Predicate(username_is_available,message=lazy_gettext("An accountt has already been registered with that username. Try another?")),
         Length(min=2, max=30, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty!"))])
     #username = StringField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext('This field is required.')), Length(min=2, max=20)])
     email = StringField(lazy_gettext('Email'), validators=[
         Email(message=lazy_gettext('Please enter a valid email address')),
+        Predicate(email_is_available,message=lazy_gettext("An account has already been registered with that email. Try another?")),
         InputRequired(message=lazy_gettext('You can\'t leave this empty!'))])
     #email = StringField(lazy_gettext('Email'), validators=[Email(lazy_gettext('Invalid email address.')), DataRequired(lazy_gettext('This field is required.')), Length(max=128)])
     jmeno = StringField(lazy_gettext('First Name'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-        Predicate(email_is_available,
-                  message=lazy_gettext("An account has already been registered with that email. Try another?")),
         InputRequired(message=lazy_gettext("You can't leave this empty!"))])
     prijmeni = StringField(lazy_gettext('Surname'), validators=[
         Length(min=2, max=64, message=lazy_gettext("Please use between 2 and 64 characters")),
@@ -71,7 +70,13 @@ class EditUserForm(UserForm):
     username = StringField(lazy_gettext('Username'))
     is_sadmin = BooleanField(lazy_gettext('Admin'))
     active = BooleanField(lazy_gettext('Activated'))
+    email = StringField(lazy_gettext('Email'), validators=[
+        Email(message=lazy_gettext('Please enter a valid email address')),
+        InputRequired(message=lazy_gettext('You can\'t leave this empty!'))])
 
 
 class EditProfileForm(UserForm):
     username = StringField(lazy_gettext('Username'))
+    email = StringField(lazy_gettext('Email'), validators=[
+        Email(message=lazy_gettext('Please enter a valid email address')),
+        InputRequired(message=lazy_gettext('You can\'t leave this empty!'))])
