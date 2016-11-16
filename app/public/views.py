@@ -48,9 +48,9 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        send_registration_email.delay(user, token)
+        #send_registration_email.delay(user, token)
 
-        flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
+        #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
         return redirect(url_for('public.index'))
     return render_template('register.html', form=form)
 

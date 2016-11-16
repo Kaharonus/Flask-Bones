@@ -27,7 +27,7 @@ def safe_characters(s):
 class UserForm(Form):
     username = StringField(lazy_gettext('Username'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-        Predicate(username_is_available,message=lazy_gettext("An accountt has already been registered with that username. Try another?")),
+        Predicate(username_is_available,message=lazy_gettext("An account has already been registered with that username. Try another?")),
         Length(min=2, max=30, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty!"))])
     #username = StringField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext('This field is required.')), Length(min=2, max=20)])

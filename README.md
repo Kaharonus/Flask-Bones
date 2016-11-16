@@ -292,12 +292,13 @@ Script for developers ubuntu
     ```
 
 ---- BABEL ----
+
     ```bash
     # extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po
-    pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;
-    pybabel update -i messages.pot -d app/translations
-    ```bash
+    pybabel extract -F babel.cfg -k lazy_gettext -o app/translations/messages.pot .
+    pybabel update -i app/translations/messages.pot -d app/translations
     ```
+    ```bash
     # compile to messages.mo for use
     pybabel compile -d app/translations
     ```

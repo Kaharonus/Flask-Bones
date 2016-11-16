@@ -6,5 +6,4 @@ gen/
 .webassets-cache
 bower_components/
 node_modules/
-.idea/
-migrations/
+migrations/versions/
