@@ -272,6 +272,7 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     $ pybabel update -i i18n/messages.pot -d i18n
     ```
 Script for developers ubuntu
+
     ```bash
     mkdir Project
     sudo apt-get install python-virtualenv
@@ -290,7 +291,6 @@ Script for developers ubuntu
     CREATE DATABASE test;
     GRANT ALL PRIVILEGES ON DATABASE test to student;
     ```
-
 ---- BABEL ----
 
     ```bash
@@ -298,6 +298,7 @@ Script for developers ubuntu
     pybabel extract -F babel.cfg -k lazy_gettext -o app/translations/messages.pot .
     pybabel update -i app/translations/messages.pot -d app/translations
     ```
+    
     ```bash
     # compile to messages.mo for use
     pybabel compile -d app/translations
