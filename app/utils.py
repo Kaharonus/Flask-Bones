@@ -8,6 +8,10 @@ from math import floor
 from app import config
 from Crypto.Cipher import AES
 import base64
+from app.data.models import Firma, User, Group
+from random import randint
+from faker import Factory
+fake = Factory.create()
 
 
 def flash_errors(form, category='danger'):
@@ -116,3 +120,28 @@ def crypt(s, decrypt=False):
 
 def get_lang():
     return request.accept_languages.best_match(config.SUPPORTED_LOCALES)
+
+
+def fake_firma():
+    return Firma(
+        fake.word() + fake.word(),
+        fake.word(),
+        fake.address(),
+        str(randint(100000000, 999999999))
+    )
+
+
+def fake_user():
+    return User(
+        fake.word() + fake.word(),
+        fake.email(),
+        fake.name().split(' ')[0],
+        fake.word(),
+        password=fake.word(),
+        remote_addr=fake.ipv4(network=False),
+        active=True
+    )
+
+
+def fake_group():
+    return Group(fake.word()+fake.word())

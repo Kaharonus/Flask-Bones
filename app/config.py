@@ -9,7 +9,8 @@ class base_config(object):
     #SERVER_NAME = os.environ['SERVER_NAME']
     #SECRET_KEY = os.environ['SECRET_KEY']
 #    SERVER_NAME="localhost:5000"
-    SERVER_NAME="192.168.1.111:5000"
+    SERVER_NAME="localhost:5000"
+
     SECRET_KEY="sdfsdfsdgwerter346354"
 
     CYPHER_KEY = bytes(os.urandom(32))

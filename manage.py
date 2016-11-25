@@ -9,7 +9,7 @@ from flask_script import (
     Manager,
     prompt_bool,
 )
-
+from db_test import test_assoc
 
 def _make_context():
     return dict(
@@ -39,7 +39,7 @@ def create_db(num_users=5):
 @manager.command
 @manager.option('-n', '--num_assoc', help='Number of associations')
 def create_assoc(num_assoc=5):
-    pass
+    test_assoc()
 
 
 @manager.command
