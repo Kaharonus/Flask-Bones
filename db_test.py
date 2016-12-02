@@ -11,16 +11,8 @@ def test_assoc():
     child1.save()
     child2.save()
 
-    assoc1 = G_F_Association()
-    assoc1.firma_id = parent.id
-    assoc1.group_id = child1.id
-
-    assoc2 = G_F_Association()
-    assoc2.firma_id = parent.id
-    assoc2.group_id = child2.id
-
-    assoc1.save()
-    assoc2.save()
+    parent.add_group(child1)
+    parent.add_group(child2)
 
     ff=Firma.find_by_id(parent.id)
     ff.delete()
