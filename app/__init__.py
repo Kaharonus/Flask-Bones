@@ -74,3 +74,4 @@ def register_jinja_env(app):
     app.jinja_env.globals['url_for_other_page'] = utils.url_for_other_page
     app.jinja_env.globals['timeago'] = utils.timeago
     app.jinja_env.globals['crypt'] = utils.crypt
+    app.jinja_env.globals['get_oauth'] = utils.get_oauth

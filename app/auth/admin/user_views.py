@@ -68,6 +68,8 @@ def user_delete(str_hash):
     user = User.query.filter_by(id=id).first_or_404()
     user.delete()
     flash(gettext('User {username} deleted').format(username=user.username),'success')
+    if current_user.id==id:
+        return redirect(url_for('public.index'))
     return redirect(url_for('.user_list'))
 
 @admin.route('/user/create/', methods=['GET', 'POST'])

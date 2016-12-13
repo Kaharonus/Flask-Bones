@@ -3,6 +3,7 @@
 from app import create_app, config
 from app.data import db, populate_db
 from flask_migrate import Migrate, MigrateCommand
+#from flask_social.providers.facebook import *
 from flask_script import (
     Server,
     Shell,

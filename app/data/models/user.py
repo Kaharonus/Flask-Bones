@@ -11,16 +11,22 @@ class User(CRUDMixin, UserMixin, db.Model):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False, unique=True)
-    email = db.Column(db.String(128), nullable=False, unique=True)
-    jmeno = db.Column(db.String(64), nullable=False )
-    prijmeni = db.Column(db.String(64), nullable=False)
-    pw_hash = db.Column(db.String(256), nullable=False)
+    username = db.Column(db.String(128), nullable=False, unique=True)
+    email = db.Column(db.String(128), nullable=True, unique=True)
+    jmeno = db.Column(db.String(128), nullable=True)
+    prijmeni = db.Column(db.String(128), nullable=True)
+    pw_hash = db.Column(db.String(256), nullable=True)
     created_ts = db.Column(db.DateTime(), nullable=False)
     remote_addr = db.Column(db.String(20))
     active = db.Column(db.Boolean())
     is_sadmin = db.Column(db.Boolean())
     default_idfirm = db.Column(db.Integer, nullable=True)
+    oauth = db.relationship('Oauth', backref='user',
+                            lazy='dynamic')
+    #id = db.Column(db.Integer, primary_key=True)
+    #social_id = db.Column(db.String(64), nullable=False, unique=True) -> username
+    #nickname = db.Column(db.String(64), nullable=True) -> jmeno
+    #email = db.Column(db.String(64), nullable=True)
     groups = db.relationship("U_G_Association", back_populates="users")
     firmy = db.relationship("U_F_Association", back_populates="users")
 
@@ -79,3 +85,8 @@ class User(CRUDMixin, UserMixin, db.Model):
         if not User.query.filter_by(email=email).first():
             return False
         return True
+
+    @staticmethod
+    def find_by_email(email):
+        return User.query.filter(User.email==email).first()
+

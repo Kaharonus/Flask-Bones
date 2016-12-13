@@ -303,3 +303,9 @@ Script for developers ubuntu
     # compile to messages.mo for use
     pybabel compile -d app/translations
     ```
+
+    #settings v liste
+    #oauth prevzeti vice informaci npr fotka
+    #oauth propojeni fb,google,twitter
+    #flask-social pouzit ziskavani udaju
+    #pri neposkytnuti emailu odeslat na fb odstraneni aplikace

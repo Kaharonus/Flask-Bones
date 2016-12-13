@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
-from .models import Group, Firma, User
+from .models import Group, Firma, User, oauth, OAuthSignIn
 from random import randint
 from app.utils import fake_firma, fake_user
 
