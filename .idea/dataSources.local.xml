@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - test@localhost" uuid="0ec46c63-82dc-49dc-935b-432dac18e4cc">
+      <database-info product="PostgreSQL" version="9.3.15" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>student</user-name>
+      <introspection-scope>test:public,pg_catalog,student</introspection-scope>
+      <resolve-scope>test:public,student</resolve-scope>
+    </data-source>
+  </component>
+</project>
