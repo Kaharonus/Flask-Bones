@@ -12,10 +12,10 @@ class Acl(CRUDMixin, db.Model):
     rw = db.Column(db.Integer, nullable=False, default=0)
     user_name = db.Column(db.String(32), db.ForeignKey('acl_user.username'), nullable=False)
 
-
-    def __init__(self, topic):
+    def __init__(self, topic, user_name, rw):
         self.topic = topic
-        self.rw = 0
+        self.rw = int(rw)
+        self.user_name = user_name
 
     @staticmethod
     def if_exists(topic, user_name):

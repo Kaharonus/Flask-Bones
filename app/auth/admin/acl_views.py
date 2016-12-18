@@ -59,11 +59,11 @@ def acl_delete(id):
 
 
 @admin.route('/create_acl', methods=['GET', 'POST'])
-def register_acl():
+def create_acl():
     form = AclForm()
     if form.validate_on_submit():
         Acl.create(
-            user_name=form.data['username'],
+            user_name=form.data['user_name'],
             topic=form.data['topic'],
             rw=form.data['rw']
         )

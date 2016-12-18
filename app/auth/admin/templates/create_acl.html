@@ -1,0 +1,33 @@
+{% from 'components/field.html' import render_field %}
+{% extends "layout.html" %}
+
+{% block title %}{% trans %}Create Acl{% endtrans %}{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="{{ request.url }}">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    {% trans %}Create Acl{% endtrans %}
+                </h3>
+            </div>
+            <div class="panel-body">
+                {{ form.csrf_token }}
+                {{ render_field(form.user_name) }}
+                {{ render_field(form.topic) }}
+                {{ render_field(form.rw) }}
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-default">
+                    <i class="icon-ok-sign"></i> {% trans %}Submit{% endtrans %}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

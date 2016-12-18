@@ -10,10 +10,12 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from app.data.models import Acl, Acl_User
 from app.fields import Predicate
 
-def Acl_is_available(topic, user_name):
-    if not Acl.if_exists(topic, user_name):
-        return True
-    return False
+# def Acl_is_available(topic):
+#     user_name = Acl.user_name.query.all()
+#     if not Acl.if_exists(topic, user_name):
+#         return True
+#     return False
+
 
 def safe_characters(s):
     " Only letters (a-z) and  numbers are allowed for usernames and passwords. Based off Google username validator "
@@ -25,11 +27,11 @@ def safe_characters(s):
 class AclForm(Form):
     topic = TextField(lazy_gettext('Topic'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-        Predicate(Acl_is_available,message=lazy_gettext("This Acl has already been created. Try another?")),
+    #    Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
         Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
     user_name = QuerySelectField('User', query_factory=lambda: Acl_User.query.all())
-    rw = SelectField('0', choices=[0, 1, 2])
+    rw = SelectField('0', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
 
 # class RegisterAclUserForm(AclForm):
 #     password = PasswordField(lazy_gettext('Password'), validators=[
