@@ -6,7 +6,6 @@ from ..mixins import CRUDMixin
 import datetime
 
 
-
 class User(CRUDMixin, UserMixin, db.Model):
     __tablename__ = "user"
 
@@ -39,9 +38,9 @@ class User(CRUDMixin, UserMixin, db.Model):
         return '<User %s>' % self.username
 
     def set_password(self, password):
-        #self.pw_hash = bcrypt.generate_password_hash(password, 10)
-        pwhash = bcr.hashpw(password.encode('utf-8'), bcr.gensalt())
-        self.pw_hash = pwhash.decode('utf-8')
+        self.pw_hash = bcrypt.generate_password_hash(password, 10)
+        #pwhash = bcr.hashpw(password.encode('utf-8'), bcr.gensalt())
+        #self.pw_hash = pwhash.decode('utf-8')
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
@@ -67,11 +66,6 @@ class User(CRUDMixin, UserMixin, db.Model):
             'inactive': inactive_users
         }
 
-    @staticmethod
-    def if_exists(username):
-        if not User.query.filter_by(username=username).first():
-            return False
-        return True
     @staticmethod
     def if_exists(username):
         if not User.query.filter_by(username=username).first():

@@ -30,9 +30,6 @@ def create_app(config=config.base_config):
         return g.lang_code
 
 
-
-
-
     @app.before_request
     def before_request():
         g.request_start_time = time.time()
