@@ -1,0 +1,36 @@
+{% from 'components/table.html' import table_header %}
+{% from 'components/pagination.html' import pagination %}
+{% from 'components/search.html' import search %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ search(gettext('Search for a Username or Email')) }}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>{{ gettext('Username') }}</th>
+                <th>{{ gettext('Email') }}</th>
+            </tr>
+            <tbody>
+                {% for u in datatable.query.items %}
+                    <tr>
+                        <td><a href="{{ url_for('.acl_user_edit', id=u.id) }}">{{ u.username }}</a></td>
+                        <td>{{ u.email }}</td>
+                        <td>
+                            {% set dialogue = gettext('Are you sure you want to delete {username}?').format(username=u.username) %}
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.acl_user_delete', id=u.id) }}">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    {%- if request.values.get('query') %}<tr><td colspan="{{ datatable.colspan }}">{{ gettext('No results found for: ')}}{{ request.values.get('query') }}</td></tr>{% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        {{ pagination(datatable.query, datatable.limits) }}
+    </div>
+</div>

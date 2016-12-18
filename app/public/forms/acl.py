@@ -21,6 +21,7 @@ def safe_characters(s):
         return True
     return re.match(r'^\/?[\w]+$', s) is not None
 
+
 class AclForm(Form):
     topic = TextField(lazy_gettext('Topic'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),

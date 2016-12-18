@@ -15,10 +15,10 @@ class Acl_User(CRUDMixin, UserMixin, db.Model):
     auth_hash = db.Column(db.String(256), nullable=False)
     active = db.Column(db.Boolean())
     is_sadmin = db.Column(db.Boolean())
-    firma_id = db.Column(db.Integer, db.ForeignKey('firma.id'), nullable=False)
+    #firma_id = db.Column(db.Integer, db.ForeignKey('firma.id'), nullable=False)
     acls = db.relationship("Acl", cascade = "all, delete-orphan")
 
-    def __init__(self, username, email, jmeno, prijmeni, password, active=False, is_sadmin=False):
+    def __init__(self, username, email, password, active=False, is_sadmin=False):
         self.username = username
         self.email = email
         self.set_password(password)

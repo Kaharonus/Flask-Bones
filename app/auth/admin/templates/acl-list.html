@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {% trans %}Acls{% endtrans %}
+{% endblock %}
+
+{% block header %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('.acl_list') }}">{% trans %}Admin{% endtrans %}</a></li>
+        <li class="active">{% trans %}Acls{% endtrans %}</li>
+        <li><a class="btn btn-default" href="{{ url_for('admin.create_acl') }}"><span class="glyphicon glyphicon-plus"></span> {% trans %}Create Acl{% endtrans %}</a></li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+    <div id="pjax-container">
+        {% include 'acls.html' %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

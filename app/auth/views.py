@@ -6,9 +6,9 @@ from flask import (
 from flask_babel import gettext, lazy_gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from app.public.forms import RegisterGroupForm, RegisterFirmaForm
+from app.public.forms import RegisterGroupForm, RegisterFirmaForm, AclForm
 from app.extensions import lm
-from app.data.models import User, Group, Firma
+from app.data.models import User, Group, Firma , Acl
 from . import auth
 import json
 

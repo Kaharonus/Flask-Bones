@@ -12,7 +12,7 @@ class Firma(CRUDMixin, db.Model):
     created_ts = db.Column(db.DateTime(), nullable=False)
     users = db.relationship("U_F_Association", back_populates="firmy")
     groups = db.relationship("G_F_Association", back_populates="firmy")
-    acl_users = db.relationship("Acl_User", cascade="all, delete-orphan")
+    #acl_users = db.relationship("Acl_User", cascade="all, delete-orphan")
 
     state = db.Column(db.String(64), nullable=False)
     address = db.Column(db.String(128), nullable=False)

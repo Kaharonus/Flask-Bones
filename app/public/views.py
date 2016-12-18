@@ -8,7 +8,8 @@ from app.extensions import lm
 from app.tasks import send_registration_email
 from app.data.models.user import User
 from app.data.models.acl_user import Acl_User
-from .forms import LoginForm, RegisterUserForm, RegisterAclUserForm
+from app.data.models.acl import Acl
+from .forms import LoginForm, RegisterUserForm, RegisterAclUserForm, AclForm
 
 from . import public
 
@@ -73,23 +74,3 @@ def verify(token):
 
         flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username,),'success')
         return redirect(url_for('public.login'))
-
-
-@public.route('/registerAclUser', methods=['GET', 'POST'])
-def register_acl_user():
-    form = RegisterAclUserForm()
-    if form.validate_on_submit():
-        aclUser = Acl_User.create(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
-        )
-
-        s = URLSafeSerializer(current_app.secret_key)
-        token = s.dumps(aclUser.id)
-
-        send_registration_email.delay(aclUser, token)
-
-        flash(gettext('Sent verification email to {email}').format(email=aclUser.email), 'success')
-        return redirect(url_for('public.index'))
-    return render_template('register_acl_user.html', form=form)

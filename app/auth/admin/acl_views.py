@@ -6,7 +6,7 @@ from flask_login import login_required
 
 from app.utils import admin_required
 from app.data.models import Acl
-from app.public.forms import EditAclForm
+from app.public.forms import EditAclForm, AclForm
 from . import admin
 
 
@@ -56,3 +56,16 @@ def acl_delete(id):
     acl.delete()
     flash(gettext('Acls of user {jmeno} deleted').format(jmeno=acl.user_name),'success')
     return redirect(url_for('.acl_list'))
+
+
+@admin.route('/create_acl', methods=['GET', 'POST'])
+def register_acl():
+    form = AclForm()
+    if form.validate_on_submit():
+        Acl.create(
+            user_name=form.data['username'],
+            topic=form.data['topic'],
+            rw=form.data['rw']
+        )
+        return redirect(url_for('public.index'))
+    return render_template('create_acl.html', form=form)
