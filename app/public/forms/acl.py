@@ -3,8 +3,8 @@
 import re
 from flask_wtf import Form
 from flask_babel import gettext,lazy_gettext
-from wtforms import TextField, PasswordField, BooleanField
-from wtforms.fields import SelectField
+from wtforms import TextField, PasswordField, BooleanField, validators
+from wtforms.fields import SelectField, IntegerField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from app.data.models import Acl, Acl_User
@@ -31,7 +31,8 @@ class AclForm(Form):
         Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
     user_name = QuerySelectField('User', query_factory=lambda: Acl_User.query.all())
-    rw = SelectField('0', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
+    #rw = SelectField('Permissions', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
+    rw = IntegerField('RW', [validators.NumberRange(message='Range should be between 0 and 2.', min=0, max=2)])
 
 # class RegisterAclUserForm(AclForm):
 #     password = PasswordField(lazy_gettext('Password'), validators=[

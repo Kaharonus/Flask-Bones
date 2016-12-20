@@ -63,9 +63,10 @@ def create_acl():
     form = AclForm()
     if form.validate_on_submit():
         Acl.create(
-            user_name=form.data['user_name'],
             topic=form.data['topic'],
-            rw=form.data['rw']
+            user_name=form.data['user_name'],
+            #rw = form.data['rw']
+            rw= int(form.data['rw'])
         )
         return redirect(url_for('public.index'))
     return render_template('create_acl.html', form=form)

@@ -26,7 +26,7 @@ class Acl_User(CRUDMixin, UserMixin, db.Model):
         self.is_sadmin = is_sadmin
 
     def __repr__(self):
-        return '<User %s>' % self.username
+        return '%s' % self.username
 
     def set_password(self, password):
         self.auth_hash = h_p.make_hash(password)

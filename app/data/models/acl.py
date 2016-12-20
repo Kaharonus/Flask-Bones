@@ -13,8 +13,9 @@ class Acl(CRUDMixin, db.Model):
     user_name = db.Column(db.String(32), db.ForeignKey('acl_user.username'), nullable=False)
 
     def __init__(self, topic, user_name, rw):
-        self.topic = topic
-        self.rw = int(rw)
+        self.topic = "/{}/{}".format(user_name, topic)
+        #self.rw = int(rw)
+        self.rw = rw
         self.user_name = user_name
 
     @staticmethod
