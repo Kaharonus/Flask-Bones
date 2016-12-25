@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {% trans %}Ctecky{% endtrans %}
+{% endblock %}
+
+{% block header %}
+    <ol class="breadcrumb">
+        <li><a href="{{ url_for('.ctecka_list') }}">{% trans %}Admin{% endtrans %}</a></li>
+        <li class="active">{% trans %}Ctecky{% endtrans %}</li>
+        <li><a class="btn btn-default" href="{{ url_for('admin.create_ctecka') }}"><span class="glyphicon glyphicon-plus"></span> {% trans %}Create Ctecka{% endtrans %}</a></li>
+    </ol>
+{% endblock %}
+
+{% block body %}
+    <div id="pjax-container">
+        {% include 'ctecky.html' %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

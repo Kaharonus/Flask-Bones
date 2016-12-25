@@ -1,21 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import re
+from flask_login import current_user
 from flask_wtf import Form
 from flask_babel import gettext,lazy_gettext
 from wtforms import TextField, PasswordField, BooleanField, validators
 from wtforms.fields import SelectField, IntegerField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from app.data.models import Acl, Acl_User, Ctecka
+from app.data.models import Firma, Ctecka, U_F_Association
 from app.fields import Predicate
 
-# def Acl_is_available(topic):
-#     user_name = Acl.user_name.query.all()
-#     if not Acl.if_exists(topic, user_name):
-#         return True
-#     return False
-
+def Ctecka_is_available(nazev):
+     if not Ctecka.if_exists(nazev):
+         return True
+     return False
 
 def safe_characters(s):
     " Only letters (a-z) and  numbers are allowed for usernames and passwords. Based off Google username validator "
@@ -24,16 +23,16 @@ def safe_characters(s):
     return re.match(r'^\/?[\w]+$', s) is not None
 
 
-class AclForm(Form):
-    topic = TextField(lazy_gettext('Topic'), validators=[
+class CteckaForm(Form):
+    nazev = TextField(lazy_gettext('Nazev'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-    #    Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
-        Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
+        Predicate(Ctecka_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
+        Length(min=1, max=32, message=lazy_gettext("Please use between 2 and 32 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-    user_name = QuerySelectField('User', query_factory=lambda: Acl_User.query.all(), get_label=lambda a: a.username)
-    ctecka_id = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.nazev)
-    rw = SelectField('Permissions', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
-    #rw = IntegerField('RW', [validators.NumberRange(message='Range should be between 0 and 2.', min=0, max=2)])
+    firma_id = QuerySelectField('Firma', query_factory=lambda: [Firma.query.filter_by(id=x.firma_id).first()
+                                                    for x in U_F_Association.query.filter_by(
+                                                    user_id=current_user.id).all()],
+                                get_label=lambda a: a.nazev)
 
 # class RegisterAclUserForm(AclForm):
 #     password = PasswordField(lazy_gettext('Password'), validators=[
@@ -51,6 +50,6 @@ class AclForm(Form):
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
 
-class EditAclForm(AclForm):
+class EditCteckaForm(CteckaForm):
     is_admin = BooleanField(lazy_gettext('Admin'))
     active = BooleanField(lazy_gettext('Activated'))

@@ -66,7 +66,8 @@ def register_acl_user():
         aclUser = Acl_User.create(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            firma_id=form.data['firma_id'].id
         )
 
         s = URLSafeSerializer(current_app.secret_key)

@@ -5,8 +5,10 @@ from flask_wtf import Form
 from flask_babel import gettext,lazy_gettext
 from wtforms import TextField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
-from app.data.models import Acl_User
+from app.data.models import Acl_User, Firma, U_F_Association
 from app.fields import Predicate
+from flask_login import current_user
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
 
 def username_is_available(username):
@@ -45,6 +47,10 @@ class RegisterAclUserForm(AclUserForm):
     #password = PasswordField(lazy_gettext('Password'),validators=[DataRequired(lazy_gettext('This field is required.')),EqualTo('confirm',message=lazy_gettext('Passwords must match.')),Length(min=6, max=20)])
     confirm = PasswordField(lazy_gettext('Confirm Password'), validators=[
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
+    firma_id = QuerySelectField('Firma', query_factory=lambda: [Firma.query.filter_by(id=x.firma_id).first()
+                                                                for x in U_F_Association.query.filter_by(
+                                                                user_id=current_user.id).all()],
+                                get_label=lambda a: a.nazev, get_pk=lambda a: a.id)
     #confirm = PasswordField(lazy_gettext('Confirm Password'), validators=[DataRequired(lazy_gettext('This field is required.'))])
     accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
@@ -53,7 +59,6 @@ class RegisterAclUserForm(AclUserForm):
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
-        self.Acl_User = None
 
 
 class EditAclUserForm(AclUserForm):

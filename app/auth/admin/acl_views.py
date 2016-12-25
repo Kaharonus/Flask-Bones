@@ -64,7 +64,8 @@ def create_acl():
     if form.validate_on_submit():
         Acl.create(
             topic=form.data['topic'],
-            user_name=form.data['user_name'],
+            user_name=form.data['user_name'].username,
+            ctecka=form.data['ctecka_id'].id,
             #rw = form.data['rw']
             rw= int(form.data['rw'])
         )
