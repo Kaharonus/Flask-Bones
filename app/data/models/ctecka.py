@@ -15,11 +15,14 @@ class Ctecka(CRUDMixin, db.Model):
 
     def __init__(self, nazev, firma_id):
         self.nazev = nazev
-        #self.rw = int(rw)
-        self.firma_id = firma_id
+        self.firma_id = firma_id.id
 
     @staticmethod
     def if_exists(nazev):
         if not Ctecka.query.filter_by(nazev=nazev).first():
             return False
         return True
+
+    @staticmethod
+    def find_by_id(id):
+        return db.session.query(Ctecka).filter_by(id=id).first()

@@ -10,24 +10,23 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from app.data.models import Acl, Acl_User, Ctecka
 from app.fields import Predicate
 
-# def Acl_is_available(topic):
-#     user_name = Acl.user_name.query.all()
-#     if not Acl.if_exists(topic, user_name):
-#         return True
-#     return False
+def Acl_is_available(topic):
+     if not Acl.if_exists(topic):
+         return True
+     return False
 
 
 def safe_characters(s):
     " Only letters (a-z) and  numbers are allowed for usernames and passwords. Based off Google username validator "
     if not s:
         return True
-    return re.match(r'^\/?[\w]+$', s) is not None
+    return re.match(r'^\/[\w]+$', s) is not None
 
 
 class AclForm(Form):
-    topic = TextField(lazy_gettext('Topic'), validators=[
-        Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-    #    Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
+    topic = TextField(lazy_gettext('Topic'), default="/", validators=[
+        Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers with a '/' at the start")),
+        Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
         Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
     user_name = QuerySelectField('User', query_factory=lambda: Acl_User.query.all(), get_label=lambda a: a.username)
@@ -52,5 +51,4 @@ class AclForm(Form):
         Form.__init__(self, *args, **kwargs)
 
 class EditAclForm(AclForm):
-    is_admin = BooleanField(lazy_gettext('Admin'))
-    active = BooleanField(lazy_gettext('Activated'))
+    topic = TextField(lazy_gettext('Topic'))

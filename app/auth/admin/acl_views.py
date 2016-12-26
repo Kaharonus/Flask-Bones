@@ -5,7 +5,7 @@ from flask_babel import lazy_gettext,gettext
 from flask_login import login_required
 
 from app.utils import admin_required
-from app.data.models import Acl
+from app.data.models import Acl, Ctecka
 from app.public.forms import EditAclForm, AclForm
 from . import admin
 
@@ -13,7 +13,10 @@ from . import admin
 @admin.route('/acl/list', methods=['GET', 'POST'])
 @admin_required
 def acl_list():
-
+    if Acl.query.all() == []:
+        ctecka_nazev = ""
+    else:
+        ctecka_nazev = Ctecka.find_by_id(Acl.ctecka_id).nazev
     from app.data import DataTable
     datatable = DataTable(
         model=Acl,
@@ -28,11 +31,13 @@ def acl_list():
     if g.pjax:
         return render_template(
             'acl.html',
+            ctecka_nazev=ctecka_nazev,
             datatable=datatable
         )
 
     return render_template(
         'acl-list.html',
+        ctecka_nazev=ctecka_nazev,
         datatable=datatable
     )
 
@@ -46,7 +51,7 @@ def acl_edit(id):
         form.populate_obj(acl)
         acl.update()
         flash(gettext('Acls of user {jmeno} edited').format(jmeno=acl.user_name),'success')
-    return render_template('acl-edit.html', form=form, firma=acl)
+    return render_template('acl-edit.html', form=form, acl=acl)
 
 
 @admin.route('/acl/delete/<int:id>', methods=['GET'])
@@ -64,8 +69,8 @@ def create_acl():
     if form.validate_on_submit():
         Acl.create(
             topic=form.data['topic'],
-            user_name=form.data['user_name'].username,
-            ctecka=form.data['ctecka_id'].id,
+            user_name=form.data['user_name'],
+            ctecka_id=form.data['ctecka_id'],
             #rw = form.data['rw']
             rw= int(form.data['rw'])
         )

@@ -3,6 +3,7 @@
 from .. import db
 from ..mixins import CRUDMixin
 import datetime
+from .association import G_F_Association, U_F_Association
 
 class Firma(CRUDMixin, db.Model):
     __tablename__ = "firma"
@@ -29,7 +30,22 @@ class Firma(CRUDMixin, db.Model):
         self.website = website
         self.created_ts = datetime.datetime.now()
 
-
-
     def __repr__(self):
         return '<Firma %s>' % self.nazev
+
+    def add_group(self, group):
+        assoc = G_F_Association()
+        assoc.firma_id = self.id
+        assoc.group_id = group.id
+        assoc.save()
+
+    def add_user(self, user):
+        assoc = U_F_Association()
+        assoc.firma_id = self.id
+        assoc.user_id = user.id
+        assoc.save()
+
+    @staticmethod
+    def find_by_id(id):
+        return db.session.query(Firma).filter_by(id=id).first()
+

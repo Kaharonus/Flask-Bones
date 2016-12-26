@@ -47,7 +47,7 @@ def acl_user_edit(id):
         form.populate_obj(acl_user)
         acl_user.update()
         flash(gettext('User {username} edited').format(username=acl_user.username),'success')
-    return render_template('acl-user-edit.html', form=form, user=acl_user)
+    return render_template('acl-user-edit.html', form=form, acl_user=acl_user)
 
 
 @admin.route('/acl_user/delete/<int:id>', methods=['GET'])

@@ -3,7 +3,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {% trans %}Edit Ctecka{% endtrans %} - {{ user.username }}
+    {% trans %}Edit Ctecka{% endtrans %} - {{ ctecka.nazev }}
 {% endblock %}
 
 {% block header %}
@@ -28,9 +28,9 @@
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default"><i class="icon-save"></i> {% trans %}Save{% endtrans %}</button>
                 <a class="btn btn-default" href="{{ url_for('.ctecka_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
-                {% if current_user.is_admin and not user == current_user %}
-                    {% set dialogue = 'Are you sure you want to delete %s?' % user.username %}
-                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.ctecka_delete', id=user.id) }}">
+                {% if current_user.is_admin %}
+                    {% set dialogue = 'Are you sure you want to delete %s?' % ctecka.nazev %}
+                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.ctecka_delete', id=ctecka.id) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
                 {% endif %}

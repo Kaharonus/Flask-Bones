@@ -60,7 +60,7 @@ class RegisterAclUserForm(AclUserForm):
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
 
-
 class EditAclUserForm(AclUserForm):
+    username = TextField(lazy_gettext('Username'))
     is_admin = BooleanField(lazy_gettext('Admin'))
     active = BooleanField(lazy_gettext('Activated'))

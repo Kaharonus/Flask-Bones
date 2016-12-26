@@ -26,7 +26,7 @@ def safe_characters(s):
 class CteckaForm(Form):
     nazev = TextField(lazy_gettext('Nazev'), validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-        Predicate(Ctecka_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
+        Predicate(Ctecka_is_available ,message=lazy_gettext("This ctecka has already been created. Try another?")),
         Length(min=1, max=32, message=lazy_gettext("Please use between 2 and 32 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
     firma_id = QuerySelectField('Firma', query_factory=lambda: [Firma.query.filter_by(id=x.firma_id).first()
@@ -51,5 +51,4 @@ class CteckaForm(Form):
         Form.__init__(self, *args, **kwargs)
 
 class EditCteckaForm(CteckaForm):
-    is_admin = BooleanField(lazy_gettext('Admin'))
-    active = BooleanField(lazy_gettext('Activated'))
+    nazev = TextField(lazy_gettext('Nazev'))

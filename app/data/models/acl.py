@@ -15,14 +15,15 @@ class Acl(CRUDMixin, db.Model):
     ctecky = db.relationship("Ctecka", back_populates="acls")
 
     def __init__(self, topic, user_name, rw , ctecka_id):
-        self.topic = "/{}/{}/{}".format(ctecka_id.nazev, user_name, topic)
-        self.rw = int(rw)
+        #self.topic = "/{}{}".format(ctecka_id.nazev, topic)
+        self.topic = topic
+        self.rw = rw
         #self.rw = rw
-        self.user_name = user_name
-        self.ctecka_id = ctecka_id
+        self.user_name = user_name.username
+        self.ctecka_id = ctecka_id.id
 
     @staticmethod
-    def if_exists(topic, user_name):
-        if not Acl.query.filter_by(topic=topic, user_name=user_name).first():
+    def if_exists(topic):
+        if not Acl.query.filter_by(topic=topic).first():
             return False
         return True

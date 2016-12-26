@@ -4,19 +4,19 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        {{ search(gettext('Search for a Nazev or FirmaID')) }}
+        {{ search(gettext('Search for a Nazev or Firma')) }}
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <tr>
                 <th>{{ gettext('Nazev') }}</th>
-                <th>{{ gettext('Firma ID') }}</th>
+                <th>{{ gettext('Firma') }}</th>
             </tr>
             <tbody>
                 {% for u in datatable.query.items %}
                     <tr>
                         <td><a href="{{ url_for('.ctecka_edit', id=u.id) }}">{{ u.nazev }}</a></td>
-                        <td>{{ u.firma_id }}</td>
+                        <td>{{ firma_nazev }}</td>
                         <td>
                             {% set dialogue = gettext('Are you sure you want to delete {username}?').format(username=u.username) %}
                             <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.ctecka_delete', id=u.id) }}">
