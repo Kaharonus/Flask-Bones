@@ -18,7 +18,6 @@ class Acl(CRUDMixin, db.Model):
         #self.topic = "/{}{}".format(ctecka_id.nazev, topic)
         self.topic = topic
         self.rw = rw
-        #self.rw = rw
         self.user_name = user_name.username
         self.ctecka_id = ctecka_id.id
 

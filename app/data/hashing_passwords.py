@@ -42,7 +42,7 @@ def make_hash(password):
 def check_hash(password, hash_):
     """Check a password against an existing hash."""
     if isinstance(password, str):
-        password = password.encode('utf-8')
+        password = password.decode('utf-8')
     algorithm, hash_function, cost_factor, salt, hash_a = hash_.split('$')
     assert algorithm == 'PBKDF2'
     hash_a = b64decode(hash_a)

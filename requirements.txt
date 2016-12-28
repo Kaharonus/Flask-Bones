@@ -1,7 +1,6 @@
 Flask
 Flask-Assets
 Flask-Babel
-
 Flask-Bcrypt
 #git+https://github.com/smewp/flask-bcrypt.git
 Flask-Heroku-Env==0.0.4
@@ -38,6 +37,7 @@ itsdangerous==0.23
 jsmin==2.0.5
 kombu==3.0.30
 mccabe==0.2.1
+paho-mqtt
 pep8==1.4.6
 psycopg2==2.5.1
 #py-bcrypt

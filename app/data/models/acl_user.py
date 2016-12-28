@@ -34,7 +34,7 @@ class Acl_User(CRUDMixin, UserMixin, db.Model):
         self.auth_hash = h_p.make_hash(password)
 
     def check_password(self, password):
-        return h_p.check_hash(self.auth_hash, password.encode('utf-8'))
+        return h_p.check_hash(password.encode('utf-8'), self.auth_hash)
 
 
     def to_json(self):

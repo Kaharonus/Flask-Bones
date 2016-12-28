@@ -50,7 +50,7 @@ def acl_edit(id):
     if form.validate_on_submit():
         form.populate_obj(acl)
         acl.update()
-        flash(gettext('Acls of user {jmeno} edited').format(jmeno=acl.user_name),'success')
+        flash(gettext('Acl of user {jmeno} edited').format(jmeno=acl.user_name),'success')
     return render_template('acl-edit.html', form=form, acl=acl)
 
 
