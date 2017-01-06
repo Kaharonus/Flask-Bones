@@ -52,8 +52,8 @@ def oauth_callback(provider):
             remote_addr=request.remote_addr,
             jmeno=jmeno,
             prijmeni=prijmeni,
-            profile_url=profile_url,
-            image_url=image_url
+            #profile_url=profile_url,
+            #image_url=image_url
         )
     if not ouser:
         ouser = Oauth(

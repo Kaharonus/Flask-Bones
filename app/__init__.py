@@ -11,11 +11,19 @@ from app.auth import auth
 from app.auth.admin import admin
 from app.fields import Predicate
 import time
+import logging
 
 
 def create_app(config=config.base_config):
     app = Flask(__name__)
     app.config.from_object(config)
+
+    logger = logging.getLogger()
+    formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
+    file_handler = logging.FileHandler('logfile.log', encoding='utf-8')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
 
     register_extensions(app)
     register_blueprints(app)
