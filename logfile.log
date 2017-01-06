@@ -1,4 +1,91 @@
-[2016-12-28 19:23:37,786] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
-[2017-01-04 19:06:43,707] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
-[2017-01-04 19:09:57,262] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
-[2017-01-04 19:11:17,846] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 09:28:20,208] {/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py:1587} ERROR - Exception on /forceerror [GET]
+Traceback (most recent call last):
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ucitel/Flask-Bones2/app/__init__.py", line 55, in force_error
+    return 1/0
+ZeroDivisionError: integer division or modulo by zero
+[2017-01-06 09:28:20,209] {/home/ucitel/Flask-Bones2/app/__init__.py:83} ERROR - integer division or modulo by zero
+[2017-01-06 10:40:36,938] {/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py:1587} ERROR - Exception on /en/authorize/twitter [GET]
+Traceback (most recent call last):
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ucitel/Flask-Bones2/app/public/views.py", line 29, in oauth_authorize
+    oauth = OAuthSignIn.get_provider(provider)
+  File "/home/ucitel/Flask-Bones2/app/data/models/oauth.py", line 51, in get_provider
+    return self.providers[provider_name]
+KeyError: u'twitter'
+[2017-01-06 10:40:36,938] {/home/ucitel/Flask-Bones2/app/__init__.py:83} ERROR - u'twitter'
+[2017-01-06 10:47:43,667] {/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py:1587} ERROR - Exception on /en/authorize/twitter [GET]
+Traceback (most recent call last):
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ucitel/.env/local/lib/python2.7/site-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ucitel/Flask-Bones2/app/public/views.py", line 29, in oauth_authorize
+    oauth = OAuthSignIn.get_provider(provider)
+  File "/home/ucitel/Flask-Bones2/app/data/models/oauth.py", line 51, in get_provider
+    return self.providers[provider_name]
+KeyError: u'twitter'
+[2017-01-06 10:47:43,668] {/home/ucitel/Flask-Bones2/app/__init__.py:83} ERROR - u'twitter'
+[2017-01-06 11:03:45,555] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 12:10:23,781] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 12:14:17,100] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-01-06 12:14:17,105] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-01-06 12:15:38,299] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 12:19:30,683] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 12:25:54,922] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-06 12:25:57,362] {/home/ucitel/Flask-Bones2/app/__init__.py:85} INFO - 404: Not Found
+[2017-01-06 12:31:56,414] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe

@@ -10,14 +10,7 @@ from app.public.forms import RegisterGroupForm, RegisterFirmaForm, EditProfileFo
 from app.extensions import lm
 from app.data.models import User, Group, Firma
 from . import auth
-import json
 
-
-class CustomEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, User):
-            return obj.to_json()
-        return json.JSONEncoder.default(self, obj)
 
 @lm.user_loader
 def load_user(id):
@@ -61,12 +54,6 @@ def create_organization():
         return redirect(url_for('admin.firma_list'))
     return render_template('create_firma.html', form=form)
 
-@auth.route('/group/add/<int:id>', methods=['GET', 'POST'])
-def group_add_user(id):
-    group = Group.query.filter_by(id=id).first_or_404()
-    users = User.query.all()
-    pole = json.dumps(users, cls=CustomEncoder)
-    return render_template('group_add_users.html', pole=pole)
 
 @auth.route('/profile', methods=['GET', 'POST'])
 @login_required
