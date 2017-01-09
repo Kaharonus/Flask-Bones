@@ -7,8 +7,9 @@ from wtforms import TextField, PasswordField, BooleanField, validators
 from wtforms.fields import SelectField, IntegerField
 from wtforms.validators import InputRequired, Email, EqualTo, Length
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from app.data.models import Acl, Acl_User, Ctecka
+from app.data.models import Acl, Ctecka
 from app.fields import Predicate
+
 
 def Acl_is_available(topic):
      if not Acl.if_exists(topic):
@@ -29,8 +30,7 @@ class AclForm(Form):
         Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
         Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-    user_name = QuerySelectField('User', query_factory=lambda: Acl_User.query.all(), get_label=lambda a: a.username)
-    ctecka_id = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.nazev)
+    ctecka_id = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.username)
     rw = SelectField('Permissions', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
     #rw = IntegerField('RW', [validators.NumberRange(message='Range should be between 0 and 2.', min=0, max=2)])
 
@@ -49,6 +49,7 @@ class AclForm(Form):
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
+
 
 class EditAclForm(AclForm):
     topic = TextField(lazy_gettext('Topic'))

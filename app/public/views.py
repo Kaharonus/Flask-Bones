@@ -7,7 +7,6 @@ from itsdangerous import URLSafeSerializer, BadSignature
 from app.extensions import lm
 from app.tasks import send_registration_email
 from app.data.models.user import User
-from app.data.models.acl_user import Acl_User
 from app.data.models.acl import Acl
 from app.data.models.ctecka import Ctecka
 from .forms import LoginForm, RegisterUserForm, LoginAclForm
