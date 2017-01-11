@@ -149,15 +149,19 @@ def fake_group():
 
 def get_border(provider):
     if provider=="facebook":
-        return "cornflowerblue"
+        return "blue"
     elif provider=="google":
         return "red"
+    elif provider=="twitter":
+        return '#00bbfd'
     return "black"
 
 
 def get_oauth():
-    oauth = Oauth.query.filter_by(user_id=current_user.id).all()
-    if oauth.__len__==0:
+    oauth = []
+    if current_user.is_authenticated:
+        oauth = Oauth.query.filter_by(user_id=current_user.id).all()
+    if not oauth:
         return None
     out = {'jmeno': oauth[0].jmeno, 'images': []}
     for image in oauth:

@@ -21,8 +21,8 @@ class base_config(object):
             'secret': 'e36842e26ee80b71d6350f86d5fa3595'
         },
         'twitter': {
-            'id': '3RzWQclolxWZIMq5LJqzRZPTl',
-            'secret': 'm9TEd58DSEtRrZHpz2EjrV9AhsBRxKMo8m3kuIZj3zLwzwIimt'
+            'id': 'zD1qhPjJNvWGHFuslq4gtB38O',
+            'secret': 'ky8avR4bFv1TGXPle2nrl5rfIFWoYfYPVSMoiCO5KJYn9U4vmR'
         }
     }
 
