@@ -3,7 +3,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {% trans %}Edit Ctecka{% endtrans %} - {{ ctecka.nazev }}
+    {% trans %}Edit Ctecka{% endtrans %} - {{ ctecka.username }}
 {% endblock %}
 
 {% block header %}
@@ -22,8 +22,10 @@
             </div>
             <div class="panel-body">
                 {{ form.csrf_token }}
-                {{ render_field(form.nazev) }}
-                {{ render_field(form.firma_id, readonly="readonly") }}
+                {{ render_field(form.username) }}
+                {% if form.monurl.data|length < 64 %}
+                    {{ render_field(form.monurl, readonly="readonly") }}
+                {% endif %}
             </div>
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default"><i class="icon-save"></i> {% trans %}Save{% endtrans %}</button>
@@ -37,6 +39,26 @@
             </div>
         </div>
     </form>
+    {% if form.monurl.data|length < 64 %}
+        <button id="random-url" class="btn btn-default"> {% trans %}New Random URL{% endtrans %}</button>
+    {% endif %}
+    <script>
+    $(document).ready(function(){
+    var randomurl = ""
+        $(document).on("click","#random-url",function(){
+            $.getJSON("/en/ctecka/getmon",function(data){
+                randomurl = data.randvalue;
+                $("#monurl").val(randomurl);
+            });
+        });
+        $(document).on("submit","form",function(){
+            if(randomurl){
+                $("#monurl").val(randomurl);
+            }
+            $(this).submit();
+        });
+    });
+    </script>
 {% endblock %}
 
 {% block footer %}

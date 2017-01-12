@@ -3,6 +3,6 @@
 from .user import UserForm, RegisterUserForm, EditUserForm
 from .group import GroupForm, RegisterGroupForm, EditGroupForm
 from .firma import FirmaForm, RegisterFirmaForm, EditFirmaForm
-from .acl import AclForm, EditAclForm
+from .acl import AclForm, EditAclForm, RegisterAclForm
 from .ctecka import CteckaForm, RegisterCteckaForm, EditCteckaForm
-from .login import LoginForm, LoginAclForm
+from .login import LoginForm, LoginCteckaForm

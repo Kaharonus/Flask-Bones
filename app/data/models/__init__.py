@@ -5,4 +5,5 @@ from .user import User
 from .firma import Firma
 from .acl import Acl
 from .ctecka import Ctecka
+from .log import Log
 from .association import U_G_Association, U_F_Association, G_F_Association

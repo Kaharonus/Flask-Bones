@@ -51,5 +51,11 @@ def recreate_db():
     create_db()
 
 
+@manager.command
+def runmqtt():
+    from mqtt import run_server
+    run_server()
+
+
 if __name__ == '__main__':
     manager.run()

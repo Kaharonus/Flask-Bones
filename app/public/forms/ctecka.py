@@ -55,6 +55,8 @@ class RegisterCteckaForm(CteckaForm):
                                                                  for x in U_F_Association.query.filter_by(
                                                                     user_id=current_user.id).all()],
                                  get_label=lambda a: a.nazev, get_pk=lambda a: a.id)
+    is_sadmin = BooleanField(lazy_gettext('Admin'))
+    monster = BooleanField(lazy_gettext('MonsterURL'))
     accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
 
@@ -63,5 +65,6 @@ class RegisterCteckaForm(CteckaForm):
 
 
 class EditCteckaForm(CteckaForm):
+    monurl = TextField(lazy_gettext('MonsterURL'))
     username = TextField(lazy_gettext('Username'))
     is_admin = BooleanField(lazy_gettext('Admin'))

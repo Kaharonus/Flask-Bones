@@ -1,15 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import request, redirect, url_for, render_template, flash, g, current_app
+from flask import request, redirect, url_for, render_template, flash, g, current_app, jsonify
 from flask_babel import lazy_gettext,gettext
 from flask_login import login_required
 from itsdangerous import URLSafeSerializer
 from app.tasks import send_registration_email
 from app.utils import admin_required
+from app.data.models.acl import Acl
 from app.data.models.ctecka import Ctecka
 from app.data.models.firma import Firma
-from app.public.forms import EditCteckaForm, CteckaForm
+from app.public.forms import EditCteckaForm, CteckaForm, RegisterCteckaForm
 from . import admin
+from monsterurl import get_monster
+
 
 
 @admin.route('/ctecka/list', methods=['GET', 'POST'])
@@ -23,8 +26,8 @@ def ctecka_list():
     datatable = DataTable(
         model=Ctecka,
         columns=[],
-        sortable=[Ctecka.nazev],
-        searchable=[Ctecka.nazev],
+        sortable=[Ctecka.username],
+        searchable=[Ctecka.username],
         filterable=[],
         limits=[10, 25, 50, 100],
         request=request
@@ -48,11 +51,15 @@ def ctecka_list():
 @admin_required
 def ctecka_edit(id):
     ctecka = Ctecka.query.filter_by(id=id).first_or_404()
+    acls = Acl.query.filter_by(ctecka_id=id).all()
     form = EditCteckaForm(obj=ctecka)
     if form.validate_on_submit():
         form.populate_obj(ctecka)
         ctecka.update()
-        flash(gettext('Ctecka {nazev} edited').format(nazev=ctecka.nazev),'success')
+        for acl in acls:
+            acl.user_name = form.username.data
+            acl.update()
+        flash(gettext('Ctecka {nazev} edited').format(nazev=ctecka.username),'success')
     return render_template('ctecky-edit.html', form=form, ctecka=ctecka)
 
 
@@ -61,17 +68,30 @@ def ctecka_edit(id):
 def ctecka_delete(id):
     ctecka = Ctecka.query.filter_by(id=id).first_or_404()
     ctecka.delete()
-    flash(gettext('User {nazev} deleted').format(nazev=ctecka.nazev),'success')
+    flash(gettext('User {nazev} deleted').format(nazev=ctecka.username),'success')
     return redirect(url_for('.ctecka_list'))
 
 
 @admin.route('/create_ctecka', methods=['GET', 'POST'])
 def create_ctecka():
-    form = CteckaForm()
+    form = RegisterCteckaForm()
     if form.validate_on_submit():
-        Ctecka.create(
-            nazev=form.data['nazev'],
-            firma_id=form.data['firma_id']
+        ctecka = Ctecka.create(
+            username=form.data['username'],
+            firma_id=form.data['firma_id'],
+            password=form.data['password'],
+            monster=form.data['monster'],
+            is_sadmin=form.data['is_sadmin']
         )
-        return redirect(url_for('public.index'))
+        flash(gettext('Organization {name} created').format(name=ctecka.username), 'success')
+        return redirect(url_for('admin.ctecka_list'))
     return render_template('create_ctecka.html', form=form)
+
+
+@admin.route('/ctecka/getmon', methods=['GET', 'POST'])
+@admin_required
+def get_mon():
+    x = get_monster()
+    while Ctecka.if_monster(x):
+        x = get_monster()
+    return jsonify({"randvalue":x})

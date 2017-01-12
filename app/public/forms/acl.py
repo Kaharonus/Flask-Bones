@@ -27,29 +27,24 @@ def safe_characters(s):
 class AclForm(Form):
     topic = TextField(lazy_gettext('Topic'), default="/", validators=[
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers with a '/' at the start")),
-        Predicate(Acl_is_available ,message=lazy_gettext("This Acl has already been created. Try another?")),
         Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-    ctecka_id = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.username)
     rw = SelectField('Permissions', choices=[('0', 'No permissions'), ('1', 'Read Only'), ('2', 'Read and Write')])
     #rw = IntegerField('RW', [validators.NumberRange(message='Range should be between 0 and 2.', min=0, max=2)])
 
-# class RegisterAclUserForm(AclForm):
-#     password = PasswordField(lazy_gettext('Password'), validators=[
-#         InputRequired(message=lazy_gettext("You can't leave this empty")),
-#         EqualTo('confirm', message=lazy_gettext('Passwords must match.')),
-#         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
-#         Length(min=2, max=30, message=lazy_gettext("Please use between 2 and 30 characters"))])
-#     # password = PasswordField(lazy_gettext('Password'),validators=[DataRequired(lazy_gettext('This field is required.')),EqualTo('confirm',message=lazy_gettext('Passwords must match.')),Length(min=6, max=20)])
-#     confirm = PasswordField(lazy_gettext('Confirm Password'), validators=[
-#         InputRequired(message=lazy_gettext("You can't leave this empty"))])
-#     # confirm = PasswordField(lazy_gettext('Confirm Password'), validators=[DataRequired(lazy_gettext('This field is required.'))])
-#     accept_tos = BooleanField(lazy_gettext('I accept the TOS'), validators=[
-#         InputRequired(message=lazy_gettext("You can't leave this empty"))])
+
+class RegisterAclForm(AclForm):
+    ctecka = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.username)
+
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
 
 
 class EditAclForm(AclForm):
-    topic = TextField(lazy_gettext('Topic'))
+    user_name = TextField(lazy_gettext('Username'))
+    topic = TextField(lazy_gettext('Topic'), default="/", validators=[
+        Predicate(safe_characters,
+                  message=lazy_gettext("Please use only letters (a-z) and numbers with a '/' at the start")),
+        Length(min=1, max=128, message=lazy_gettext("Please use between 2 and 30 characters")),
+        InputRequired(message=lazy_gettext("You can't leave this empty"))])

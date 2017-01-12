@@ -11,12 +11,16 @@
             <tr>
                 <th>{{ gettext('Nazev') }}</th>
                 <th>{{ gettext('Firma') }}</th>
+                <th>{{ gettext('Odkaz') }}</th>
+                <th>{{ gettext('Admin') }}</th>
             </tr>
             <tbody>
                 {% for u in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.ctecka_edit', id=u.id) }}">{{ u.nazev }}</a></td>
+                        <td><a href="{{ url_for('.ctecka_edit', id=u.id) }}">{{ u.username }}</a></td>
                         <td>{{ firma_nazev }}</td>
+                        <td>{{ u.monurl }}</td>
+                        <td>{{ u.is_sadmin }}</td>
                         <td>
                             {% set dialogue = gettext('Are you sure you want to delete {username}?').format(username=u.username) %}
                             <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.ctecka_delete', id=u.id) }}">

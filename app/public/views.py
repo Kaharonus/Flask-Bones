@@ -9,8 +9,7 @@ from app.tasks import send_registration_email
 from app.data.models.user import User
 from app.data.models.acl import Acl
 from app.data.models.ctecka import Ctecka
-from .forms import LoginForm, RegisterUserForm, LoginAclForm
-import paho.mqtt.client as mqtt
+from .forms import LoginForm, RegisterUserForm, LoginCteckaForm
 from . import public
 
 
@@ -82,23 +81,4 @@ def verify(token):
 
         flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username,),'success')
         return redirect(url_for('public.login'))
-
-
-@public.route('/<ctecka>/<topic>', methods=['GET', 'POST'])
-def acl_check(ctecka, topic):
-    ctecka_id = Ctecka.query.filter_by(nazev=ctecka).first_or_404().id
-    Acl.query.filter_by(ctecka_id=ctecka_id, topic="/"+topic).first_or_404()
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
-    form = LoginAclForm()
-    if form.validate_on_submit():
-        client.username_pw_set(form.acl_user.username, password=form.password.data)
-
-        client.connect("localhost", 1883, 60)
-
-        client.subscribe(topic, qos=0)
-        client.loop_read()
-    return render_template('login.html', form=form)
-
 

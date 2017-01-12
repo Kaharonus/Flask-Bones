@@ -6,7 +6,7 @@ from flask_login import login_required
 
 from app.utils import admin_required
 from app.data.models import Acl, Ctecka
-from app.public.forms import EditAclForm, AclForm
+from app.public.forms import EditAclForm, RegisterAclForm
 from . import admin
 
 
@@ -16,7 +16,7 @@ def acl_list():
     if Acl.query.all() == []:
         ctecka_nazev = ""
     else:
-        ctecka_nazev = Ctecka.find_by_id(Acl.ctecka_id).nazev
+        ctecka_nazev = Ctecka.find_by_id(Acl.ctecka_id).username
     from app.data import DataTable
     datatable = DataTable(
         model=Acl,
@@ -48,8 +48,10 @@ def acl_edit(id):
     acl = Acl.query.filter_by(id=id).first_or_404()
     form = EditAclForm(obj=acl)
     if form.validate_on_submit():
+        form.rw.data = int(form.rw.data)
         form.populate_obj(acl)
         acl.update()
+        form.rw.data = str(form.rw.data)
         flash(gettext('Acl of user {jmeno} edited').format(jmeno=acl.user_name),'success')
     return render_template('acl-edit.html', form=form, acl=acl)
 
@@ -65,12 +67,11 @@ def acl_delete(id):
 
 @admin.route('/create_acl', methods=['GET', 'POST'])
 def create_acl():
-    form = AclForm()
+    form = RegisterAclForm()
     if form.validate_on_submit():
         Acl.create(
             topic=form.data['topic'],
-            user_name=form.data['user_name'],
-            ctecka_id=form.data['ctecka_id'],
+            ctecka=form.data['ctecka'],
             #rw = form.data['rw']
             rw= int(form.data['rw'])
         )
