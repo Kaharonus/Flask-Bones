@@ -89,3 +89,9 @@ Traceback (most recent call last):
   File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
     self.wfile.write("%s: %s\r\n" % (keyword, value))
 IOError: [Errno 32] Broken pipe
+[2017-01-13 06:39:28,944] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-13 06:40:59,015] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-13 06:41:24,733] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-13 06:44:27,807] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-13 06:48:50,800] {/home/petr/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-13 06:49:02,203] {/media/sf_Flask-Bones/app/__init__.py:85} INFO - 404: Not Found

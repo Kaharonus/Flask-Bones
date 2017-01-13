@@ -51,8 +51,16 @@
         var users = {{ pole|safe }}
 
         $(document).ready(function() {
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+            $.getJSON($SCRIPT_ROOT + '/_get_users', {
+                g: 'Test'
+            }, function(data) {
+                alert(data);
+            });
+
             var table1 = $('#panel1').DataTable( {
-                data: users,
+                data: pole,
                 columns: [
                     { title: "{% trans %}Name{% endtrans %}" }
                 ]

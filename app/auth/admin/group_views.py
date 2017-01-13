@@ -63,15 +63,17 @@ def group_delete(str_hash):
 
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
-        if isinstance(obj, User):
+        if isinstance(obj, User) or isinstance(obj, Group):
             return obj.to_json()
         return json.JSONEncoder.default(self, obj)
 
 
-@admin.route('/group/add/<str_hash>', methods=['GET', 'POST'])
-def group_add_user(str_hash):
-    id = int(float(crypt(str_hash, decrypt=True)))
-    group = Group.query.filter_by(id=id).first_or_404()
-    users = User.query.all()
-    pole = json.dumps(users, cls=CustomEncoder)
+@admin.route('/group/add/', methods=['GET', 'POST'])
+def group_add_user():
+    groups = Group.query.all()
+    pole = json.dumps(groups, cls=CustomEncoder)
     return render_template('group_add_users.html', pole=pole)
+
+@admin.route('/group/_get_users', methods=['POST'])
+def get_users():
+    pass

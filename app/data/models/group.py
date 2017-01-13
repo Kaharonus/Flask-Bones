@@ -24,6 +24,9 @@ class Group(CRUDMixin, db.Model):
     def __repr__(self):
         return '<Group %s>' % self.nazev
 
+    def to_json(self):
+        return [self.nazev]
+
     def add_user(self, user):
         assoc = U_G_Association()
         assoc.group_id = self.id
