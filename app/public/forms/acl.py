@@ -35,8 +35,7 @@ class AclForm(Form):
 
 class RegisterAclForm(AclForm):
     ctecka = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.username)
-
-
+    private = BooleanField(lazy_gettext('Private topic'))
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
 

@@ -73,7 +73,8 @@ def create_acl():
             topic=form.data['topic'],
             ctecka=form.data['ctecka'],
             #rw = form.data['rw']
-            rw= int(form.data['rw'])
+            rw= int(form.data['rw']),
+            private = form.data['private']
         )
         return redirect(url_for('public.index'))
     return render_template('create_acl.html', form=form)

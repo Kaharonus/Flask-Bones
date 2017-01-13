@@ -17,3 +17,4 @@ from .group_views import *
 from .firma_views import *
 from .acl_views import *
 from .ctecka_views import *
+from .log_views import *
