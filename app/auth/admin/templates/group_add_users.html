@@ -1,4 +1,4 @@
-{% from 'components/field.html' import render_field %}
+{% from 'components/field.html' import render_field, render_submit %}
 {% extends "layout.html" %}
 
 {% block title %}{% trans %}New group{% endtrans %}{% endblock %}
@@ -28,45 +28,80 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <div style="width: 45%; display: inline-block;">
-            <table class="table table-bordered" id="panel1">
+    <form method="POST">
+        <div class="maindiv">
+            <div class="childdiv" style="width: 30%; vertical-align: top;">
+                <table class="table table-bordered" id="panel0" style="text-align: left;">
 
-            </table>
+                </table>
+            </div>
+            <div class="childdiv" style="width: 30%; vertical-align: top;">
+                <table class="table table-bordered" id="panel1" style="text-align: left;">
+
+                </table>
+            </div>
+            <div class="childdiv" style="width: 8%; text-align: center; vertical-align: middle;">
+                <button type="button" id="btn-right-all" class="btn btn-default"><span class="glyphicon glyphicon-fast-forward"></span></button><br>
+                <button type="button" id="btn-right" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button><br>
+                <button type="button" id="btn-left" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button><br>
+                <button type="button" id="btn-left-all" class="btn btn-default"><span class="glyphicon glyphicon-fast-backward"></span></button>
+            </div>
+            <div class="childdiv" style="width: 30%; vertical-align: top;">
+                <table class="table table-bordered" id="panel2" style="text-align: left;">
+
+                </table>
+            </div>
         </div>
-        <div style="width: 9%; display: inline-block; text-align: center;">
-            <button id="btn-right" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button><br>
-            <button id="btn-left" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
+        <div style="text-align: right;">
+            <button type="button" id="submit">{% trans %}Save{% endtrans %}</button>
         </div>
-        <div style="width: 45%; display: inline-block;">
-            <table class="table" id="panel2">
-                <tr><td>(empty)</td></tr>
-            </table>
-        </div>
-    </div>
+    </form>
+    <style>
+        .maindiv{
+            display: table;
+            width: 100%;
+        }
+        .childdiv{
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
 {% endblock %}
 
 {% block footer %}
     <script>
-        var users = {{ pole|safe }}
-
         $(document).ready(function() {
-            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            $SCRIPT_ROOT = '/en/group';
 
-            $.getJSON($SCRIPT_ROOT + '/_get_users', {
-                g: 'Test'
-            }, function(data) {
-                alert(data);
-            });
+            function updateTables(group_name){
+                $.getJSON($SCRIPT_ROOT + '/_get_users/'+group_name, {}, function(data) {
+                    table1.rows().remove();
+                    table1.rows.add(data[0].data);
+                    table1.draw();
+                    table2.rows().remove();
+                    table2.rows.add(data[1].data);
+                    table2.draw();
+                });
+            }
 
+            var table0 = $('#panel0').DataTable( {
+                sDom: "ft",
+                data: {{ pole|safe }},
+                columns: [
+                    { title: "{% trans %}Group name{% endtrans %}" }
+                ]
+            } );
             var table1 = $('#panel1').DataTable( {
-                data: pole,
+                sDom: "ft",
+                data: [],
                 columns: [
                     { title: "{% trans %}Name{% endtrans %}" }
                 ]
             } );
             var table2 = $('#panel2').DataTable( {
-                data: [],{# users, #}
+                sDom: "ft",
+                data: [],
                 columns: [
                     { title: "{% trans %}Name{% endtrans %}" }
                 ]
@@ -80,13 +115,54 @@
                 $(this).toggleClass('selected');
             } );
 
+            $('#panel0 tbody').on( 'click', 'tr', function () {
+                updateTables(this.children[0].innerHTML);
+                $("#panel0 > tbody > tr.selected").removeClass('selected');
+                $(this).addClass('selected');
+            } );
+
             $('#btn-right').click( function () {
-                console.log(table1.rows('.selected').data());
+                selected = table1.rows('.selected');
+                table2.rows.add(selected.data());
+                selected.remove();
+                table1.draw();
+                table2.draw();
             } );
 
             $('#btn-left').click( function () {
-                console.log(table2.rows('.selected').data());
+                selected = table2.rows('.selected');
+                table1.rows.add(selected.data());
+                selected.remove();
+                table1.draw();
+                table2.draw();
             } );
+
+            $('#btn-right-all').click( function () {
+                selected = table1.rows();
+                table2.rows.add(selected.data());
+                selected.remove();
+                table1.draw();
+                table2.draw();
+            } );
+
+            $('#btn-left-all').click( function () {
+                selected = table2.rows();
+                table1.rows.add(selected.data());
+                selected.remove();
+                table1.draw();
+                table2.draw();
+            } );
+
+            $('#submit').click( function(){
+                rows = table2.rows().data();
+                data = {'group': table0.row('.selected').data()[0], 'data': []};
+                for(var i=0; i<rows.length; i++)
+                    data.data.push([rows[i][0], rows[i][1]]);
+                console.log(data);
+                $.post($SCRIPT_ROOT + '/edit_users_submit/', {'data': JSON.stringify(data)});
+            });
+
+            $("#panel0 > tbody > tr:first").click();
 
         } );
     </script>

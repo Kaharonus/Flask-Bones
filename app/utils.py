@@ -63,11 +63,11 @@ def timeago(time=False):
         if second_diff < 120:
             return gettext("A minute ago")
         if second_diff < 3600:
-            return gettext('{s} minutes ago').format(s=str(floor(second_diff/60)))
+            return gettext('{s} minutes ago').format(s=str(int(floor(second_diff/60))))
         if second_diff < 7200:
             return gettext("An hour ago")
         if second_diff < 86400:
-            return gettext('{s} hours ago').format(s=str(floor(second_diff/3600)))
+            return gettext('{s} hours ago').format(s=str(int(floor(second_diff/3600))))
     if day_diff == 1:
         return gettext("Yesterday")
     if day_diff < 7:
@@ -75,14 +75,14 @@ def timeago(time=False):
     if day_diff < 14:
         return gettext('A week ago')
     if day_diff < 31:
-        return gettext('{s} weeks ago').format(s=str(floor(day_diff/7)))
+        return gettext('{s} weeks ago').format(s=str(int(floor(day_diff/7))))
     if day_diff < 62:
         return gettext('A month ago')
     if day_diff < 365:
-        return gettext('{s} months ago').format(s=str(floor(day_diff/30)))
+        return gettext('{s} months ago').format(s=str(int(floor(day_diff/30))))
     if day_diff < 730:
         return gettext('A year ago')
-    return gettext('{s} years ago').format(s=str(floor(day_diff/365)))
+    return gettext('{s} years ago').format(s=str(int(floor(day_diff/365))))
 
 def admin_required(func):
     '''

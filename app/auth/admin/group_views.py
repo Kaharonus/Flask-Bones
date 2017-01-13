@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import request, redirect, url_for, render_template, flash, g
+from flask import request, redirect, url_for, render_template, flash, g, abort
 from flask_babel import lazy_gettext,gettext
 from flask_login import login_required
 
 from app.utils import admin_required, crypt
-from app.data.models import Group, User
+from app.data.models import Group, User, U_G_Association
 from app.public.forms import EditGroupForm
 from . import admin
 import json
+from app.utils import fake_group
 
 
 @admin.route('/group/list', methods=['GET', 'POST'])
@@ -68,12 +69,37 @@ class CustomEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-@admin.route('/group/add/', methods=['GET', 'POST'])
-def group_add_user():
+@admin.route('/group/edit_users/', methods=['GET', 'POST'])
+@admin_required
+def group_edit_users():
     groups = Group.query.all()
     pole = json.dumps(groups, cls=CustomEncoder)
     return render_template('group_add_users.html', pole=pole)
 
-@admin.route('/group/_get_users', methods=['POST'])
-def get_users():
-    pass
+
+@admin.route('/group/edit_users_submit/', methods=['POST'])
+@admin_required
+def group_edit_users_submit():
+    if request.method <> "POST":
+        return "Only POST requests allowed"
+    data = json.loads(request.values.get('data'))
+    group = Group.query.filter_by(nazev=data.get('group')).first_or_404()
+    userlist = [(x, x.jmeno+" "+x.prijmeni) for x in User.query.join(U_G_Association).join(Group).filter(Group.nazev==data.get('group')).all()]
+    userlist = zip(*userlist)
+    for user in data.data:
+        if user in userlist[1]:
+            #no change
+            pass
+        else:
+            #added user
+            group.add_user(User.query.filter_by())
+
+    return "ok"
+
+
+@admin.route('/group/_get_users/<group_name>', methods=['GET', 'POST'])
+def get_users(group_name):
+    group = Group.query.filter_by(nazev=group_name).first_or_404()
+    users = User.query.join(U_G_Association).join(Group).filter(Group.id == group.id).all()
+    nonusers = [x for x in User.query.all() if x not in users]
+    return json.dumps([{'data': nonusers}, {'data': users}], cls=CustomEncoder)

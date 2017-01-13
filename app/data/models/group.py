@@ -35,6 +35,6 @@ class Group(CRUDMixin, db.Model):
 
     @staticmethod
     def if_exists(group, idfirm):
-        if not db.session.query(Group).join(G_F_Association).join(Firma).filter(group.name == group and Firma.id == idfirm).first():
+        if not db.session.query(Group).join(G_F_Association).join(Firma).filter(Group.name == group and Firma.id == idfirm).first():
             return False
         return True
