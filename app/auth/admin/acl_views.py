@@ -13,10 +13,6 @@ from . import admin
 @admin.route('/acl/list', methods=['GET', 'POST'])
 @admin_required
 def acl_list():
-    if Acl.query.all() == []:
-        ctecka_nazev = ""
-    else:
-        ctecka_nazev = Ctecka.find_by_id(Acl.ctecka_id).username
     from app.data import DataTable
     datatable = DataTable(
         model=Acl,
@@ -31,13 +27,11 @@ def acl_list():
     if g.pjax:
         return render_template(
             'acl.html',
-            ctecka_nazev=ctecka_nazev,
             datatable=datatable
         )
 
     return render_template(
         'acl-list.html',
-        ctecka_nazev=ctecka_nazev,
         datatable=datatable
     )
 

@@ -9,13 +9,14 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <tr>
-                <th>{{ gettext('Nazev') }}</th>
-                <th>{{ gettext('Firma') }}</th>
-                <th>{{ gettext('Odkaz') }}</th>
+                <th>{{ gettext('Name') }}</th>
+                <th>{{ gettext('Organization') }}</th>
+                <th>{{ gettext('URL') }}</th>
                 <th>{{ gettext('Admin') }}</th>
             </tr>
             <tbody>
                 {% for u in datatable.query.items %}
+                    {% if not u.username == "logger" %}
                     <tr>
                         <td><a href="{{ url_for('.ctecka_edit', id=u.id) }}">{{ u.username }}</a></td>
                         <td>{{ firma_nazev }}</td>
@@ -28,6 +29,7 @@
                             </a>
                         </td>
                     </tr>
+                    {% endif %}
                 {% else %}
                     {%- if request.values.get('query') %}<tr><td colspan="{{ datatable.colspan }}">{{ gettext('No results found for: ')}}{{ request.values.get('query') }}</td></tr>{% endif %}
                 {% endfor %}

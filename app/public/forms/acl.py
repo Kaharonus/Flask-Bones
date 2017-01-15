@@ -21,7 +21,7 @@ def safe_characters(s):
     " Only letters (a-z) and  numbers are allowed for usernames and passwords. Based off Google username validator "
     if not s:
         return True
-    return re.match(r'^\/[\w]+$', s) is not None
+    return re.match(r'^(\/[\w]+)+$', s) is not None
 
 
 class AclForm(Form):
@@ -34,7 +34,7 @@ class AclForm(Form):
 
 
 class RegisterAclForm(AclForm):
-    ctecka = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.all(), get_label=lambda a: a.username)
+    ctecka = QuerySelectField('Ctecka', query_factory=lambda: Ctecka.query.filter(Ctecka.username!="logger").all(), get_label=lambda a: a.username)
     private = BooleanField(lazy_gettext('Private topic'))
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

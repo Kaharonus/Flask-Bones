@@ -28,11 +28,11 @@ class Ctecka(CRUDMixin, UserMixin, db.Model):
         self.is_sadmin = is_sadmin
         if monster:
             self.monurl = get_monster()
-            while Ctecka.if_monster(self.monurl):
+            while Ctecka.if_used(self.monurl):
                 self.monurl = get_monster()
         else:
             self.monurl = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(64))
-            while Ctecka.if_monster(self.monurl):
+            while Ctecka.if_used(self.monurl):
                 self.monurl = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(64))
 
     @staticmethod
@@ -42,7 +42,7 @@ class Ctecka(CRUDMixin, UserMixin, db.Model):
         return True
 
     @staticmethod
-    def if_monster(monurl):
+    def if_used(monurl):
         if not Ctecka.query.filter_by(monurl=monurl).first():
             return False
         return True

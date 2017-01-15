@@ -66,5 +66,8 @@ class RegisterCteckaForm(CteckaForm):
 
 class EditCteckaForm(CteckaForm):
     monurl = TextField(lazy_gettext('MonsterURL'))
-    username = TextField(lazy_gettext('Username'))
+    username = TextField(lazy_gettext('Username'), validators=[
+        Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
+        Length(min=2, max=30, message=lazy_gettext("Please use between 2 and 30 characters")),
+        InputRequired(message=lazy_gettext("You can't leave this empty"))])
     is_admin = BooleanField(lazy_gettext('Admin'))

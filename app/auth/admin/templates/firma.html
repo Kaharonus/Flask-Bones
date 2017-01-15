@@ -19,7 +19,7 @@
                         <td>{{ timeago(g.created_ts) }}</td>
                         <td>
                             {% set dialogue = gettext('Are you sure you want to delete {nazev}?').format(nazev=g.nazev) %}
-                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.group_delete', id=g.id) }}">
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.firma_delete', id=g.id) }}">
                                 <i class="icon-trash"></i>
                             </a>
                         </td>

@@ -12,6 +12,7 @@ from app.data.models.firma import Firma
 from app.public.forms import EditCteckaForm, CteckaForm, RegisterCteckaForm
 from . import admin
 from monsterurl import get_monster
+import re
 
 
 
@@ -52,14 +53,27 @@ def ctecka_list():
 def ctecka_edit(id):
     ctecka = Ctecka.query.filter_by(id=id).first_or_404()
     acls = Acl.query.filter_by(ctecka_id=id).all()
+    privateacls = Acl.query.filter_by(ctecka_id=id).filter(
+        Acl.topic.ilike("/"+ctecka.monurl+"/%")).all()
+    #for acl in acls:
+    #    if "/"+ctecka.monurl+"/" in acl.topic
+    #        privateacls
     form = EditCteckaForm(obj=ctecka)
     if form.validate_on_submit():
-        form.populate_obj(ctecka)
-        ctecka.update()
-        for acl in acls:
-            acl.user_name = form.username.data
-            acl.update()
-        flash(gettext('Ctecka {nazev} edited').format(nazev=ctecka.username),'success')
+        if Ctecka.if_exists(form.username._value()) and ctecka.username != form.username._value():
+            flash(gettext('Name already in use'), 'warning')
+        else:
+            if form.monurl.data == "":
+                form.monurl.data = ctecka.monurl
+            form.populate_obj(ctecka)
+            ctecka.update()
+            for acl in acls:
+                acl.user_name = form.username.data
+                acl.update()
+            for privateacl in privateacls:
+                privateacl.topic = re.sub(r"^/[^/]+/", "/"+form.monurl.data+"/", privateacl.topic, 1)
+                acl.update()
+            flash(gettext('Ctecka {nazev} edited').format(nazev=ctecka.username),'success')
     return render_template('ctecky-edit.html', form=form, ctecka=ctecka)
 
 
@@ -92,6 +106,6 @@ def create_ctecka():
 @admin_required
 def get_mon():
     x = get_monster()
-    while Ctecka.if_monster(x):
+    while Ctecka.if_used(x):
         x = get_monster()
     return jsonify({"randvalue":x})
