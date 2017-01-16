@@ -80,7 +80,7 @@ def group_edit_users():
 @admin.route('/group/edit_users_submit/', methods=['POST'])
 @admin_required
 def group_edit_users_submit():
-    if request.method <> "POST":
+    if request.method != "POST":
         return "Only POST requests allowed"
     data = json.loads(request.values.get('data'))
     group = Group.query.filter_by(nazev=data.get('group')).first_or_404()
