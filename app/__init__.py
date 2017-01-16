@@ -11,11 +11,20 @@ from app.auth import auth
 from app.auth.admin import admin
 from app.fields import Predicate
 import time
+import logging
 
 
 def create_app(config=config.base_config):
     app = Flask(__name__)
     app.config.from_object(config)
+
+    logger = logging.getLogger()
+    formatter = logging.Formatter(config.LOG_FORMAT)
+    file_handler = logging.FileHandler(config.LOG_FILEPATH, encoding='utf-8')
+    file_handler.setLevel(config.LOG_LEVEL)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+    #app.logger.addHandler(file_handler)
 
     register_extensions(app)
     register_blueprints(app)
@@ -40,6 +49,11 @@ def create_app(config=config.base_config):
     def root():
         lang = request.accept_languages.best_match(config.SUPPORTED_LOCALES)
         return redirect(lang+'/index')
+
+    @app.route('/forceerror')
+    def force_error():
+        return 1/0
+
     return app
 
 
@@ -64,7 +78,12 @@ def register_blueprints(app):
 
 def register_errorhandlers(app):
     def render_error(e):
-        return render_template('errors/%s.html' % e.code), e.code
+        code = e.code if hasattr(e, "code") else 500
+        if code==500:
+            app.logger.error(e)
+        else:
+            app.logger.info(e)
+        return render_template('errors/%s.html' % code), code
 
     for e in [401, 404, 500]:
         app.errorhandler(e)(render_error)

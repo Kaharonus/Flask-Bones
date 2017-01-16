@@ -6,7 +6,6 @@ from ..mixins import CRUDMixin
 import datetime
 
 
-
 class User(CRUDMixin, UserMixin, db.Model):
     __tablename__ = "user"
 
@@ -53,7 +52,7 @@ class User(CRUDMixin, UserMixin, db.Model):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
 
     def to_json(self):
-        return [self.username]
+        return [self.jmeno + ' ' + self.prijmeni]
 
     @classmethod
     def stats(cls):

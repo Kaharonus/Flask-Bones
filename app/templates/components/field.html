@@ -11,3 +11,7 @@
         </div>
     {% endwith %}
 {% endmacro %}
+
+{% macro render_submit(cls="btn btn-info", style="") %}
+    <input type="submit" class="{{ cls }}" style="{{ style }}" value="{% trans %}Save{% endtrans %}">
+{% endmacro %}

@@ -24,6 +24,9 @@ class Group(CRUDMixin, db.Model):
     def __repr__(self):
         return '<Group %s>' % self.nazev
 
+    def to_json(self):
+        return [self.nazev]
+
     def add_user(self, user):
         assoc = U_G_Association()
         assoc.group_id = self.id
@@ -32,6 +35,6 @@ class Group(CRUDMixin, db.Model):
 
     @staticmethod
     def if_exists(group, idfirm):
-        if not db.session.query(Group).join(G_F_Association).join(Firma).filter(group.name == group and Firma.id == idfirm).first():
+        if not db.session.query(Group).join(G_F_Association).join(Firma).filter(Group.name == group and Firma.id == idfirm).first():
             return False
         return True

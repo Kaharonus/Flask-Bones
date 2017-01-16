@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from logging import INFO
 
 class base_config(object):
     """Default configuration options."""
@@ -66,6 +67,10 @@ class base_config(object):
     )
 
     SUPPORTED_LOCALES = ['en','cs']
+
+    LOG_FORMAT = '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
+    LOG_FILEPATH = 'logfile.log'
+    LOG_LEVEL = INFO
 
 
 class dev_config(base_config):
