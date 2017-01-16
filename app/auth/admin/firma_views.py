@@ -4,7 +4,7 @@ from flask import request, redirect, url_for, render_template, flash, g
 from flask_babel import lazy_gettext,gettext
 from flask_login import login_required
 
-from app.utils import admin_required
+from app.utils import admin_required, crypt
 from app.data.models import Firma
 from app.public.forms import EditFirmaForm
 from . import admin
@@ -37,21 +37,23 @@ def firma_list():
     )
 
 
-@admin.route('/firma/edit/<int:id>', methods=['GET', 'POST'])
+@admin.route('/firma/edit/<str_hash>', methods=['GET', 'POST'])
 @admin_required
-def firma_edit(id):
+def firma_edit(str_hash):
+    id = int(float(crypt(str_hash, decrypt=True)))
     firma = Firma.query.filter_by(id=id).first_or_404()
     form = EditFirmaForm(obj=firma)
     if form.validate_on_submit():
         form.populate_obj(firma)
-        firma.update()
+        firma.commit()
         flash(gettext('Organization {nazev} edited').format(nazev=firma.nazev),'success')
     return render_template('firma-edit.html', form=form, firma=firma)
 
 
-@admin.route('/firma/delete/<int:id>', methods=['GET'])
+@admin.route('/firma/delete/<str_hash>', methods=['GET'])
 @admin_required
-def firma_delete(id):
+def firma_delete(str_hash):
+    id = int(float(crypt(str_hash, decrypt=True)))
     firma = Firma.query.filter_by(id=id).first_or_404()
     firma.delete()
     flash(gettext('Organization {nazev} deleted').format(nazev=firma.nazev),'success')

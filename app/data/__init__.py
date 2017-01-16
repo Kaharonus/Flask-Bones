@@ -2,44 +2,46 @@
 # -*- coding: utf-8 -*-
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
-from .models import Group, User
+from .models import Group, Firma, User, oauth, OAuthSignIn
+from random import randint
+from app.utils import fake_firma, fake_user
 
-def populate_db(num_users=5):
+def populate_db(num_users=5, num_groups=15, num_firms=5):
     """
     Fills the data will fake data.
     """
-    from faker import Factory
-
-    fake = Factory.create()
 
     admin_username = 'cburmeister'
     admin_email = 'cburmeister@discogs.com'
     admin_password = 'test123'
-
     users = []
     for _ in range(int(num_users)):
         users.append(
-            User(
-                fake.userName(),
-                fake.email(),
-                fake.word() + fake.word(),
-                fake.ipv4()
-            )
+            fake_user()
         )
 
-    users.append(
+    """users.append(
         User(
             admin_username,
             admin_email,
             admin_password,
             fake.ipv4(),
             active=True,
-            is_admin=True
+            is_sadmin=True
         )
-    )
+    )"""
 
     for user in users:
         db.session.add(user)
+
+    firms = []
+    for _ in range(int(num_firms)):
+        firms.append(
+            fake_firma()
+        )
+
+    for firm in firms:
+        db.session.add(firm)
 
     db.session.commit()
 

@@ -5,6 +5,7 @@ from ..mixins import CRUDMixin
 import datetime
 from .association import G_F_Association
 from .firma import Firma
+from .association import U_G_Association
 
 class Group(CRUDMixin, db.Model):
     __tablename__ = "group"
@@ -13,7 +14,7 @@ class Group(CRUDMixin, db.Model):
     nazev = db.Column(db.String(128), nullable=False, unique=True)
     created_ts = db.Column(db.DateTime(), nullable=False)
     users = db.relationship("U_G_Association", back_populates="groups")
-    firmy = db.relationship("G_F_Association", back_populates="groups")
+    firmy = db.relationship("G_F_Association", cascade="all, delete-orphan")
     # TODO: Establish which users are admins
 
     def __init__(self, nazev):
@@ -23,9 +24,14 @@ class Group(CRUDMixin, db.Model):
     def __repr__(self):
         return '<Group %s>' % self.nazev
 
+    def add_user(self, user):
+        assoc = U_G_Association()
+        assoc.group_id = self.id
+        assoc.user_id = user.id
+        assoc.save()
+
     @staticmethod
     def if_exists(group, idfirm):
         if not db.session.query(Group).join(G_F_Association).join(Firma).filter(group.name == group and Firma.id == idfirm).first():
-
             return False
         return True

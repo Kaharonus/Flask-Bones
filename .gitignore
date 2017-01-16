@@ -6,3 +6,4 @@ gen/
 .webassets-cache
 bower_components/
 node_modules/
+migrations/versions/

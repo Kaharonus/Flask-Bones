@@ -6,8 +6,9 @@
 
 {% block header %}
     <ol class="breadcrumb">
-        <li><a href="{{ url_for('.user_list') }}">{% trans %}Admin{% endtrans %}</a></li>
-        <li class="active">{% trans %}Users{% endtrans %}</li>
+        <li class="active">{% trans %}Admin{% endtrans %}</li>
+        <li><a href="{{ url_for('.user_list') }}">{% trans %}Users{% endtrans %}</a></li>
+        {% if current_user.is_sadmin %}<li><a class="btn btn-default" href="{{ url_for('admin.create_user') }}"><span class="glyphicon glyphicon-plus"></span> {% trans %}Create User{% endtrans %}</a></li>{% endif %}
     </ol>
 {% endblock %}
 

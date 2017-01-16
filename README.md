@@ -279,7 +279,7 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     sudo apt-get install postgresql-9.5
     cd Project
     sudo apt-get install git
-    git clone https://github.com/Urumasi/Flask-Bones.git -b stuff3
+    git clone https://github.com/Urumasi/Flask-Bones.git
     cd Flask-Bones
     virtualenv ~/.venv
     . ~/.venv/bin/activate
@@ -290,14 +290,21 @@ flaskbones_redis_1         /entrypoint.sh redis-server      Up      0.0.0.0:6379
     CREATE DATABASE test;
     GRANT ALL PRIVILEGES ON DATABASE test to student;
     ```
+15. Flask Babel
 
-
-15. Flask Babel  
-    Extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po  
     ```bash
-    pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot . ;pybabel update -i messages.pot -d app/translations
+    # extract to messages.pot and update to app/translations/cs/LC_MESSAGES/messages.po
+    pybabel extract -F babel.cfg -k lazy_gettext -o app/translations/messages.pot .
+    pybabel update -i app/translations/messages.pot -d app/translations
     ```
-    Compile to messages.mo for use  
+    
     ```bash
+    # compile to messages.mo for use
     pybabel compile -d app/translations
     ```
+
+    #settings v liste
+    #oauth prevzeti vice informaci npr fotka
+    #oauth propojeni fb,google,twitter
+    #flask-social pouzit ziskavani udaju
+    #pri neposkytnuti emailu odeslat na fb odstraneni aplikace

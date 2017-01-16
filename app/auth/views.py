@@ -4,9 +4,9 @@ from flask import (
     current_app, request, redirect, url_for, render_template, flash, abort
 )
 from flask_babel import gettext, lazy_gettext
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from app.public.forms import RegisterGroupForm, RegisterFirmaForm
+from app.public.forms import RegisterGroupForm, RegisterFirmaForm, EditProfileForm
 from app.extensions import lm
 from app.data.models import User, Group, Firma
 from . import auth
@@ -22,13 +22,6 @@ class CustomEncoder(json.JSONEncoder):
 @lm.user_loader
 def load_user(id):
     return User.get_by_id(int(id))
-
-
-@auth.route('/profile')
-@login_required
-def profile():
-
-    return render_template('profile.html')
 
 
 @auth.route('/logout', methods=['GET'])
@@ -48,7 +41,7 @@ def create_group():
         group = Group.create(nazev=form.data['nazev'],)
 
         flash(gettext('Group {name} created').format(name=group.nazev),'success')
-        return redirect(url_for('public.index'))
+        return redirect(url_for('admin.group_list'))
     return render_template('create_group.html', form=form)
 
 @auth.route('/create_organization', methods=['GET', 'POST'])
@@ -65,7 +58,7 @@ def create_organization():
                              website=form.data['website'])
 
         flash(gettext('Organization {name} created').format(name=firma.nazev),'success')
-        return redirect(url_for('public.index'))
+        return redirect(url_for('admin.firma_list'))
     return render_template('create_firma.html', form=form)
 
 @auth.route('/group/add/<int:id>', methods=['GET', 'POST'])
@@ -74,3 +67,19 @@ def group_add_user(id):
     users = User.query.all()
     pole = json.dumps(users, cls=CustomEncoder)
     return render_template('group_add_users.html', pole=pole)
+
+@auth.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile_edit():
+    form = EditProfileForm(obj=current_user)
+    if form.validate_on_submit():
+        if User.if_exists_email(form.email._value()) and current_user.email!=form.email._value():
+            flash(gettext("An account has already been registered with that email. Try another?"), 'warning')
+            return render_template('profile-edit.html', form=form, user=current_user)
+        if not current_user.username == form.username._value():
+            flash(gettext("You little rebel! I like you!"), 'warning')
+            return render_template('profile-edit.html', form=form, user=current_user)
+        form.populate_obj(current_user)
+        current_user.commit()
+        flash(gettext('User {username} edited').format(username=current_user.username),'success')
+    return render_template('profile-edit.html', form=form, user=current_user)

@@ -6,7 +6,7 @@ from flask_login import login_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from app.extensions import lm
 from app.tasks import send_registration_email
-from app.data.models.user import User
+from app.data.models import User, OAuthSignIn, Oauth
 from .forms import RegisterUserForm
 from .forms import LoginForm
 from . import public
@@ -20,6 +20,45 @@ def load_user(id):
 @public.route('/index')
 def index():
     return render_template("index.html")
+
+
+@public.route('/authorize/<provider>')
+def oauth_authorize(provider):
+    if not current_user.is_anonymous:
+        return redirect(url_for('public.index'))
+    oauth = OAuthSignIn.get_provider(provider)
+    return oauth.authorize()
+
+
+@public.route('/callback/<provider>')
+def oauth_callback(provider):
+    if not current_user.is_anonymous:
+        return redirect(url_for('public.index'))
+    oauth = OAuthSignIn.get_provider(provider)
+    social_id, username, email,jmeno,prijmeni,profile_url,image_url= oauth.callback()
+    if social_id is None:
+        flash('Authentication failed.')
+        return redirect(url_for('public.index'))
+    ouser = Oauth.query.filter_by(social_id=social_id).first()
+    #if email is None:
+    #    flash(gettext('We need your email!'), 'warning')
+    #    return redirect(request.args.get('next') or g.lang_code + '/index')
+    user = User.find_by_email(email)
+    if user is None:
+        user = User.create(
+            username=social_id,
+            email=email,
+            password=social_id,
+            remote_addr=request.remote_addr,
+            jmeno=jmeno,
+            prijmeni=prijmeni
+        )
+    if not ouser:
+        ouser = Oauth(
+            user_id=user.id,social_id=social_id, nickname=username, email=email,jmeno=jmeno,prijmeni=prijmeni,profile_url=profile_url,image_url=image_url)
+        ouser.save()
+    login_user(user, True)
+    return redirect(url_for('public.index'))
 
 
 @public.route('/login', methods=['GET', 'POST'])
@@ -48,10 +87,12 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        send_registration_email.delay(user, token)
+        #send_registration_email.delay(user, token)
 
-        flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
-        return redirect(url_for('public.index'))
+        #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
+        flash(gettext('An account {username} has been created.').format(username=form.data['username'], ), 'success')
+        return redirect(request.args.get('next') or g.lang_code + '/index')
+        #return redirect(url_for('public.index'))
     return render_template('register.html', form=form)
 
 
@@ -72,3 +113,4 @@ def verify(token):
 
         flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username,),'success')
         return redirect(url_for('public.login'))
+

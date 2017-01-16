@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 from flask_babel import gettext,lazy_gettext
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired
 
 from app.data.models import User
 
 
 class LoginForm(Form):
-    username = TextField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext('This field is required.'))])
-    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(lazy_gettext('This field is required.'))])
+    username = StringField(lazy_gettext('Username'), validators=[DataRequired(lazy_gettext("You can't leave this empty!"))])
+    password = PasswordField(lazy_gettext('Password'), validators=[DataRequired(lazy_gettext("You can't leave this empty!"))])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

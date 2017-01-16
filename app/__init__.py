@@ -30,9 +30,6 @@ def create_app(config=config.base_config):
         return g.lang_code
 
 
-
-
-
     @app.before_request
     def before_request():
         g.request_start_time = time.time()
@@ -41,9 +38,8 @@ def create_app(config=config.base_config):
 
     @app.route('/', methods=['GET','POST'])
     def root():
-        lang=request.accept_languages.best_match(config.SUPPORTED_LOCALES)
+        lang = request.accept_languages.best_match(config.SUPPORTED_LOCALES)
         return redirect(lang+'/index')
-
     return app
 
 
@@ -77,3 +73,5 @@ def register_errorhandlers(app):
 def register_jinja_env(app):
     app.jinja_env.globals['url_for_other_page'] = utils.url_for_other_page
     app.jinja_env.globals['timeago'] = utils.timeago
+    app.jinja_env.globals['crypt'] = utils.crypt
+    app.jinja_env.globals['get_oauth'] = utils.get_oauth

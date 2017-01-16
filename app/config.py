@@ -8,8 +8,23 @@ class base_config(object):
     BABEL_DEFAULT_LOCALE='cs'
     #SERVER_NAME = os.environ['SERVER_NAME']
     #SECRET_KEY = os.environ['SECRET_KEY']
+#    SERVER_NAME="localhost:5000"
     SERVER_NAME="localhost:5000"
+
     SECRET_KEY="sdfsdfsdgwerter346354"
+
+    CYPHER_KEY = bytes(os.urandom(32))
+
+    OAUTH_CREDENTIALS = {
+        'facebook': {
+            'id': '355274304837834',
+            'secret': 'e36842e26ee80b71d6350f86d5fa3595'
+        },
+        'twitter': {
+            'id': 'zD1qhPjJNvWGHFuslq4gtB38O',
+            'secret': 'ky8avR4bFv1TGXPle2nrl5rfIFWoYfYPVSMoiCO5KJYn9U4vmR'
+        }
+    }
 
     #MAIL_SERVER = os.environ['MAILCATCHER_PORT_1025_TCP_ADDR']
     #MAIL_PORT = os.environ['MAILCATCHER_PORT_1025_TCP_PORT']

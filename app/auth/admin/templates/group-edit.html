@@ -27,9 +27,9 @@
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default"><i class="icon-save"></i> {% trans %}Save{% endtrans %}</button>
                 <a class="btn btn-default" href="{{ url_for('.group_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
-                {% if current_user.is_admin %}
+                {% if current_user.is_sadmin %}
                     {% set dialogue = 'Are you sure you want to delete %s?' % group.nazev %}
-                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.group_delete', id=group.id) }}">
+                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.group_delete', str_hash=crypt(group.id)) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
                 {% endif %}
