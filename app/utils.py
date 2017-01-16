@@ -149,9 +149,11 @@ def fake_group():
 
 def get_border(provider):
     if provider=="facebook":
-        return "cornflowerblue"
+        return "blue"
     elif provider=="google":
         return "red"
+    elif provider=="twitter":
+        return '#00bbfd'
     return "black"
 
 

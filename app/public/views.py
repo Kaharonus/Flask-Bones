@@ -40,9 +40,9 @@ def oauth_callback(provider):
         flash('Authentication failed.')
         return redirect(url_for('public.index'))
     ouser = Oauth.query.filter_by(social_id=social_id).first()
-    if email is None:
-        flash(gettext('We need your email!'), 'warning')
-        return redirect(request.args.get('next') or g.lang_code + '/index')
+    #if email is None:
+    #    flash(gettext('We need your email!'), 'warning')
+    #    return redirect(request.args.get('next') or g.lang_code + '/index')
     user = User.find_by_email(email)
     if user is None:
         user = User.create(
@@ -51,14 +51,11 @@ def oauth_callback(provider):
             password=social_id,
             remote_addr=request.remote_addr,
             jmeno=jmeno,
-            prijmeni=prijmeni,
-            #profile_url=profile_url,
-            #image_url=image_url
+            prijmeni=prijmeni
         )
     if not ouser:
         ouser = Oauth(
-            user_id=user.id,
-            social_id=social_id, nickname=username, email=email,jmeno=jmeno,prijmeni=prijmeni,profile_url=profile_url,image_url=image_url)
+            user_id=user.id,social_id=social_id, nickname=username, email=email,jmeno=jmeno,prijmeni=prijmeni,profile_url=profile_url,image_url=image_url)
         ouser.save()
     login_user(user, True)
     return redirect(url_for('public.index'))
