@@ -84,8 +84,7 @@ def group_edit_users_submit():
         return "Only POST requests allowed"
     data = json.loads(request.values.get('data'))
     group = Group.query.filter_by(nazev=data.get('group')).first_or_404()
-    userlist = [(x, x.jmeno+" "+x.prijmeni) for x in User.query.join(U_G_Association).join(Group).filter(Group.nazev==data.get('group')).all()]
-    userlist = zip(*userlist)
+    userlist = zip(*[(x, x.jmeno+" "+x.prijmeni) for x in User.query.join(U_G_Association).join(Group).filter(Group.nazev==data.get('group')).all()])
     for user in data.data:
         if user in userlist[1]:
             #no change

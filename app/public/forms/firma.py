@@ -28,6 +28,9 @@ class RegisterFirmaForm(FirmaForm):
         Form.__init__(self, *args, **kwargs)
 
     def validate(self):
+        rv = Form.validate(self)
+        if not rv:
+            return False
         firma = Firma.query.filter_by(nazev=self.nazev.data).first()
         if firma:
             self.nazev.errors.append(gettext('Organization name already registered'))

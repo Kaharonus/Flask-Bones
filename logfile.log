@@ -169,3 +169,173 @@ IOError: [Errno 32] Broken pipe
 [2017-01-13 14:07:42,066] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-01-13 14:10:26,665] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-01-13 14:11:46,078] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 09:39:43,562] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 09:40:22,596] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-01-20 09:42:35,666] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-01-20 09:42:35,671] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-01-20 09:42:35,676] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 184, in execute
+    write(data)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-01-20 10:57:34,623] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 11:24:23,484] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 11:24:36,953] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 11:25:35,056] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 11:47:11,068] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 12:37:40,215] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 12:42:31,321] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 12:53:09,328] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 13:20:59,019] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 13:48:53,420] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 13:49:09,023] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-01-20 13:49:12,624] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-01-20 13:49:23,472] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:38,383] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:45,271] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:46,712] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:46,998] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:47,277] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:47,524] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:47,809] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:48,413] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:48,652] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:49:56,639] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 183, in execute
+    for data in application_iter:
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/__init__.py", line 322, in debug_application
+    traceback.log(environ['wsgi.errors'])
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/debug/tbtools.py", line 292, in log
+    logfile.write(tb)
+IOError: [Errno 32] Broken pipe
+[2017-01-20 13:50:30,472] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-01-20 14:04:59,174] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!

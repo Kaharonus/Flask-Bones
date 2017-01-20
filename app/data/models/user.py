@@ -1,9 +1,10 @@
 from flask_login import UserMixin
-from app.extensions import cache ,bcrypt
+from app.extensions import cache, bcrypt
 import bcrypt as bcr
 from .. import db
 from ..mixins import CRUDMixin
 import datetime
+from . import Group
 
 
 class User(CRUDMixin, UserMixin, db.Model):
@@ -52,7 +53,7 @@ class User(CRUDMixin, UserMixin, db.Model):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
 
     def to_json(self):
-        return [self.jmeno + ' ' + self.prijmeni]
+        return [self.jmeno + ' ' + self.prijmeni + ' (' + self.username + ')']
 
     @classmethod
     def stats(cls):
@@ -89,3 +90,7 @@ class User(CRUDMixin, UserMixin, db.Model):
     def find_by_email(email):
         return User.query.filter(User.email==email).first()
 
+    @staticmethod
+    def find_in_group(group_id):
+        from . import U_G_Association
+        return User.query.join(U_G_Association).join(Group).filter(Group.id==group_id).all()
