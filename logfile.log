@@ -375,3 +375,61 @@ IOError: [Errno 32] Broken pipe
 [2017-02-24 09:16:29,326] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-02-24 09:16:43,648] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-02-24 09:18:23,289] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:23:44,862] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:25:12,040] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:55:07,949] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 10:01:18,245] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 186, in execute
+    write(b'')
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-02-24 10:01:18,254] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 186, in execute
+    write(b'')
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-02-24 10:01:18,259] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 186, in execute
+    write(b'')
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-02-24 10:01:18,270] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 186, in execute
+    write(b'')
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe
+[2017-02-24 10:01:18,279] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} ERROR - Error on request:
+Traceback (most recent call last):
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 193, in run_wsgi
+    execute(self.server.app)
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 186, in execute
+    write(b'')
+  File "/home/ucitel/.env/lib/python2.7/site-packages/werkzeug/serving.py", line 152, in write
+    self.send_header(key, value)
+  File "/usr/lib/python2.7/BaseHTTPServer.py", line 401, in send_header
+    self.wfile.write("%s: %s\r\n" % (keyword, value))
+IOError: [Errno 32] Broken pipe

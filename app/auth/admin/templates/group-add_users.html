@@ -25,9 +25,14 @@
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/responsive.bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/scroller/1.4.2/js/dataTables.scroller.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='flash/jquery.flash.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='flash/jquery.flash.css') }}">
 {% endblock %}
 
 {% block body %}
+    <div id="flash_window">
+    </div>
     <form method="POST">
         <div class="maindiv">
             <div class="childdiv" style="width: 30%; vertical-align: top;">
@@ -160,11 +165,14 @@
                 data = {'group': table0.row('.selected').data()[0], 'data': []};
                 for(var i=0; i<rows.length; i++)
                     data.data.push([rows[i][0], rows[i][1]]);
-                console.log(data);
-                $.post($SCRIPT_ROOT + '/edit_users_submit/', {'data': JSON.stringify(data)});
-            });
+                $.post($SCRIPT_ROOT + '/edit_users_submit/', {'data': JSON.stringify(data)}, function(ret){
+                    if(ret=="ok")
+                        $.flash("{% trans %}Saved successfully.{% endtrans %}");
+                    else
+                        $.flash("{% trans %}Error occured while saving.{% endtrans %}");
+                });
 
-            $("#panel0 > tbody > tr:first").click();
+            });
 
         } );
     </script>
