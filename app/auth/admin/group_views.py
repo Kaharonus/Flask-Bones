@@ -74,7 +74,7 @@ class CustomEncoder(json.JSONEncoder):
 def group_edit_users():
     groups = Group.query.all()
     pole = json.dumps(groups, cls=CustomEncoder)
-    return render_template('group_add_users.html', pole=pole)
+    return render_template('group-add_users.html', pole=pole)
 
 
 @admin.route('/group/edit_users_submit/', methods=['POST'])

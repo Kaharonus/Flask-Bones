@@ -35,7 +35,7 @@ def create_group():
 
         flash(gettext('Group {name} created').format(name=group.nazev),'success')
         return redirect(url_for('admin.group_list'))
-    return render_template('create_group.html', form=form)
+    return render_template('group-create.html', form=form)
 
 @auth.route('/create_organization', methods=['GET', 'POST'])
 @login_required
@@ -52,7 +52,7 @@ def create_organization():
 
         flash(gettext('Organization {name} created').format(name=firma.nazev),'success')
         return redirect(url_for('admin.firma_list'))
-    return render_template('create_firma.html', form=form)
+    return render_template('firma-create.html', form=form)
 
 
 @auth.route('/profile', methods=['GET', 'POST'])
