@@ -33,6 +33,12 @@ class Group(CRUDMixin, db.Model):
         assoc.user_id = user.id
         assoc.save()
 
+    def remove_user(self, user):
+        assoc = U_G_Association.query.filter_by(group_id=self.id, user_id=user.id).first()
+        if assoc:
+            return assoc.delete()
+        return False
+
     @staticmethod
     def if_exists(group, idfirm):
         if not db.session.query(Group).join(G_F_Association).join(Firma).filter(Group.name == group and Firma.id == idfirm).first():

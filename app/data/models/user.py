@@ -53,7 +53,7 @@ class User(CRUDMixin, UserMixin, db.Model):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
 
     def to_json(self):
-        return [self.jmeno + ' ' + self.prijmeni + ' (' + self.username + ')']
+        return [self.id, self.jmeno + ' ' + self.prijmeni + ' (' + self.username + ')']
 
     @classmethod
     def stats(cls):
@@ -87,8 +87,12 @@ class User(CRUDMixin, UserMixin, db.Model):
         return True
 
     @staticmethod
+    def find_by_name(name):
+        return User.query.filter_by(jmeno=name).first()
+
+    @staticmethod
     def find_by_email(email):
-        return User.query.filter(User.email==email).first()
+        return User.query.filter_by(email=email).first()
 
     @staticmethod
     def find_in_group(group_id):

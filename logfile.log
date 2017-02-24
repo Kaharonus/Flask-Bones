@@ -339,3 +339,39 @@ Traceback (most recent call last):
 IOError: [Errno 32] Broken pipe
 [2017-01-20 13:50:30,472] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-01-20 14:04:59,174] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:12:12,977] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:13:32,156] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:13:36,055] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:19:13,161] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:19:15,074] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:19:32,213] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:19:32,277] {/home/ucitel/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-02-24 08:20:10,446] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:21:01,658] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:22:23,140] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:22:41,951] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:23:44,600] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:24:39,705] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:25:31,170] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:25:49,531] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:26:00,931] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:26:13,532] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:26:54,740] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:27:11,640] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:27:33,347] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:27:54,543] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:28:03,813] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:28:10,871] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:29:31,970] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:29:46,295] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:29:50,575] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:29:54,703] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 08:30:08,896] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:09:47,605] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:10:34,258] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:14:31,700] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:15:16,510] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:15:23,775] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:16:29,326] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:16:43,648] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-02-24 09:18:23,289] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
