@@ -31,7 +31,7 @@ class Group(CRUDMixin, db.Model):
         assoc = U_G_Association()
         assoc.group_id = self.id
         assoc.user_id = user.id
-        assoc.save()
+        return assoc.save()
 
     def remove_user(self, user):
         assoc = U_G_Association.query.filter_by(group_id=self.id, user_id=user.id).first()

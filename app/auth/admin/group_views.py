@@ -89,10 +89,10 @@ def group_edit_users_submit():
     for user in User.query.all():
         if user in userlist and user not in userdata:
             if not group.remove_user(user):
-                return "error"
+                pass#return "error"
         if user not in userlist and user in userdata:
             if not group.add_user(user):
-                return "error"
+                pass#return "error"
     return "ok"
 
 
