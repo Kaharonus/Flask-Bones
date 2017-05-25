@@ -82,8 +82,8 @@ def create_user():
             email=form.data['email'],
             password=form.data['password'],
             remote_addr=request.remote_addr,
-            jmeno=form.data['jmeno'],
-            prijmeni=form.data['prijmeni']
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name']
         )
 
         s = URLSafeSerializer(current_app.secret_key)

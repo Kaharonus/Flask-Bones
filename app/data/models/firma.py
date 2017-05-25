@@ -11,7 +11,7 @@ class Firma(CRUDMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nazev = db.Column(db.String(128), nullable=False, unique=True)
     created_ts = db.Column(db.DateTime(), nullable=False)
-    users = db.relationship("U_F_Association", back_populates="firmy")
+    users = db.relationship("U_F_Association", back_populates="companies")
     groups = db.relationship("G_F_Association", cascade="all, delete-orphan")
 
     state = db.Column(db.String(64), nullable=False)
@@ -34,13 +34,13 @@ class Firma(CRUDMixin, db.Model):
 
     def add_group(self, group):
         assoc = G_F_Association()
-        assoc.firma_id = self.id
+        assoc.company_id = self.id
         assoc.group_id = group.id
         assoc.save()
 
     def add_user(self, user):
         assoc = U_F_Association()
-        assoc.firma_id = self.id
+        assoc.company_id = self.id
         assoc.user_id = user.id
         assoc.save()
 

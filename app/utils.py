@@ -163,7 +163,7 @@ def get_oauth():
         oauth = Oauth.query.filter_by(user_id=current_user.id).all()
     if not oauth:
         return None
-    out = {'jmeno': oauth[0].jmeno, 'images': []}
+    out = {'first_name': oauth[0].first_name, 'images': []}
     for image in oauth:
         out['images'].append({'src': image.image_url, 'href': image.profile_url, 'border': get_border(image.social_id.split('$')[0])})
     return out
