@@ -943,7 +943,7 @@
       <configuration name="PythonConfigurationType">
         <watch expression="request" language="Python" />
         <watch expression="data['data']" language="Python" />
-        <watch expression="zip(*[(x, x.jmeno+&quot; &quot;+x.prijmeni) for x in User.query.join(U_G_Association).join(Group).filter(Group.nazev==data.get('group')).all()])" language="Python" />
+        <watch expression="zip(*[(x, x.first_name+&quot; &quot;+x.last_name) for x in User.query.join(U_G_Association).join(Group).filter(Group.nazev==data.get('group')).all()])" language="Python" />
       </configuration>
     </watches-manager>
   </component>

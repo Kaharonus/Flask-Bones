@@ -1,12 +1,4 @@
-{% set nav = [
-
-] %}
-{% set admin_nav = [
-    (gettext('Users'), 'admin.user_list'),
-    (gettext('Groups'), 'admin.group_list'),
-    (gettext('Organizations'), 'admin.firma_list'),
-] %}
-{% set oauth = get_oauth() %}
+{% set nav = [ ] %} {% set admin_nav = [ (gettext('Users'), 'admin.user_list'), (gettext('Groups'), 'admin.group_list'), (gettext('Organizations'), 'admin.firma_list'), ] %} {% set oauth = get_oauth() %}
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -21,44 +13,38 @@
         <div class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav">
-                {% if current_user.is_authenticated -%}
-                    {% for title, endpoint in nav %}
-                        {% if endpoint == request.endpoint %}
-                            <li class="active"><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
-                        {% else %}
-                            <li><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                {%- endif %}
-                {% if current_user.is_sadmin -%}
-                    {% for title, endpoint in admin_nav %}
-                        {% if endpoint == request.endpoint %}
-                            <li class="active"><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
-                        {% else %}
-                            <li><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                {%- endif %}
+                {% if current_user.is_authenticated -%} {% for title, endpoint in nav %} {% if endpoint == request.endpoint %}
+                <li class="active"><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
+                {% else %}
+                <li><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
+                {% endif %} {% endfor %} {%- endif %} {% if current_user.is_sadmin -%} {% for title, endpoint in admin_nav %} {% if endpoint == request.endpoint %}
+                <li class="active"><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
+                {% else %}
+                <li><a href="{{ url_for(endpoint) }}">{{ title|title }}</a></li>
+                {% endif %} {% endfor %} {%- endif %}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 {%- if current_user.is_authenticated -%}
-                    <li>{% if oauth %}
-                        {% if oauth.images|length > 0 %}
-                            {% for image in oauth.images %}
-                                <a style="margin: 0px 1px; padding: 0px;" href="{{ image.href }}"><img src="{{ image.src }}" width="40px" style="margin-top: 5px; border: 3px solid {{ image.border }}; border-radius: 20px;"></a>
-                                </li><li>
-                            {% endfor %}
-                        {% endif %}
-                        <a href="{{ url_for('auth.profile_edit') }}">{{ oauth.jmeno }}</a>
-                    {% elif current_user.jmeno|length != 0 %}<a href={{url_for('auth.profile_edit')}}> {{ current_user.jmeno }}</a>{% else %}<a href={{url_for('auth.profile_edit')}}>{% trans %}Current user:{% endtrans %} {{ current_user.username }}</a>{% endif %}</li>
-                {%- endif %}
-                {%- if request.path=="/cs/"+request.path[4:] %}<li ><a href="/en/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/us.png') }}"></img></a></li>{% endif %}
-                {%- if request.path=="/en/"+request.path[4:] %}<li ><a href="/cs/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/cz.png') }}"></img></a></li>{% endif %}
-                {%- if current_user.is_authenticated -%}
-                    <li><a href="{{ url_for('auth.logout') }}">{% trans %}Log Out{% endtrans %}</a></li>
+                <li>{% if oauth %} {% if oauth.images|length > 0 %} {% for image in oauth.images %}
+                    <a style="margin: 0px 1px; padding: 0px;" href="{{ image.href }}"><img src="{{ image.src }}" width="40px" style="margin-top: 5px; border: 3px solid {{ image.border }}; border-radius: 20px;"></a>
+                </li>
+                <li>
+                    {% endfor %} {% endif %}
+                    <a href="{{ url_for('auth.profile_edit') }}">{{ oauth.first_name }}</a> {% elif current_user.first_name|length != 0 %}<a href={{url_for( 'auth.profile_edit')}}> {{ current_user.first_name }}</a>{% else %}<a href={{url_for(
+                        'auth.profile_edit')}}>{% trans %}Current user:{% endtrans %} {{ current_user.username }}</a>{% endif %}</li>
+                {%- endif %} {%- if request.path=="/cs/"+request.path[4:] %}
+                <li>
+                    <a href="/en/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/us.png') }}"></img>
+                    </a>
+                </li>{% endif %} {%- if request.path=="/en/"+request.path[4:] %}
+                <li>
+                    <a href="/cs/{{ request.path[4:] }}"><img src="{{ url_for('static', filename='flags/cz.png') }}"></img>
+                    </a>
+                </li>{% endif %} {%- if current_user.is_authenticated -%}
+                <li><a href="{{ url_for('auth.logout') }}">{% trans %}Log Out{% endtrans %}</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('public.login') }}">{% trans %}Log In{% endtrans %}</a></li>
+                <li><a href="{{ url_for('public.login') }}">{% trans %}Log In{% endtrans %}</a></li>
                 {%- endif -%}
             </ul>
         </div>

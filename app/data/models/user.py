@@ -13,8 +13,8 @@ class User(CRUDMixin, UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), nullable=False, unique=True)
     email = db.Column(db.String(128), nullable=True, unique=True)
-    jmeno = db.Column(db.String(128), nullable=True)
-    prijmeni = db.Column(db.String(128), nullable=True)
+    first_name = db.Column(db.String(128), nullable=True)
+    last_name = db.Column(db.String(128), nullable=True)
     pw_hash = db.Column(db.String(256), nullable=True)
     created_ts = db.Column(db.DateTime(), nullable=False)
     remote_addr = db.Column(db.String(20))
@@ -25,16 +25,16 @@ class User(CRUDMixin, UserMixin, db.Model):
                             lazy='dynamic')
     #id = db.Column(db.Integer, primary_key=True)
     #social_id = db.Column(db.String(64), nullable=False, unique=True) -> username
-    #nickname = db.Column(db.String(64), nullable=True) -> jmeno
+    #nickname = db.Column(db.String(64), nullable=True) -> first_name
     #email = db.Column(db.String(64), nullable=True)
     groups = db.relationship("U_G_Association", back_populates="users")
-    firmy = db.relationship("U_F_Association", back_populates="users")
+    companies = db.relationship("U_F_Association", back_populates="users")
 
-    def __init__(self, username, email, jmeno, prijmeni, password, remote_addr, active=False, is_sadmin=False):
+    def __init__(self, username, email, first_name, last_name, password, remote_addr, active=False, is_sadmin=False):
         self.username = username
         self.email = email
-        self.jmeno = jmeno
-        self.prijmeni = prijmeni
+        self.first_name = first_name
+        self.last_name = last_name
         self.set_password(password)
         self.created_ts = datetime.datetime.now()
         self.remote_addr = remote_addr
@@ -53,7 +53,7 @@ class User(CRUDMixin, UserMixin, db.Model):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
 
     def to_json(self):
-        return [self.id, self.jmeno + ' ' + self.prijmeni + ' (' + self.username + ')']
+        return [self.id, self.first_name + ' ' + self.last_name + ' (' + self.username + ')']
 
     @classmethod
     def stats(cls):
@@ -88,7 +88,7 @@ class User(CRUDMixin, UserMixin, db.Model):
 
     @staticmethod
     def find_by_name(name):
-        return User.query.filter_by(jmeno=name).first()
+        return User.query.filter_by(first_name=name).first()
 
     @staticmethod
     def find_by_email(email):

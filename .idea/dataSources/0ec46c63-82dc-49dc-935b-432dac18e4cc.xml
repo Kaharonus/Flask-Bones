@@ -258,12 +258,12 @@
       <state-number>986</state-number>
       <data-type>varchar(64)|0</data-type>
     </column>
-    <column id="56" parent="20" name="jmeno">
+    <column id="56" parent="20" name="first_name">
       <state-number>986</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(128)|0</data-type>
     </column>
-    <column id="57" parent="20" name="prijmeni">
+    <column id="57" parent="20" name="last_name">
       <state-number>986</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(128)|0</data-type>
@@ -403,11 +403,11 @@
       <state-number>986</state-number>
       <data-type>varchar(128)|0</data-type>
     </column>
-    <column id="82" parent="23" name="jmeno">
+    <column id="82" parent="23" name="first_name">
       <state-number>986</state-number>
       <data-type>varchar(128)|0</data-type>
     </column>
-    <column id="83" parent="23" name="prijmeni">
+    <column id="83" parent="23" name="last_name">
       <state-number>986</state-number>
       <data-type>varchar(128)|0</data-type>
     </column>
