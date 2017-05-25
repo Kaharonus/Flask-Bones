@@ -34,13 +34,13 @@ class Firma(CRUDMixin, db.Model):
 
     def add_group(self, group):
         assoc = G_F_Association()
-        assoc.firma_id = self.id
+        assoc.company_id = self.id
         assoc.group_id = group.id
         assoc.save()
 
     def add_user(self, user):
         assoc = U_F_Association()
-        assoc.firma_id = self.id
+        assoc.company_id = self.id
         assoc.user_id = user.id
         assoc.save()
 

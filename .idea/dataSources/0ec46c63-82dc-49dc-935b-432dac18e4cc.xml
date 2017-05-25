@@ -29,7 +29,7 @@
     <schema id="8" parent="1" name="information_schema">
       <object-id>11520</object-id>
     </schema>
-    <sequence id="9" parent="3" name="firma_id_seq">
+    <sequence id="9" parent="3" name="company_id_seq">
       <object-id>16882</object-id>
       <state-number>986</state-number>
     </sequence>
@@ -98,7 +98,7 @@
       <state-number>986</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
-      <default-expression>nextval(&apos;firma_id_seq&apos;::regclass)</default-expression>
+      <default-expression>nextval(&apos;company_id_seq&apos;::regclass)</default-expression>
     </column>
     <column id="26" parent="17" name="nazev">
       <state-number>986</state-number>
@@ -166,7 +166,7 @@
       <state-number>986</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="39" parent="18" name="firma_id">
+    <column id="39" parent="18" name="company_id">
       <state-number>986</state-number>
       <data-type>integer|0</data-type>
     </column>
@@ -189,9 +189,9 @@
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="43" parent="18" name="g-f_association_firma_id_fkey">
+    <foreign-key id="43" parent="18" name="g-f_association_company_id_fkey">
       <object-id>16925</object-id>
-      <columns>firma_id</columns>
+      <columns>company_id</columns>
       <ref-key>~.firma.firma_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
@@ -314,7 +314,7 @@
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;&quot;u-f_association_id_seq&quot;&apos;::regclass)</default-expression>
     </column>
-    <column id="66" parent="21" name="firma_id">
+    <column id="66" parent="21" name="company_id">
       <state-number>986</state-number>
       <data-type>integer|0</data-type>
     </column>
@@ -334,9 +334,9 @@
       <underlying-index>u-f_association_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="70" parent="21" name="u-f_association_firma_id_fkey">
+    <foreign-key id="70" parent="21" name="u-f_association_company_id_fkey">
       <object-id>16961</object-id>
-      <columns>firma_id</columns>
+      <columns>company_id</columns>
       <ref-key>~.firma.firma_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
