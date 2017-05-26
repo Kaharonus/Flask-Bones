@@ -42,7 +42,7 @@ class User(CRUDMixin, UserMixin, db.Model):
         self.is_sadmin = is_sadmin
 
     def __repr__(self):
-        return '<User %s>' % self.username
+        return '<User (username=%s, first_name=%s, last_name=%s)>' % (self.username, self.jmeno, self.prijmeni)
 
     def set_password(self, password):
         self.pw_hash = bcrypt.generate_password_hash(password, 10)

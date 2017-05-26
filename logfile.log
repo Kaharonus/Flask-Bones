@@ -375,3 +375,113 @@ IOError: [Errno 32] Broken pipe
 [2017-02-24 09:16:29,326] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-02-24 09:16:43,648] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
 [2017-02-24 09:18:23,289] {/home/ucitel/.env/local/lib/python2.7/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:14:11,037] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:14:17,842] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-05-26 14:36:05,649] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:40:14,860] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:85} INFO - 404: Not Found
+[2017-05-26 14:43:02,963] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:45:44,155] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:46:25,833] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:46:40,192] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:54:38,372] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:54:41,010] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:54:42,878] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:55:24,205] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:55:37,926] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:56:12,180] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:56:13,350] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:56:14,398] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:56:17,528] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:56:44,200] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:56:48,584] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:57:58,319] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 14:58:01,964] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:58:17,855] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:58:50,774] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 14:59:15,497] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 15:00:41,758] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:01:07,269] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:01:30,093] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:01:42,491] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:02:05,143] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:15:45,984] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:15:55,254] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:16:22,790] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:17:20,694] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:20:56,737] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:22:28,248] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:22:52,855] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:23:12,308] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:28:27,482] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:28:42,980] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:50:10,636] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:55:19,870] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:55:46,424] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:55:55,825] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 15:56:01,508] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:06:09,560] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:06:22,927] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:07:48,639] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:14:57,660] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:15:17,185] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:15:29,596] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:16:45,087] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 16:17:37,120] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 21:51:30,624] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:51:37,854] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:51:52,322] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:52:42,062] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:52:47,287] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:52:49,363] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:53:03,706] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:53:21,083] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:53:42,482] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:57:26,302] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:57:33,416] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 21:58:06,879] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:07:26,543] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:09:25,254] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:09:31,360] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:09:59,804] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:10:48,011] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:11:14,454] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:11:21,088] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:13:23,680] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:13:48,447] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:16:10,439] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:16:58,208] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:17:22,546] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:20:35,186] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:20:59,587] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:21:02,632] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:21:52,789] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:22:41,475] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:23:08,911] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:23:12,358] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:23:15,834] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:23:19,555] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:30:57,491] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:31:27,975] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:31:34,048] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:33:09,342] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:33:26,145] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:34:01,615] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:35:21,732] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:35:32,135] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:35:40,494] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:35:49,906] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:36:02,437] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:37:07,398] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:37:26,841] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:37:37,577] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:38:21,783] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:39:07,488] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:39:19,817] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:39:48,757] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:41:42,271] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:41:52,802] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:41:55,897] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
+[2017-05-26 22:42:37,071] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 22:42:41,813] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 22:42:47,799] {/home/hanis/Documents/GitHub/Flask-Bones/app/__init__.py:90} INFO - 404: Not Found
+[2017-05-26 22:44:31,092] {/home/hanis/Documents/GitHub/.env/lib/python3.5/site-packages/werkzeug/_internal.py:87} WARNING -  * Debugger is active!
