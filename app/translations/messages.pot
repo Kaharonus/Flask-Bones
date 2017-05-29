@@ -103,23 +103,23 @@ msgid "User {username} edited"
 msgstr ""
 
 #: app/auth/admin/firma_views.py:49
-msgid "Organization {nazev} edited"
+msgid "Organization {name} edited"
 msgstr ""
 
 #: app/auth/admin/firma_views.py:59
-msgid "Organization {nazev} deleted"
+msgid "Organization {name} deleted"
 msgstr ""
 
 #: app/auth/admin/group_views.py:49
-msgid "Group {nazev} edited"
+msgid "Group {name} edited"
 msgstr ""
 
 #: app/auth/admin/group_views.py:59
-msgid "Group {nazev} deleted"
+msgid "Group {name} deleted"
 msgstr ""
 
 #: app/auth/admin/user_views.py:70
-msgid "User {username} deleted"
+msgid "User {name} deleted"
 msgstr ""
 
 #: app/auth/admin/templates/firma-edit.html:6
@@ -191,7 +191,7 @@ msgstr ""
 
 #: app/auth/admin/templates/firma.html:22
 #: app/auth/admin/templates/groups.html:24
-msgid "Are you sure you want to delete {nazev}?"
+msgid "Are you sure you want to delete {name}?"
 msgstr ""
 
 #: app/auth/admin/templates/firma.html:29

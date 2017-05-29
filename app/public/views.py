@@ -90,7 +90,7 @@ def register():
         #send_registration_email.delay(user, token)
 
         #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
-        flash(gettext('An account {username} has been created.').format(username=form.data['username'], ), 'success')
+        flash(gettext('An account {username} has been created.').format(username=form.data['username']), 'success')
         return redirect(request.args.get('next') or g.lang_code + '/index')
         #return redirect(url_for('public.index'))
     return render_template('register.html', form=form)
@@ -111,6 +111,6 @@ def verify(token):
         user.active = True
         user.update()
 
-        flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username,),'success')
+        flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username),'success')
         return redirect(url_for('public.login'))
 

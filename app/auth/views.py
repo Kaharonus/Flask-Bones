@@ -31,9 +31,9 @@ def create_group():
     form = RegisterGroupForm()
     if form.validate_on_submit():
 
-        group = Group.create(nazev=form.data['nazev'],)
+        group = Group.create(name=form.data['name'],)
 
-        flash(gettext('Group {name} created').format(name=group.nazev),'success')
+        flash(gettext('Group {name} created').format(name=group.name),'success')
         return redirect(url_for('admin.group_list'))
     return render_template('create_group.html', form=form)
 
@@ -43,7 +43,7 @@ def create_organization():
     form = RegisterCompanyForm()
     if form.validate_on_submit():
 
-        firma = Company.create(name=form.data['nazev'],
+        firma = Company.create(name=form.data['name'],
                              state=form.data['state'],
                              address=form.data['address'],
                              phone_number=form.data['phone_number'],

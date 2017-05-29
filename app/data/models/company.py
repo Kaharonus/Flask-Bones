@@ -21,7 +21,7 @@ class Company(CRUDMixin, db.Model):
     website = db.Column(db.String(64))
 
     def __init__(self, name, state, address, phone_number, contact_person=None, website=None):
-        self.nazev = name
+        self.name = name
         self.state = state
         self.address = address
         self.phone_number = phone_number
@@ -30,7 +30,7 @@ class Company(CRUDMixin, db.Model):
         self.created_ts = datetime.datetime.now()
 
     def __repr__(self):
-        return '<Firma %s>' % self.nazev
+        return '<Firma %s>' % self.name
 
     def add_group(self, group):
         assoc = G_F_Association()

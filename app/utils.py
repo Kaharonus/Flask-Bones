@@ -123,7 +123,7 @@ def get_lang():
 
 
 def fake_firma():
-    return Firma(
+    return Company(
         fake.word() + fake.word(),
         fake.word(),
         fake.address(),

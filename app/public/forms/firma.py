@@ -31,12 +31,12 @@ class RegisterCompanyForm(CompanyForm):
         rv = Form.validate(self)
         if not rv:
             return False
-        firma = Company.query.filter_by(nazev=self.name.data).first()
-        if firma:
+        company = Company.query.filter_by(name=self.name.data).first()
+        if company:
             self.name.errors.append(gettext('Organization name already registered'))
             return False
 
-        self.firma = firma
+        self.company = company
         return True
 
 

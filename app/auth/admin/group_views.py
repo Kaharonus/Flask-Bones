@@ -48,7 +48,7 @@ def group_edit(str_hash):
     if form.validate_on_submit():
         form.populate_obj(group)
         group.update()
-        flash(gettext('Group {name} edited').format(name=group.nazev), 'success')
+        flash(gettext('Group {name} edited').format(name=group.name), 'success')
     return render_template('group-edit.html', form=form, group=group)
 
 
@@ -58,7 +58,7 @@ def group_delete(str_hash):
     id = int(float(crypt(str_hash, decrypt=True)))
     group = Group.query.filter_by(id=id).first_or_404()
     group.delete()
-    flash(gettext('Group {nazev} deleted').format(nazev=group.nazev),'success')
+    flash(gettext('Group {name} deleted').format(name=group.name),'success')
     return redirect(url_for('.group_list'))
 
 
@@ -84,7 +84,7 @@ def group_edit_users_submit():
         return "Only POST requests allowed"
     data = json.loads(request.values.get('data'))
     userdata = [User.query.filter_by(id=row[0]).first() for row in data.get('data')]
-    group = Group.query.filter_by(nazev=data.get('group')).first_or_404()
+    group = Group.query.filter_by(name=data.get('group')).first_or_404()
     userlist = User.find_in_group(group.id)
     for user in User.query.all():
         if user in userlist and user not in userdata:
@@ -96,7 +96,7 @@ def group_edit_users_submit():
 
 @admin.route('/group/_get_users/<group_name>', methods=['GET', 'POST'])
 def get_users(group_name):
-    group = Group.query.filter_by(nazev=group_name).first_or_404()
+    group = Group.query.filter_by(name=group_name).first_or_404()
     users = User.query.join(U_G_Association).join(Group).filter(Group.id == group.id).all()
     nonusers = [x for x in User.query.all() if x not in users]
     return json.dumps([{'data': nonusers}, {'data': users}], cls=CustomEncoder)

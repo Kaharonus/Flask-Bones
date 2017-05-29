@@ -17,8 +17,8 @@ class Group(CRUDMixin, db.Model):
     companies = db.relationship("G_F_Association", cascade="all, delete-orphan")
     # TODO: Establish which users are admins
 
-    def __init__(self, nazev):
-        self.name = nazev
+    def __init__(self, name):
+        self.name = name
         self.created_ts = datetime.datetime.now()
 
     def __repr__(self):

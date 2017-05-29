@@ -3,7 +3,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {% trans %}Edit Group{% endtrans %} - {{ group.nazev }}
+    {% trans %}Edit Group{% endtrans %} - {{ group.name }}
 {% endblock %}
 
 {% block header %}
@@ -22,13 +22,13 @@
             </div>
             <div class="panel-body">
                 {{ form.csrf_token }}
-                {{ render_field(form.nazev) }}
+                {{ render_field(form.name) }}
             </div>
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default"><i class="icon-save"></i> {% trans %}Save{% endtrans %}</button>
                 <a class="btn btn-default" href="{{ url_for('.group_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
                 {% if current_user.is_sadmin %}
-                    {% set dialogue = 'Are you sure you want to delete %s?' % group.nazev %}
+                    {% set dialogue = 'Are you sure you want to delete %s?' % group.name %}
                     <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.group_delete', str_hash=crypt(group.id)) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
