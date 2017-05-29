@@ -8,7 +8,7 @@ from math import floor
 from app import config
 from Crypto.Cipher import AES
 import base64
-from app.data.models import Firma, User, Group, Oauth
+from app.data.models import Company, User, Group, Oauth
 from random import randint
 from faker import Factory
 fake = Factory.create()

@@ -20,8 +20,8 @@ def group_list():
     datatable = DataTable(
         model=Group,
         columns=[],
-        sortable=[Group.nazev, Group.created_ts],
-        searchable=[Group.nazev],
+        sortable=[Group.name, Group.created_ts],
+        searchable=[Group.name],
         filterable=[],
         limits=[25, 50, 100],
         request=request
@@ -48,7 +48,7 @@ def group_edit(str_hash):
     if form.validate_on_submit():
         form.populate_obj(group)
         group.update()
-        flash(gettext('Group {nazev} edited').format(nazev=group.nazev),'success')
+        flash(gettext('Group {name} edited').format(name=group.nazev), 'success')
     return render_template('group-edit.html', form=form, group=group)
 
 
@@ -73,8 +73,8 @@ class CustomEncoder(json.JSONEncoder):
 @admin_required
 def group_edit_users():
     groups = Group.query.all()
-    pole = json.dumps(groups, cls=CustomEncoder)
-    return render_template('group_add_users.html', pole=pole)
+    array = json.dumps(groups, cls=CustomEncoder)
+    return render_template('group_add_users.html', array=array)
 
 
 @admin.route('/group/edit_users_submit/', methods=['POST'])

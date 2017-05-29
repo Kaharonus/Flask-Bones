@@ -6,7 +6,7 @@
 
 {% block header %}
     <ol class="breadcrumb">
-        <li><a href="{{ url_for('.firma_list') }}">{% trans %}Admin{% endtrans %}</a></li>
+        <li><a href="{{ url_for('.company_list') }}">{% trans %}Admin{% endtrans %}</a></li>
         <li class="active">{% trans %}Organizations{% endtrans %}</li>
         <li><a class="btn btn-default" href="{{ url_for('auth.create_organization') }}"><span class="glyphicon glyphicon-plus"></span> {% trans %}Create Organization{% endtrans %}</a></li>
     </ol>

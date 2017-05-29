@@ -5,18 +5,18 @@ from flask_babel import gettext, lazy_gettext
 from wtforms import StringField, BooleanField
 from wtforms.validators import DataRequired, Length
 from pyvat import check_vat_number
-from app.data.models import Group, Firma
+from app.data.models import Group, Company
 
 
 
-class FirmaForm(Form):
-    nazev = StringField(lazy_gettext('Organization Name'), validators=[DataRequired(lazy_gettext("You can't leave this empty!")), Length(min=2, max=128)])
+class CompanyForm(Form):
+    name = StringField(lazy_gettext('Organization Name'), validators=[DataRequired(lazy_gettext("You can't leave this empty!")), Length(min=2, max=128)])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
 
 
-class RegisterFirmaForm(FirmaForm):
+class RegisterCompanyForm(CompanyForm):
     address = StringField(lazy_gettext('Address'), validators=[DataRequired(lazy_gettext("You can't leave this empty!")), Length(min=2, max=128)])
     state = StringField(lazy_gettext('State'), validators=[DataRequired(lazy_gettext("You can't leave this empty!")), Length(min=2, max=64)])
     contact_person = StringField(lazy_gettext('Contact Person'), validators=[Length(max=64)])
@@ -31,14 +31,14 @@ class RegisterFirmaForm(FirmaForm):
         rv = Form.validate(self)
         if not rv:
             return False
-        firma = Firma.query.filter_by(nazev=self.nazev.data).first()
+        firma = Company.query.filter_by(nazev=self.name.data).first()
         if firma:
-            self.nazev.errors.append(gettext('Organization name already registered'))
+            self.name.errors.append(gettext('Organization name already registered'))
             return False
 
         self.firma = firma
         return True
 
 
-class EditFirmaForm(FirmaForm):
+class EditCompanyForm(CompanyForm):
     pass

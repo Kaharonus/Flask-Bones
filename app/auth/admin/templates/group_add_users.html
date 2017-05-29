@@ -87,7 +87,7 @@
 
             var table0 = $('#panel0').DataTable( {
                 sDom: "ft",
-                data: {{ pole|safe }},
+                data: {{ array|safe }},
                 columns: [
                     { title: "{% trans %}Group name{% endtrans %}" }
                 ]
