@@ -13,6 +13,8 @@ class base_config(object):
     SERVER_NAME="localhost:5000"
 
     SECRET_KEY="sdfsdfsdgwerter346354"
+    API_TOKEN_EXPIRATION = 86400
+    ERROR_404_HELP = False
 
     CYPHER_KEY = bytes(os.urandom(32))
 
