@@ -17,11 +17,11 @@
             <tbody>
                 {% for g in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.group_edit', str_hash=crypt(g.id)) }}">{{ g.nazev }}</a></td>
+                        <td><a href="{{ url_for('.group_edit', str_hash=crypt(g.id)) }}">{{ g.name }}</a></td>
                         <td>{{ g.users|length }}</td>
                         <td>{{ timeago(g.created_ts) }}</td>
                         <td>
-                            {% set dialogue = gettext('Are you sure you want to delete {nazev}?').format(nazev=g.nazev) %}
+                            {% set dialogue = gettext('Are you sure you want to delete {name}?').format(name=g.name) %}
                             <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.group_delete', str_hash=crypt(g.id)) }}">
                                 <i class="icon-trash"></i>
                             </a>

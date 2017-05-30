@@ -3,13 +3,13 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    {% trans %}Edit Organization{% endtrans %} - {{ firma.nazev }}
+    {% trans %}Edit Organization{% endtrans %} - {{ firma.name}}
 {% endblock %}
 
 {% block header %}
     <ol class="breadcrumb">
-        <li><a href="{{ url_for('.firma_list') }}">{% trans %}Admin{% endtrans %}</a></li>
-        <li><a href="{{ url_for('.firma_list') }}">{% trans %}Organizations{% endtrans %}</a></li>
+        <li><a href="{{ url_for('.company_list') }}">{% trans %}Admin{% endtrans %}</a></li>
+        <li><a href="{{ url_for('.company_list') }}">{% trans %}Organizations{% endtrans %}</a></li>
         <li class="active">{% trans %}Edit Organization{% endtrans %}</li>
     </ol>
 {% endblock %}
@@ -22,14 +22,14 @@
             </div>
             <div class="panel-body">
                 {{ form.csrf_token }}
-                {{ render_field(form.nazev) }}
+                {{ render_field(form.name) }}
             </div>
             <div class="panel-footer">
                 <button type="submit" class="btn btn-default"><i class="icon-save"></i> {% trans %}Save{% endtrans %}</button>
-                <a class="btn btn-default" href="{{ url_for('.firma_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
+                <a class="btn btn-default" href="{{ url_for('.company_list') }}"><i class="icon-remove"></i> {% trans %}Cancel{% endtrans %}</a>
                 {% if current_user.is_sadmin %}
-                    {% set dialogue = 'Are you sure you want to delete %s?' % firma.nazev %}
-                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.firma_delete', str_hash=crypt(firma.id)) }}">
+                    {% set dialogue = 'Are you sure you want to delete %s?' % firma.name %}
+                    <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default pull-right" href="{{ url_for('.company_delete', str_hash=crypt(firma.id)) }}">
                         <i class="icon-trash"></i> {% trans %}Delete{% endtrans %}
                     </a>
                 {% endif %}

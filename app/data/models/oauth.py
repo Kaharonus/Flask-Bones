@@ -17,8 +17,8 @@ class Oauth(CRUDMixin, UserMixin, db.Model):
     social_id = db.Column(db.String(64), nullable=False, unique=True)
     nickname = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
-    jmeno = db.Column(db.String(128), nullable=False)
-    prijmeni = db.Column(db.String(128), nullable=False)
+    first_name = db.Column(db.String(128), nullable=False)
+    last_name = db.Column(db.String(128), nullable=False)
     profile_url = db.Column(db.String(128), nullable=False)
     image_url = db.Column(db.String(128), nullable=False)
 

@@ -16,11 +16,11 @@
             <tbody>
                 {% for f in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.firma_edit', str_hash=crypt(f.id)) }}">{{ f.nazev }}</a></td>
+                        <td><a href="{{ url_for('.company_edit', str_hash=crypt(f.id)) }}">{{ f.name }}</a></td>
                         <td>{{ timeago(f.created_ts) }}</td>
                         <td>
-                            {% set dialogue = gettext('Are you sure you want to delete {nazev}?').format(nazev=f.nazev) %}
-                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.firma_delete', str_hash=crypt(f.id)) }}">
+                            {% set dialogue = gettext('Are you sure you want to delete {name}?').format(name=f.name) %}
+                            <a data-confirm data-dialogue="{{ dialogue }}" class="btn btn-default btn-xs" href="{{ url_for('.company_delete', str_hash=crypt(f.id)) }}">
                                 <i class="icon-trash"></i>
                             </a>
                         </td>

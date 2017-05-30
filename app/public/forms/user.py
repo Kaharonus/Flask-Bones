@@ -36,12 +36,12 @@ class UserForm(Form):
         Length(min=0, max=128, message=lazy_gettext("Please use under 128 characters")),
         Predicate(email_is_available,message=lazy_gettext("An account has already been registered with that email. Try another?"))])
 
-    jmeno = StringField(lazy_gettext('First Name'), validators=[
+    first_name = StringField(lazy_gettext('First Name'), validators=[
         Length(min=0, max=128, message=lazy_gettext("Please use under 128 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
         #InputRequired(message=lazy_gettext("You can't leave this empty!"))
     ])
-    prijmeni = StringField(lazy_gettext('Surname'), validators=[
+    last_name = StringField(lazy_gettext('Surname'), validators=[
         Length(min=0, max=128, message=lazy_gettext("Please use under 128 characters")),
         Predicate(safe_characters, message=lazy_gettext("Please use only letters (a-z) and numbers")),
         #InputRequired(message=lazy_gettext("You can't leave this empty!"))

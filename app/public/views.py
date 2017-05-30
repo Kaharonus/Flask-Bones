@@ -38,7 +38,7 @@ def oauth_callback(provider):
     if not current_user.is_anonymous:
         return redirect(url_for('public.index'))
     oauth = OAuthSignIn.get_provider(provider)
-    social_id, username, email,jmeno,prijmeni,profile_url,image_url= oauth.callback()
+    social_id, username, email,first_name,last_name,profile_url,image_url= oauth.callback()
     if social_id is None:
         flash('Authentication failed.')
         return redirect(url_for('public.index'))
@@ -53,12 +53,12 @@ def oauth_callback(provider):
             email=email,
             password=social_id,
             remote_addr=request.remote_addr,
-            jmeno=jmeno,
-            prijmeni=prijmeni
+            first_name=first_name,
+            last_name=last_name
         )
     if not ouser:
         ouser = Oauth(
-            user_id=user.id,social_id=social_id, nickname=username, email=email,jmeno=jmeno,prijmeni=prijmeni,profile_url=profile_url,image_url=image_url)
+            user_id=user.id,social_id=social_id, nickname=username, email=email,first_name=first_name,last_name=last_name,profile_url=profile_url,image_url=image_url)
         ouser.save()
     login_user(user, True)
     return redirect(url_for('public.index'))
@@ -83,8 +83,8 @@ def register():
             email=form.data['email'],
             password=form.data['password'],
             remote_addr=request.remote_addr,
-            jmeno=form.data['jmeno'],
-            prijmeni=form.data['prijmeni']
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name']
         )
 
         s = URLSafeSerializer(current_app.secret_key)
@@ -93,7 +93,7 @@ def register():
         #send_registration_email.delay(user, token)
 
         #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
-        flash(gettext('An account {username} has been created.').format(username=form.data['username'], ), 'success')
+        flash(gettext('An account {username} has been created.').format(username=form.data['username']), 'success')
         return redirect(request.args.get('next') or g.lang_code + '/index')
         #return redirect(url_for('public.index'))
     return render_template('register.html', form=form)
@@ -114,5 +114,5 @@ def verify(token):
         user.active = True
         user.update()
 
-        flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username,),'success')
+        flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username),'success')
         return redirect(url_for('public.login'))

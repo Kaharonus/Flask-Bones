@@ -8,7 +8,7 @@ from math import floor
 from app import config
 from Crypto.Cipher import AES
 import base64
-from app.data.models import Firma, User, Group, Oauth
+from app.data.models import Company, User, Group, Oauth
 from random import randint
 from faker import Factory
 fake = Factory.create()
@@ -123,7 +123,7 @@ def get_lang():
 
 
 def fake_firma():
-    return Firma(
+    return Company(
         fake.word() + fake.word(),
         fake.word(),
         fake.address(),
@@ -163,7 +163,7 @@ def get_oauth():
         oauth = Oauth.query.filter_by(user_id=current_user.id).all()
     if not oauth:
         return None
-    out = {'jmeno': oauth[0].jmeno, 'images': []}
+    out = {'first_name': oauth[0].first_name, 'images': []}
     for image in oauth:
         out['images'].append({'src': image.image_url, 'href': image.profile_url, 'border': get_border(image.social_id.split('$')[0])})
     return out
