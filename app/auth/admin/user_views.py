@@ -89,7 +89,7 @@ def create_user():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        #send_registration_email.delay(user, token)
+        #send_registration_email.delay(user, api_key)
 
         #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
         return redirect(url_for('.user_list'))

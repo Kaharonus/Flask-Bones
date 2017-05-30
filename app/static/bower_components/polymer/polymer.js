@@ -2236,7 +2236,7 @@ window.PolymerGestures = {};
 
     // Error messages should be identical to V8.
     Messages = {
-        UnexpectedToken:  'Unexpected token %0',
+        UnexpectedToken:  'Unexpected api_key %0',
         UnknownLabel: 'Undefined label \'%0\'',
         Redeclaration: '%0 \'%1\' has already been declared'
     };
@@ -2671,13 +2671,13 @@ window.PolymerGestures = {};
         throw error;
     }
 
-    // Throw an exception because of the token.
+    // Throw an exception because of the api_key.
 
     function throwUnexpected(token) {
         throwError(token, Messages.UnexpectedToken, token.value);
     }
 
-    // Expect the next token to match the specified punctuator.
+    // Expect the next api_key to match the specified punctuator.
     // If not, an exception will be thrown.
 
     function expect(value) {
@@ -2687,13 +2687,13 @@ window.PolymerGestures = {};
         }
     }
 
-    // Return true if the next token matches the specified punctuator.
+    // Return true if the next api_key matches the specified punctuator.
 
     function match(value) {
         return lookahead.type === Token.Punctuator && lookahead.value === value;
     }
 
-    // Return true if the next token matches the specified keyword
+    // Return true if the next api_key matches the specified keyword
 
     function matchKeyword(keyword) {
         return lookahead.type === Token.Keyword && lookahead.value === keyword;

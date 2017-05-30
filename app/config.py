@@ -55,9 +55,9 @@ class base_config(object):
 
 
     POSTGRES_HOST="localhost"
-    POSTGRES_USER="postgres"
+    POSTGRES_USER="student"
     POSTGRES_PORT="5432"
-    POSTGRES_PASS="passat221"
+    POSTGRES_PASS="student"
     POSTGRES_DB = 'flask_bones'
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (

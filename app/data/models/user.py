@@ -7,7 +7,6 @@ from .. import db
 from ..mixins import CRUDMixin
 import datetime
 from . import Group
-import time
 
 class User(CRUDMixin, UserMixin, db.Model):
     __tablename__ = "user"
@@ -23,7 +22,7 @@ class User(CRUDMixin, UserMixin, db.Model):
     active = db.Column(db.Boolean())
     is_sadmin = db.Column(db.Boolean())
     default_idfirm = db.Column(db.Integer, nullable=True)
-    api_key = db.Column(db.String(512), nullable=True)
+    token = db.Column(db.String(512), nullable=True)
     oauth = db.relationship('Oauth', backref='user',
                             lazy='dynamic')
     #id = db.Column(db.Integer, primary_key=True)
@@ -43,10 +42,10 @@ class User(CRUDMixin, UserMixin, db.Model):
         self.remote_addr = remote_addr
         self.active = active
         self.is_sadmin = is_sadmin
-        self.api_key = self.generate_auth_token()
+        self.token = self.generate_auth_token()
 
     def __repr__(self):
-        return '<User (username=%s, first_name=%s, last_name=%s, api_key=%s)>' % (self.username, self.jmeno, self.prijmeni, self.api_key)
+        return '<User (username=%s, first_name=%s, last_name=%s, api_key=%s)>' % (self.username, self.jmeno, self.prijmeni, self.token)
 
     def set_password(self, password):
         self.pw_hash = bcrypt.generate_password_hash(password, 10)

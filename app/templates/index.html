@@ -1,9 +1,9 @@
 {% extends "layout.html" %} {% block title %} {{ config.SITE_NAME }} {% endblock %} {% block header %} {% endblock %} {% block body %}
 <h1>{% trans %}foo{% endtrans %}</h1>
 <h1>OAuth Demo</h1>
-{% for message in get_flashed_messages() %}
+{#% for message in get_flashed_messages() %}
 <p><b>Error</b>: {{ message }}</p>
-{% endfor %} {% if current_user.is_authenticated %}
+{% endfor %#} {% if current_user.is_authenticated %}
 <h2>Hi, {{ current_user.first_name }}!</h2>
 <p><a href="{{ url_for('auth.logout') }}">Logout</a></p>
 {% else %}

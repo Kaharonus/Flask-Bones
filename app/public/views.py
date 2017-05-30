@@ -90,7 +90,7 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        #send_registration_email.delay(user, token)
+        #send_registration_email.delay(user, api_key)
 
         #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
         flash(gettext('An account {username} has been created.').format(username=form.data['username']), 'success')
