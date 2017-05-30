@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import (
-    current_app, request, redirect, url_for, render_template, flash, abort
+    current_app, request, g, redirect, url_for, render_template, flash, abort
 )
 from flask_babel import gettext, lazy_gettext
 from flask_login import login_user, login_required, logout_user, current_user
