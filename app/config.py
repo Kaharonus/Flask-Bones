@@ -13,6 +13,8 @@ class base_config(object):
     SERVER_NAME="localhost:5000"
 
     SECRET_KEY="sdfsdfsdgwerter346354"
+    API_TOKEN_EXPIRATION = 86400
+    ERROR_404_HELP = False
 
     CYPHER_KEY = bytes(os.urandom(32))
 
@@ -53,10 +55,10 @@ class base_config(object):
 
 
     POSTGRES_HOST="localhost"
-    POSTGRES_USER="student"
+    POSTGRES_USER="postgres"
     POSTGRES_PORT="5432"
-    POSTGRES_PASS="student"
-    POSTGRES_DB = 'test'
+    POSTGRES_PASS="passat221"
+    POSTGRES_DB = 'flask_bones'
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
         POSTGRES_USER,

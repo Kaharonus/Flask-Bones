@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, render_template, request, redirect
 from app.data import db
+from app.data.restful_api import RestfulApi
 from app.extensions import lm, api, travis, mail, heroku, bcrypt, celery, babel
 from app.assets import assets
 import app.utils as utils
@@ -10,6 +11,7 @@ from app.public import public
 from app.auth import auth
 from app.auth.admin import admin
 from app.fields import Predicate
+from flask_restful import Api
 import time
 import logging
 
@@ -24,12 +26,16 @@ def create_app(config=config.base_config):
     file_handler.setLevel(config.LOG_LEVEL)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
+    api = Api(app)
     #app.logger.addHandler(file_handler)
 
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
     register_jinja_env(app)
+
+    api.add_resource(RestfulApi,
+        '/api/v1.0/users/<string:id>', endpoint='user')
 
     @babel.localeselector
     def get_locale():
