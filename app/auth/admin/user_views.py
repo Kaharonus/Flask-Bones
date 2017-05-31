@@ -72,6 +72,7 @@ def user_delete(str_hash):
         return redirect(url_for('public.index'))
     return redirect(url_for('.user_list'))
 
+
 @admin.route('/user/create/', methods=['GET', 'POST'])
 @admin_required
 def create_user():
@@ -89,8 +90,8 @@ def create_user():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        #send_registration_email.delay(user, api_key)
+        # send_registration_email.delay(user, api_key)
 
-        #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
+        # flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
         return redirect(url_for('.user_list'))
     return render_template('register.html', form=form)

@@ -8,6 +8,7 @@ import datetime
 from flask_bcrypt import Bcrypt
 from .association import G_F_Association, U_F_Association
 
+
 class Company(CRUDMixin, db.Model):
     __tablename__ = "firma"
 
@@ -23,7 +24,6 @@ class Company(CRUDMixin, db.Model):
     phone_number = db.Column(db.String(16), nullable=False)
     website = db.Column(db.String(64))
     api_key = db.Column(db.String(512))
-
 
     def __init__(self, name, state, address, phone_number, contact_person=None, website=None):
         self.company_name = name
@@ -55,16 +55,13 @@ class Company(CRUDMixin, db.Model):
         key = hash.sign(self.company_name)
         return str(key, 'utf-8')
 
-
     @staticmethod
     def find_by_id(searched_id):
         return db.session.query(Company).filter_by(id=searched_id).first()
 
-
-
     @staticmethod
     def get_api_key(id):
-        #returns hashed api_key
+        # returns hashed api_key
         return db.session.query(Company).filter_by(id=id).first().api_key
 
     @staticmethod

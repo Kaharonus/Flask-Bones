@@ -14,6 +14,7 @@ def abort_if_user_doesnt_exist(user_id):
     if User.query.filter_by(id=user_id).first() is None:
         abort(404, message="User not found.")
 
+
 def abort_if_token_is_invalid(token = ""):
     # default_token = TimestampSigner(current_app.config['SECRET_KEY'])
 
@@ -30,6 +31,7 @@ def abort_if_token_is_invalid(token = ""):
         else:
             return True"""
 
+
 def abort_if_api_key_is_invalid(id, api_key = ""):
     if api_key == "" or api_key is None:
         abort(404, message="No api key provided with request.")
@@ -37,6 +39,7 @@ def abort_if_api_key_is_invalid(id, api_key = ""):
         abort(401, message="Api key not found.")
     else:
         return True
+
 
 class RestfulApi(Resource):
     # logged user request
@@ -48,5 +51,3 @@ class RestfulApi(Resource):
         user = User.query.filter_by(id=id).first()
         json_user = {"users": {"username": user.username, "first_name": user.first_name, "token": user.token}}
         return make_response(jsonify(json_user))
-
-

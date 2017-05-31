@@ -3,6 +3,7 @@
 from ..mixins import CRUDMixin
 from .. import db
 
+
 class U_G_Association(CRUDMixin, db.Model):
     __tablename__ = 'u-g_association'
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +12,7 @@ class U_G_Association(CRUDMixin, db.Model):
     users = db.relationship("User", back_populates="groups")
     groups = db.relationship("Group", back_populates="users")
 
+
 class U_F_Association(CRUDMixin, db.Model):
     __tablename__ = 'u-f_association'
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +20,7 @@ class U_F_Association(CRUDMixin, db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     users = db.relationship("User", back_populates="companies")
     companies = db.relationship("Company", back_populates="users")
+
 
 class G_F_Association(CRUDMixin, db.Model):
     __tablename__ = 'g-f_association'
