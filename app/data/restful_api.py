@@ -15,7 +15,7 @@ def abort_if_user_doesnt_exist(user_id):
         abort(404, message="User not found.")
 
 
-def abort_if_token_is_invalid(token = ""):
+def abort_if_token_is_invalid(token=""):
     # default_token = TimestampSigner(current_app.config['SECRET_KEY'])
 
     if token == "" or token is None:
@@ -32,10 +32,10 @@ def abort_if_token_is_invalid(token = ""):
             return True"""
 
 
-def abort_if_api_key_is_invalid(id, api_key = ""):
+def abort_if_api_key_is_invalid(id, api_key=""):
     if api_key == "" or api_key is None:
         abort(404, message="No api key provided with request.")
-    elif Company.validate_api_key(id , api_key):
+    elif Company.validate_api_key(id, api_key):
         abort(401, message="Api key not found.")
     else:
         return True
