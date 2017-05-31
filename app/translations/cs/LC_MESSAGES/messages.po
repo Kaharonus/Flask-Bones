@@ -88,8 +88,8 @@ msgid "Group {name} created"
 msgstr "Skupina {name} vytvořena"
 
 #: app/auth/views.py:60
-msgid "Organization {name} created"
-msgstr "Firma {name} vytvořena"
+msgid "Organization {company_name} created"
+msgstr "Firma {company_name} vytvořena"
 
 #: app/auth/admin/user_views.py:53 app/auth/views.py:77
 #: app/public/forms/user.py:36
@@ -105,12 +105,12 @@ msgid "User {username} edited"
 msgstr "Uživatel {username} editován"
 
 #: app/auth/admin/firma_views.py:49
-msgid "Organization {name} edited"
-msgstr "Firma {name} změněna"
+msgid "Organization {company_name} edited"
+msgstr "Firma {company_name} změněna"
 
 #: app/auth/admin/firma_views.py:59
-msgid "Organization {name} deleted"
-msgstr "Firma {name} vymazána"
+msgid "Organization {company_name} deleted"
+msgstr "Firma {company_name} vymazána"
 
 #: app/auth/admin/group_views.py:49
 msgid "Group {name} edited"

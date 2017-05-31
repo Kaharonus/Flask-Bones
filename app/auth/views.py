@@ -42,15 +42,14 @@ def create_group():
 def create_organization():
     form = RegisterCompanyForm()
     if form.validate_on_submit():
-
-        firma = Company.create(name=form.data['name'],
+        company = Company.create(company_name=form.data['company_name'],
                              state=form.data['state'],
                              address=form.data['address'],
                              phone_number=form.data['phone_number'],
                              contact_person=form.data['contact_person'],
                              website=form.data['website'])
 
-        flash(gettext('Organization {name} created').format(name=firma.name),'success')
+        flash(gettext('Organization {name} created').format(company_name=company.company_name),'success')
         return redirect(url_for('admin.company_list'))
     return render_template('create_firma.html', form=form)
 

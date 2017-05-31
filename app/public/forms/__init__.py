@@ -4,3 +4,4 @@ from .user import UserForm, RegisterUserForm, EditUserForm, EditProfileForm
 from .group import GroupForm, RegisterGroupForm, EditGroupForm
 from .firma import CompanyForm, RegisterCompanyForm, EditCompanyForm
 from .login import LoginForm
+from .application import ApplicationForm
