@@ -22,6 +22,7 @@ class Oauth(CRUDMixin, UserMixin, db.Model):
     profile_url = db.Column(db.String(128), nullable=False)
     image_url = db.Column(db.String(128), nullable=False)
 
+
 class OAuthSignIn(object):
     providers = None
 
@@ -49,6 +50,7 @@ class OAuthSignIn(object):
                 provider = provider_class()
                 self.providers[provider.provider_name] = provider
         return self.providers[provider_name]
+
 
 class FacebookSignIn(OAuthSignIn):
     def __init__(self):
@@ -90,6 +92,7 @@ class FacebookSignIn(OAuthSignIn):
             image_url
         )
 
+
 class TwitterSignIn(OAuthSignIn):
     def __init__(self):
         super(TwitterSignIn, self).__init__('twitter')
@@ -129,7 +132,7 @@ class TwitterSignIn(OAuthSignIn):
             None,
             name[0],
             name[1] if name.__len__()>1 else '',
-            #'@%s' % me.get('screen_name') - display name (@Atheloses)
+            # '@%s' % me.get('screen_name') - display name (@Atheloses)
             "http://twitter.com/%s" % me.get('screen_name'),
             me.get('profile_image_url')
         )

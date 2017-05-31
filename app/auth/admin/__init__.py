@@ -14,4 +14,4 @@ def pull_lang_code(endpoint, values):
 
 from .user_views import *
 from .group_views import *
-from .firma_views import *
+from .company_views import *

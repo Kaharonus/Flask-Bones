@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import (
-    current_app, request, redirect, url_for, render_template, flash, abort
+    current_app, request, g, redirect, url_for, render_template, flash, abort
 )
 from flask_babel import gettext, lazy_gettext
 from flask_login import login_user, login_required, logout_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
-from app.public.forms import RegisterGroupForm, RegisterFirmaForm, EditProfileForm
+from app.public.forms import RegisterGroupForm, RegisterCompanyForm, EditProfileForm
 from app.extensions import lm
-from app.data.models import User, Group, Firma
+from app.data.models import User, Group, Company
 from . import auth
 
 
@@ -31,27 +31,27 @@ def create_group():
     form = RegisterGroupForm()
     if form.validate_on_submit():
 
-        group = Group.create(nazev=form.data['nazev'],)
+        group = Group.create(name=form.data['name'],)
 
-        flash(gettext('Group {name} created').format(name=group.nazev),'success')
+        flash(gettext('Group {name} created').format(name=group.name),'success')
         return redirect(url_for('admin.group_list'))
     return render_template('create_group.html', form=form)
 
 @auth.route('/create_organization', methods=['GET', 'POST'])
 @login_required
 def create_organization():
-    form = RegisterFirmaForm()
+    form = RegisterCompanyForm()
     if form.validate_on_submit():
 
-        firma = Firma.create(nazev=form.data['nazev'],
+        firma = Company.create(name=form.data['name'],
                              state=form.data['state'],
                              address=form.data['address'],
                              phone_number=form.data['phone_number'],
                              contact_person=form.data['contact_person'],
                              website=form.data['website'])
 
-        flash(gettext('Organization {name} created').format(name=firma.nazev),'success')
-        return redirect(url_for('admin.firma_list'))
+        flash(gettext('Organization {name} created').format(name=firma.name),'success')
+        return redirect(url_for('admin.company_list'))
     return render_template('create_firma.html', form=form)
 
 

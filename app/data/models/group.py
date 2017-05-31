@@ -48,5 +48,4 @@ class Group(CRUDMixin, db.Model):
                          .join(Company)\
                          .filter(Group.name == group and Company.id == company_id)\
                          .first()
-
         return True if item else False

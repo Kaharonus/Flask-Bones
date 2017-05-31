@@ -105,20 +105,20 @@ msgid "User {username} edited"
 msgstr "Uživatel {username} editován"
 
 #: app/auth/admin/firma_views.py:49
-msgid "Organization {nazev} edited"
+msgid "Organization {name} edited"
 msgstr "Firma {name} změněna"
 
 #: app/auth/admin/firma_views.py:59
-msgid "Organization {nazev} deleted"
+msgid "Organization {name} deleted"
 msgstr "Firma {name} vymazána"
 
 #: app/auth/admin/group_views.py:49
-msgid "Group {nazev} edited"
-msgstr "Skupina {nazev} editována"
+msgid "Group {name} edited"
+msgstr "Skupina {name} editována"
 
 #: app/auth/admin/group_views.py:59
-msgid "Group {nazev} deleted"
-msgstr "Skupina {nazev} smazána"
+msgid "Group {name} deleted"
+msgstr "Skupina {name} smazána"
 
 #: app/auth/admin/user_views.py:70
 msgid "User {username} deleted"
@@ -193,8 +193,8 @@ msgstr "Akce"
 
 #: app/auth/admin/templates/firma.html:22
 #: app/auth/admin/templates/groups.html:24
-msgid "Are you sure you want to delete {nazev}?"
-msgstr "Jste si jist, že chcete vymazat {nazev}?"
+msgid "Are you sure you want to delete {name}?"
+msgstr "Jste si jist, že chcete vymazat {name}?"
 
 #: app/auth/admin/templates/firma.html:29
 #: app/auth/admin/templates/groups.html:31
