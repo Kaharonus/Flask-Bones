@@ -15,7 +15,7 @@ def abort_if_user_doesnt_exist(user_id):
         abort(404, message="User not found.")
 
 def abort_if_token_is_invalid(token = ""):
-    #default_token = TimestampSigner(current_app.config['SECRET_KEY'])
+    # default_token = TimestampSigner(current_app.config['SECRET_KEY'])
 
     if token == "" or token is None:
         abort(404, message='No token provided.')
@@ -39,7 +39,7 @@ def abort_if_api_key_is_invalid(id, api_key = ""):
         return True
 
 class RestfulApi(Resource):
-    #logged user request
+    # logged user request
     def get(self, company_id, user_id):
         abort_if_company_doesnt_exist(company_id)
         abort_if_user_doesnt_exist(user_id)
