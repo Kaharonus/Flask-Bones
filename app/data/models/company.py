@@ -36,7 +36,7 @@ class Company(CRUDMixin, db.Model):
         #self.api_key = self.generate_api_key()
 
     def __repr__(self):
-        return '<Company %s>' % self.name
+        return '<Company %s>' % self.company_name
 
     def add_group(self, group):
         assoc = G_F_Association()

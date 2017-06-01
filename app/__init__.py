@@ -35,7 +35,7 @@ def create_app(config=config.base_config):
     register_jinja_env(app)
 
     api.add_resource(RestfulApi,
-        '/api/v1.0/users/<string:company_id>/<string:user_id>', endpoint='user')
+        '/api/v1.0/<string:api_key>/<string:user_id>', endpoint='user')
 
     @babel.localeselector
     def get_locale():

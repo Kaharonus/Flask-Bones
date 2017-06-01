@@ -49,7 +49,7 @@ def create_organization():
                              contact_person=form.data['contact_person'],
                              website=form.data['website'])
 
-        flash(gettext('Organization {name} created').format(company_name=company.company_name),'success')
+        flash(gettext('Organization {name} created').format(name=company.company_name),'success')
         return redirect(url_for('admin.company_list'))
     return render_template('create_firma.html', form=form)
 

@@ -1,8 +1,9 @@
 from .. import db
 from ..mixins import CRUDMixin
+from itsdangerous import TimestampSigner
 from flask import current_app
+from .company import Company
 import datetime
-from flask_bcrypt import Bcrypt
 
 class Application(CRUDMixin, db.Model):
     __tablename__ = "application"
@@ -11,22 +12,27 @@ class Application(CRUDMixin, db.Model):
     application_name = db.Column(db.String(256))
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
 
-    api_key = db.Column(db.String(512))
+    acl_net = db.Column(db.String(128), nullable=False)
+    """(fe)"""
+    email = db.Column(db.String(120), unique=True)
+    __api_key = db.Column(db.String(512))
 
-    def __init__(self, application_name, company_id):
+    def __init__(self, application_name, company_id, email, acl_net):
         self.application_name = application_name
         self.company_id = company_id
-        self.api_key = self.generate_api_key()
+        self.acl_net = acl_net
+        self.email = email
+        self.__api_key = self.generate_api_key()
 
     def generate_api_key(self):
-        hash = Bcrypt.generate_password_hash(current_app.config['SECRET_KEY'] + str(self.id), 13)
-        key = hash.sign(self.company_name)
+        hash = TimestampSigner(current_app.config['SECRET_KEY'])
+        key = hash.sign(Company.find_by_id(self.company_id).company_name)
         return str(key, 'utf-8')
 
     @staticmethod
     def get_api_key(id):
         # returns hashed api_key
-        return db.session.query(Application).filter_by(id=id).first().api_key
+        return db.session.query(Application).filter_by(id=id).first().__api_key
 
     @staticmethod
     def validate_api_key(id, api_key):
