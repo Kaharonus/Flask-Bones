@@ -9,6 +9,7 @@ from .association import U_G_Association
 
 
 class Group(CRUDMixin, db.Model):
+
     __tablename__ = "group"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -48,4 +49,5 @@ class Group(CRUDMixin, db.Model):
                          .join(Company)\
                          .filter(Group.name == group and Company.id == company_id)\
                          .first()
+
         return True if item else False

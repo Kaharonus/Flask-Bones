@@ -15,6 +15,7 @@ from . import admin
 def company_list():
 
     from app.data import DataTable
+
     datatable = DataTable(
         model=Company,
         columns=[],
@@ -40,21 +41,26 @@ def company_list():
 @admin.route('/firma/edit/<str_hash>', methods=['GET', 'POST'])
 @admin_required
 def company_edit(str_hash):
+
     id = int(float(crypt(str_hash, decrypt=True)))
     company = Company.query.filter_by(id=id).first_or_404()
     form = EditCompanyForm(obj=company)
+
     if form.validate_on_submit():
         form.populate_obj(company)
         company.commit()
-        flash(gettext('Organization {company_name} edited').format(company_name=company.company_name),'success')
+        flash(gettext('Organization {company_name} edited').format(company_name=company.company_name), 'success')
+
     return render_template('company-edit.html', form=form, firma=company)
 
 
 @admin.route('/firma/delete/<str_hash>', methods=['GET'])
 @admin_required
 def company_delete(str_hash):
+
     id = int(float(crypt(str_hash, decrypt=True)))
     company = Company.query.filter_by(id=id).first_or_404()
     company.delete()
-    flash(gettext('Organization {name} deleted').format(name=company.company_name),'success')
+    flash(gettext('Organization {name} deleted').format(name=company.company_name), 'success')
+
     return redirect(url_for('.company_list'))

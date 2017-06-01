@@ -18,6 +18,7 @@ from app.public.forms import RegisterUserForm
 def user_list():
 
     from app.data import DataTable
+
     datatable = DataTable(
         model=User,
         columns=[User.remote_addr],
@@ -45,30 +46,38 @@ def user_list():
 @admin.route('/user/edit/<str_hash>', methods=['GET', 'POST'])
 @admin_required
 def user_edit(str_hash):
+
     id = int(float(crypt(str_hash, decrypt=True)))
     user = User.query.filter_by(id=id).first_or_404()
     form = EditUserForm(obj=user)
+
     if form.validate_on_submit():
+
         if User.if_exists_email(form.email._value()) and user.email!=form.email._value():
             flash(gettext("An account has already been registered with that email. Try another?"), 'warning')
             return render_template('user-edit.html', form=form, user=user)
+
         if not user.username == form.username._value():
             flash(gettext("You little rebel! I like you!"), 'warning')
             return render_template('user-edit.html', form=form, user=user)
+
         form.populate_obj(user)
         user.commit()
-        flash(gettext('User {username} edited').format(username=user.username),'success')
+        flash(gettext('User {username} edited').format(username=user.username), 'success')
+
     return render_template('user-edit.html', form=form, user=user)
 
 
 @admin.route('/user/delete/<str_hash>', methods=['GET'])
 @admin_required
 def user_delete(str_hash):
+
     id = int(float(crypt(str_hash, decrypt=True)))
     user = User.query.filter_by(id=id).first_or_404()
     user.delete()
-    flash(gettext('User {username} deleted').format(username=user.username),'success')
-    if current_user.id==id:
+    flash(gettext('User {username} deleted').format(username=user.username), 'success')
+
+    if current_user.id == id:
         return redirect(url_for('public.index'))
     return redirect(url_for('.user_list'))
 

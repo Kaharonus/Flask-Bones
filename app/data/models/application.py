@@ -4,7 +4,9 @@ from flask import current_app
 import datetime
 from flask_bcrypt import Bcrypt
 
+
 class Application(CRUDMixin, db.Model):
+
     __tablename__ = "application"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -30,11 +32,15 @@ class Application(CRUDMixin, db.Model):
 
     @staticmethod
     def validate_api_key(id, api_key):
+
         hashed_api_key = Application.get_api_key(id)
+
         # if Company.query.filter_by(api_key=api_key).first() is None:
         if hashed_api_key is None:
             return True
+
         elif not Bcrypt.check_password_hash(hashed_api_key, api_key):
             return True
+
         else:
             return False

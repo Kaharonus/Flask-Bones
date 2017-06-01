@@ -6,6 +6,7 @@ from .models import Group, Company, User, oauth, OAuthSignIn, Application
 from random import randint
 from app.utils import fake_firma, fake_user
 
+
 def populate_db(num_users=5, num_groups=15, num_firms=5):
     """
     Fills the data will fake data.

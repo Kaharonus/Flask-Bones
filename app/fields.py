@@ -6,6 +6,7 @@ Generic form classes and helpers to use throughout the application
 from wtforms.validators import ValidationError
 from flask_babel import gettext, lazy_gettext
 
+
 class Predicate(object):
 
     def __init__(self, f, message=None):

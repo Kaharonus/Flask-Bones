@@ -3,7 +3,9 @@
 from . import db
 from six import string_types as basestring
 
+
 class CRUDMixin(object):
+
     __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key=True)

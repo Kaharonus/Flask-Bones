@@ -67,12 +67,15 @@ class User(CRUDMixin, UserMixin, db.Model):
 
     @classmethod
     def stats(cls):
+
         active_users = cache.get('active_users')
+
         if not active_users:
             active_users = cls.query.filter_by(active=True).count()
             cache.set('active_users', active_users)
 
         inactive_users = cache.get('inactive_users')
+
         if not inactive_users:
             inactive_users = cls.query.filter_by(active=False).count()
             cache.set('inactive_users', inactive_users)
@@ -85,15 +88,11 @@ class User(CRUDMixin, UserMixin, db.Model):
 
     @staticmethod
     def if_exists(username):
-        if not User.query.filter_by(username=username).first():
-            return False
-        return True
+        return True if User.query.filter_by(username=username).first() else False
 
     @staticmethod
     def if_exists_email(email):
-        if not User.query.filter_by(email=email).first():
-            return False
-        return True
+        return True if User.query.filter_by(email=email).first() else False
 
     @staticmethod
     def find_by_name(name):
@@ -111,11 +110,13 @@ class User(CRUDMixin, UserMixin, db.Model):
     @staticmethod
     def verify_auth_token(token):
         s = Serializer(config['SECRET_KEY'])
+
         try:
             data = s.loads(token)
         except SignatureExpired:
             return None
         except BadSignature:
             return None
+
         user = User.query.get(data['id'])
         return user

@@ -9,10 +9,11 @@ from flask import current_app, url_for, request, redirect, session
 
 
 class Oauth(CRUDMixin, UserMixin, db.Model):
+
     __tablename__ = 'oauth'
     id = db.Column(db.Integer, primary_key=True)
-    #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    #oauth = db.relationship("Oauth", back_populates="users")
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # oauth = db.relationship("Oauth", back_populates="users")
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     social_id = db.Column(db.String(64), nullable=False, unique=True)
     nickname = db.Column(db.String(64), nullable=True)
@@ -24,6 +25,7 @@ class Oauth(CRUDMixin, UserMixin, db.Model):
 
 
 class OAuthSignIn(object):
+
     providers = None
 
     def __init__(self, provider_name):
@@ -43,28 +45,37 @@ class OAuthSignIn(object):
                        _external=True)
 
     @classmethod
-    def get_provider(self, provider_name):
-        if self.providers is None:
-            self.providers = {}
-            for provider_class in self.__subclasses__():
+    def get_provider(cls, provider_name):
+
+        if cls.providers is None:
+            cls.providers = {}
+
+            for provider_class in cls.__subclasses__():
                 provider = provider_class()
-                self.providers[provider.provider_name] = provider
-        return self.providers[provider_name]
+                cls.providers[provider.provider_name] = provider
+
+        return cls.providers[provider_name]
 
 
 class FacebookSignIn(OAuthSignIn):
+
     def __init__(self):
+
         super(FacebookSignIn, self).__init__('facebook')
+
         self.service = OAuth2Service(
+
             name='facebook',
             client_id=self.consumer_id,
             client_secret=self.consumer_secret,
             authorize_url='https://graph.facebook.com/oauth/authorize',
             access_token_url='https://graph.facebook.com/oauth/access_token',
             base_url='https://graph.facebook.com/'
+
         )
 
     def authorize(self):
+
         return redirect(self.service.get_authorize_url(
             scope='email',
             response_type='code',
@@ -72,17 +83,24 @@ class FacebookSignIn(OAuthSignIn):
         )
 
     def callback(self):
+
         if 'code' not in request.args:
             return None, None, None, None, None, None, None
+
         oauth_session = self.service.get_auth_session(
+
             data={'code': request.args['code'],
                   'grant_type': 'authorization_code',
                   'redirect_uri': self.get_callback_url()}
+
         )
+
         me = oauth_session.get('me?fields=id,email,name').json()
         profile_url = "http://facebook.com/profile.php?id=%s" % me['id']
         image_url = "http://graph.facebook.com/%s/picture" % me['id']
+
         return (
+
             'facebook$' + me['id'],
             me.get('email').split('@')[0] if me.get('email') is not None else "anon"+me['id'],
             me.get('email'),
@@ -90,13 +108,18 @@ class FacebookSignIn(OAuthSignIn):
             me['name'].split(' ')[1],
             profile_url,
             image_url
+
         )
 
 
 class TwitterSignIn(OAuthSignIn):
+
     def __init__(self):
+
         super(TwitterSignIn, self).__init__('twitter')
+
         self.service = OAuth1Service(
+
             name='twitter',
             consumer_key=self.consumer_id,
             consumer_secret=self.consumer_secret,
@@ -104,29 +127,39 @@ class TwitterSignIn(OAuthSignIn):
             authorize_url='https://api.twitter.com/oauth/authorize',
             access_token_url='https://api.twitter.com/oauth/access_token',
             base_url='https://api.twitter.com/1.1/'
+
         )
 
     def authorize(self):
+
         request_token = self.service.get_request_token(
             params={'oauth_callback': self.get_callback_url()}
         )
+
         session['request_token'] = request_token
+
         return redirect(self.service.get_authorize_url(request_token[0]))
 
     def callback(self):
+
         request_token = session.pop('request_token')
+
         if 'oauth_verifier' not in request.args:
             return None, None, None, None, None, None, None
+
         oauth_session = self.service.get_auth_session(
             request_token[0],
             request_token[1],
             data={'oauth_verifier': request.args['oauth_verifier']}
         )
+
         me = oauth_session.get('account/verify_credentials.json').json()
         social_id = 'twitter$' + str(me.get('id'))
         username = me.get('screen_name')
         name = me.get('name').split(' ')
+
         return (
+
             social_id,
             username,
             None,
@@ -135,4 +168,5 @@ class TwitterSignIn(OAuthSignIn):
             # '@%s' % me.get('screen_name') - display name (@Atheloses)
             "http://twitter.com/%s" % me.get('screen_name'),
             me.get('profile_image_url')
+
         )

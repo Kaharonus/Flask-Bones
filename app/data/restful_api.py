@@ -42,12 +42,16 @@ def abort_if_api_key_is_invalid(id, api_key=""):
 
 
 class RestfulApi(Resource):
+
     # logged user request
     def get(self, company_id, user_id):
+
         abort_if_company_doesnt_exist(company_id)
         abort_if_user_doesnt_exist(user_id)
         abort_if_api_key_is_invalid(company_id, request.args.get('api_key'))
         abort_if_token_is_invalid(request.args.get('token'))
+
         user = User.query.filter_by(id=id).first()
         json_user = {"users": {"username": user.username, "first_name": user.first_name, "token": user.token}}
+
         return make_response(jsonify(json_user))

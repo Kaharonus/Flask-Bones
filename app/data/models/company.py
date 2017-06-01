@@ -10,6 +10,7 @@ from .association import G_F_Association, U_F_Association
 
 
 class Company(CRUDMixin, db.Model):
+
     __tablename__ = "company"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -24,8 +25,8 @@ class Company(CRUDMixin, db.Model):
     phone_number = db.Column(db.String(16), nullable=False)
     website = db.Column(db.String(64))
 
-
     def __init__(self, company_name, state, address, phone_number, contact_person=None, website=None):
+
         self.company_name = company_name
         self.state = state
         self.address = address
@@ -33,7 +34,8 @@ class Company(CRUDMixin, db.Model):
         self.contact_person = contact_person
         self.website = website
         self.created_ts = datetime.datetime.now()
-        #self.api_key = self.generate_api_key()
+
+        # self.api_key = self.generate_api_key()
 
     def __repr__(self):
         return '<Company %s>' % self.name
@@ -49,7 +51,6 @@ class Company(CRUDMixin, db.Model):
         assoc.company_id = self.id
         assoc.user_id = user.id
         assoc.save()
-
 
     @staticmethod
     def find_by_id(searched_id):
