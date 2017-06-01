@@ -18,8 +18,8 @@ def company_list():
     datatable = DataTable(
         model=Company,
         columns=[],
-        sortable=[Company.name, Company.created_ts],
-        searchable=[Company.name],
+        sortable=[Company.company_name, Company.created_ts],
+        searchable=[Company.company_name],
         filterable=[],
         limits=[25, 50, 100],
         request=request
@@ -46,7 +46,7 @@ def company_edit(str_hash):
     if form.validate_on_submit():
         form.populate_obj(company)
         company.commit()
-        flash(gettext('Organization {name} edited').format(name=company.name),'success')
+        flash(gettext('Organization {company_name} edited').format(company_name=company.company_name),'success')
     return render_template('company-edit.html', form=form, firma=company)
 
 
@@ -56,5 +56,5 @@ def company_delete(str_hash):
     id = int(float(crypt(str_hash, decrypt=True)))
     company = Company.query.filter_by(id=id).first_or_404()
     company.delete()
-    flash(gettext('Organization {name} deleted').format(name=company.name),'success')
+    flash(gettext('Organization {name} deleted').format(name=company.company_name),'success')
     return redirect(url_for('.company_list'))

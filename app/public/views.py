@@ -9,6 +9,7 @@ from app.tasks import send_registration_email
 from app.data.models import User, OAuthSignIn, Oauth
 from .forms import RegisterUserForm
 from .forms import LoginForm
+from .forms import ApplicationForm
 from . import public
 
 
@@ -116,3 +117,7 @@ def verify(token):
 
         flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username),'success')
         return redirect(url_for('public.login'))
+
+@public.route('/application_api', methods=['GET','POST'])
+def application_api():
+    form = ApplicationForm()
