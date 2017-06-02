@@ -27,11 +27,11 @@ class Application(CRUDMixin, db.Model):
 
     def generate_api_key(self):
         hash = TimestampSigner(current_app.config['SECRET_KEY'])
-        key = hash.sign(random.randint(10000, 99999))
-        random.seed(Company.find_by_id(self.company_id).id)
+        # I know this is a genious solution, but I need something quick to hide the ID
         # Dont worry, this will not be included in production
         # Never use this
-        # I know this is a genious solution, but I need something quick to hide the ID
+        random.seed(Company.find_by_id(self.company_id).id)
+        key = hash.sign(random.randint(10000, 99999))
         return str(key, 'utf-8')
 
     @staticmethod
