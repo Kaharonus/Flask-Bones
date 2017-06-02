@@ -31,7 +31,7 @@ class Application(CRUDMixin, db.Model):
         # Dont worry, this will not be included in production
         # Never use this
         random.seed(Company.find_by_id(self.company_id).id)
-        key = hash.sign(random.randint(10000, 99999))
+        key = hash.sign(str(random.randint(10000, 99999)))
         return str(key, 'utf-8')
 
     @staticmethod
