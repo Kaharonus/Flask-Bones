@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-from logging import INFO
+from logging import INFO,ERROR,DEBUG
 
 class base_config(object):
     """Default configuration options."""
@@ -9,11 +9,11 @@ class base_config(object):
     BABEL_DEFAULT_LOCALE='cs'
     #SERVER_NAME = os.environ['SERVER_NAME']
     #SECRET_KEY = os.environ['SECRET_KEY']
-#    SERVER_NAME="localhost:5000"
     SERVER_NAME="localhost:5000"
+#    SERVER_NAME="192.168.1.127:5000"
 
     SECRET_KEY="sdfsdfsdgwerter346354"
-    API_TOKEN_EXPIRATION = 86400
+    TOKEN_EXPIRATION = 86400
     ERROR_404_HELP = False
 
     CYPHER_KEY = bytes(os.urandom(32))
@@ -55,9 +55,9 @@ class base_config(object):
 
 
     POSTGRES_HOST="localhost"
-    POSTGRES_USER="postgres"
+    POSTGRES_USER="student"
     POSTGRES_PORT="5432"
-    POSTGRES_PASS="passat221"
+    POSTGRES_PASS="student"
     POSTGRES_DB = 'flask_bones'
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
@@ -72,14 +72,14 @@ class base_config(object):
 
     LOG_FORMAT = '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
     LOG_FILEPATH = 'logfile.log'
-    LOG_LEVEL = INFO
+    LOG_LEVEL = DEBUG
 
 
 class dev_config(base_config):
     """Development configuration options."""
     DEBUG = True
     ASSETS_DEBUG = True
-    WTF_CSRF_ENABLED = False
+    WTF_CSRF_ENABLED = True
 
 
 class test_config(base_config):

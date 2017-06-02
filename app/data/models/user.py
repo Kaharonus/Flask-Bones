@@ -7,7 +7,7 @@ from .. import db
 from ..mixins import CRUDMixin
 import datetime
 from . import Group
-import time
+
 
 class User(CRUDMixin, UserMixin, db.Model):
     __tablename__ = "user"
@@ -23,13 +23,13 @@ class User(CRUDMixin, UserMixin, db.Model):
     active = db.Column(db.Boolean())
     is_sadmin = db.Column(db.Boolean())
     default_idfirm = db.Column(db.Integer, nullable=True)
-    api_key = db.Column(db.String(512), nullable=True)
+    token = db.Column(db.String(512), nullable=True)
     oauth = db.relationship('Oauth', backref='user',
                             lazy='dynamic')
-    #id = db.Column(db.Integer, primary_key=True)
-    #social_id = db.Column(db.String(64), nullable=False, unique=True) -> username
-    #nickname = db.Column(db.String(64), nullable=True) -> first_name
-    #email = db.Column(db.String(64), nullable=True)
+    # id = db.Column(db.Integer, primary_key=True)
+    # social_id = db.Column(db.String(64), nullable=False, unique=True) -> username
+    # nickname = db.Column(db.String(64), nullable=True) -> first_name
+    # email = db.Column(db.String(64), nullable=True)
     groups = db.relationship("U_G_Association", back_populates="users")
     companies = db.relationship("U_F_Association", back_populates="users")
 
@@ -43,23 +43,24 @@ class User(CRUDMixin, UserMixin, db.Model):
         self.remote_addr = remote_addr
         self.active = active
         self.is_sadmin = is_sadmin
-        self.api_key = self.generate_auth_token()
+        self.token = self.generate_auth_token()
 
     def __repr__(self):
-        return '<User (username=%s, first_name=%s, last_name=%s, api_key=%s)>' % (self.username, self.jmeno, self.prijmeni, self.api_key)
+        return '<User (username=%s, first_name=%s, last_name=%s, api_key=%s)>' % (self.username, self.jmeno, self.prijmeni, self.token)
 
     def set_password(self, password):
         self.pw_hash = bcrypt.generate_password_hash(password, 10)
-        #pwhash = bcr.hashpw(password.encode('utf-8'), bcr.gensalt())
-        #self.pw_hash = pwhash.decode('utf-8')
+        # pwhash = bcr.hashpw(password.encode('utf-8'), bcr.gensalt())
+        # self.pw_hash = pwhash.decode('utf-8')
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.pw_hash, password.encode('utf-8'))
 
-    def generate_auth_token(self, expiration = 20):#config['AUTH_TOKEN_EXPIRATION']):
+    def generate_auth_token(self, expiration = 20):
+        # config['AUTH_TOKEN_EXPIRATION']):
         s = TimestampSigner(current_app.config['SECRET_KEY'])
         key = s.sign(self.username)
-        return str(key,'utf-8')
+        return str(key, 'utf-8')
 
     def to_json(self):
         return [self.id, self.first_name + ' ' + self.last_name + ' (' + self.username + ')']
@@ -87,7 +88,6 @@ class User(CRUDMixin, UserMixin, db.Model):
         if not User.query.filter_by(username=username).first():
             return False
         return True
-
 
     @staticmethod
     def if_exists_email(email):

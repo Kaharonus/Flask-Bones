@@ -20,8 +20,8 @@ def group_list():
     datatable = DataTable(
         model=Group,
         columns=[],
-        sortable=[Group.name, Group.created_ts],
-        searchable=[Group.name],
+        sortable=[Group.group_name, Group.created_ts],
+        searchable=[Group.group_name],
         filterable=[],
         limits=[25, 50, 100],
         request=request

@@ -16,7 +16,7 @@
             <tbody>
                 {% for f in datatable.query.items %}
                     <tr>
-                        <td><a href="{{ url_for('.company_edit', str_hash=crypt(f.id)) }}">{{ f.name }}</a></td>
+                        <td><a href="{{ url_for('.company_edit', str_hash=crypt(f.id)) }}">{{ f.company_name }}</a></td>
                         <td>{{ timeago(f.created_ts) }}</td>
                         <td>
                             {% set dialogue = gettext('Are you sure you want to delete {name}?').format(name=f.name) %}

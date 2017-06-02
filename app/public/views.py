@@ -6,13 +6,11 @@ from flask_login import login_user, current_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from app.extensions import lm
 from app.tasks import send_registration_email
-from app.data.models import User, OAuthSignIn, Oauth
+from app.data.models import User, OAuthSignIn, Oauth, Application
 from .forms import RegisterUserForm
 from .forms import LoginForm
+from .forms import ApplicationForm
 from . import public
-
-
-
 
 
 @lm.user_loader
@@ -90,7 +88,7 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        #send_registration_email.delay(user, token)
+        #send_registration_email.delay(user, api_key)
 
         #flash(gettext('Sent verification email to {email}').format(email=user.email),'success')
         flash(gettext('An account {username} has been created.').format(username=form.data['username']), 'success')
@@ -116,3 +114,21 @@ def verify(token):
 
         flash(gettext('Registered user {username}. Please login to continue.').format(username=user.username),'success')
         return redirect(url_for('public.login'))
+
+@public.route('/application_api', methods=['GET','POST'])
+def application_api():
+    form = ApplicationForm()
+    if form.validate_on_submit():
+        try:
+            app = Application.create(
+                application_name=form.data['application_name'],
+                acl_net=request.remote_addr,
+                email=form.data['email'],
+                company_id=form.data['company_id'].id,
+            )
+        except:
+            flash(gettext('Email already registered!'),'success')
+            return render_template('api-registration.html', form=form, error=form.errors)
+        flash(gettext('Your generated api key: {key} \nStore this info!\nEmail has been sent to you with this key.').format(key=app.get_api_key(app.id)), 'success')
+        return redirect(request.args.get('next') or g.lang_code + '/index')
+    return render_template('api-registration.html', form=form)
