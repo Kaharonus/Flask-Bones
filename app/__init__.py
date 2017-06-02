@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, g, render_template, request, redirect
 from app.data import db
-from app.data.restful_api import RestfulApi
+from app.data.restful_api import RestfulApiLogin, RestfulApiValidate
 from app.extensions import lm, api, travis, mail, heroku, bcrypt, celery, babel
 from app.assets import assets
 import app.utils as utils
@@ -17,7 +17,9 @@ import logging
 
 
 def create_app(config=config.base_config):
+
     app = Flask(__name__)
+
     app.config.from_object(config)
 
     logger = logging.getLogger()
@@ -27,15 +29,17 @@ def create_app(config=config.base_config):
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     api = Api(app)
-    #app.logger.addHandler(file_handler)
+    app.logger.addHandler(file_handler)
 
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
     register_jinja_env(app)
 
-    api.add_resource(RestfulApi,
-        '/api/v1.0/<string:api_key>/<string:user_id>', endpoint='user')
+    api.add_resource(RestfulApiLogin,
+        '/api/auth_login', endpoint='login_user')
+    api.add_resource(RestfulApiValidate,
+        '/api/validate', endpoint='validate_user')
 
     @babel.localeselector
     def get_locale():
@@ -74,6 +78,7 @@ def register_extensions(app):
     celery.config_from_object(app.config)
     assets.init_app(app)
     babel.init_app(app)
+
 
 
 def register_blueprints(app):
