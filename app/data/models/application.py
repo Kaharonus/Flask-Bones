@@ -4,7 +4,7 @@ from itsdangerous import TimestampSigner
 from flask import current_app
 from flask_restful import abort
 from .company import Company
-import datetime
+import random
 
 class Application(CRUDMixin, db.Model):
     __tablename__ = "application"
@@ -27,7 +27,11 @@ class Application(CRUDMixin, db.Model):
 
     def generate_api_key(self):
         hash = TimestampSigner(current_app.config['SECRET_KEY'])
-        key = hash.sign(Company.find_by_id(self.company_id).company_name)
+        # I know this is a genious solution, but I need something quick to hide the ID
+        # Dont worry, this will not be included in production
+        # Never use this
+        random.seed(Company.find_by_id(self.company_id).id)
+        key = hash.sign(random.randint(10000, 99999))
         return str(key, 'utf-8')
 
     @staticmethod

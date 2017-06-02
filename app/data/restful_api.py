@@ -74,6 +74,8 @@ class RestfulApiLogin(Resource):
             user = User.query.filter_by(username=username).first()
             if user.check_password(request.args.get('password')):
                 token = Token(username)
+                if request.args.get('expiration') is not None:
+                    token.set_max_age(int(request.args.get('expiration')))
                 json_user = {"user": {"username": user.username, "first_name": user.first_name, "token":{"token": token.token, "expiration": token.max_age}}}
                 return make_response(jsonify(json_user))
             else:
